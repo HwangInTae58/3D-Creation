@@ -21,7 +21,7 @@ public class Town : MonoBehaviour
     }
     private void GetCost()
     {
-
+        // TODO : 빌드매니저를 만들어서 코스트 관리하기 
     }
     private void GetDelay()
     {
