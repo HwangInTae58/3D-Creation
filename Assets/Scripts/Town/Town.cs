@@ -2,30 +2,59 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Town : MonoBehaviour
+public class Town : MonoBehaviour, IDamaged
 {
-    public TownData townData;
+    public TownData data;
 
     int HP;
 
     float costDelay = 0f;
-    bool costCount = false;
+    bool costCount = true;
 
+   
     private void Awake()
     {
-        HP = townData.hp;
+        HP = data.hp;
     }
-    private void FixedUpdate()
+    private void Update()
     {
-        GetCost();
+        GetDelay();
+        OnCost();
     }
-    private void GetCost()
+    public void OnCost()
     {
-        // TODO : 빌드매니저를 만들어서 코스트 관리하기 
+        if (!costCount)
+        {
+            // TODO : 빌드매니저를 만들어서 코스트 관리하기 
+            BuildManager.instance.GetCost(data.getCost);
+            costCount = true;
+        }
     }
+   
     private void GetDelay()
     {
+        if (costCount)
+        {
+            costDelay += Time.deltaTime;
+            if(costDelay >= data.getDelay)
+            {
+                costCount = false;
+                costDelay = 0f;
+            }
+        }
+    }
 
+    public void Damaged(int attck)
+    {
+        HP -= attck;
+        if (0 >= HP)
+        {
+            Die();
+        }
+    }
+private void Die()
+    {
+        Destroy(gameObject);
     }
 
 }

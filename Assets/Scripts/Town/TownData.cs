@@ -11,4 +11,6 @@ public class TownData : ScriptableObject
     public int getCost;
     //수급 딜레이
     public float getDelay;
+    //Cost
+    public int cost;
 }

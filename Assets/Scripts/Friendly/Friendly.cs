@@ -53,7 +53,6 @@ public class Friendly : MonoBehaviour, IDamaged
                 }
             }
             Vector3 dir = findTarget[index].transform.position - transform.position;
-            Debug.Log(index);
             transform.LookAt(dir);
             transform.Translate(dir.normalized * Speed * Time.deltaTime, Space.World);
             if(attackedTarget.Length > 0)
@@ -63,7 +62,6 @@ public class Friendly : MonoBehaviour, IDamaged
             }
             else
             {
-                Debug.Log("못찾음");
                 //어택사거리에 적이 없으면 다시 속도가 생기게 하기
                 Speed = data.speed;
                 return;
@@ -77,7 +75,6 @@ public class Friendly : MonoBehaviour, IDamaged
         if (!attacked) {
             Speed = 0;
             attacked = true;
-            Debug.Log("공격");
             damaged?.Damaged(data.damage);
 
         }
@@ -100,7 +97,6 @@ public class Friendly : MonoBehaviour, IDamaged
     private void Die()
     {
         // TODO : 아군 죽음
-        Debug.Log("아군 사망");
         Destroy(gameObject);
     }
     private void FireDelay()
