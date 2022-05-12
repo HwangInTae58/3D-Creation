@@ -11,9 +11,9 @@ public class BuildManager : MonoBehaviour
     public UnityAction changeCost;
     public Text costCount;
 
-    Friendly friendly;
-    Town town;
-
+    public Friendly selectedFriendly;
+    public Town selectedTown;
+    
     public int startCost = 20;
     public int Cost;
 
@@ -33,7 +33,6 @@ public class BuildManager : MonoBehaviour
     {
         Cost += getCost;
         changeCost?.Invoke();
-        Debug.Log("돈 : " + Cost);
     }
     private void OnCost()
     {
@@ -41,16 +40,25 @@ public class BuildManager : MonoBehaviour
     }
 
 
-    public void OnTownBuild()
+    public void OnTownBuild(Vector3 vec)
     {
-        if (town.data.cost > Cost)
+        if (selectedTown.data.cost > Cost)
             return;
-
+        if (selectedTown == null)
+            return;
+        changeCost?.Invoke();
+        Cost -= selectedTown.data.cost;
+        Town town = Instantiate(selectedTown, vec, Quaternion.identity);
     }
-    public void OnFriendlyBuild()
+    public void OnFriendlyBuild(Vector3 vec)
     {
-        if (friendly.data.cost > Cost)
+        if (selectedFriendly.data.cost > Cost)
             return;
+        if (selectedFriendly == null)
+            return;
+        changeCost?.Invoke();
+        Cost -= selectedFriendly.data.cost;
+       Friendly friendly = Instantiate(selectedFriendly, vec, Quaternion.identity);
     }
 
 

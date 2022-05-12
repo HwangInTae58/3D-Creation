@@ -13,6 +13,8 @@ public class UIManager : MonoBehaviour
     public GameObject friendlyBuild;
     public GameObject townBuild;
 
+    bool curtownUI = false;
+    bool curFrienUI = false;
 
     private void Awake()
     {
@@ -20,23 +22,31 @@ public class UIManager : MonoBehaviour
             _instance = this;
     }
   
-    public void OnTownBuildUI(bool town)
+    public void OnBuildUI(int build)
     {
-        if(town)
+        if(build == 1 && !curtownUI)
         {
+            curtownUI = true;
             townBuild.SetActive(true);
             if (friendlyBuild.activeSelf == true)
             {
                 friendlyBuild.SetActive(false);
             }
+           
             else
                 return;
         }
-    }
-    public void OnFriendlyBuildUI(bool friend)
-    {
-        if (friend)
+        else if(build == 1 && curtownUI)
         {
+            curtownUI = false;
+            if (townBuild.activeSelf == true)
+            {
+                townBuild.SetActive(false);
+            }
+        }
+        if (build == 2 && !curFrienUI)
+        {
+            curFrienUI = true;
             friendlyBuild.SetActive(true);
             if (townBuild.activeSelf == true)
             {
@@ -45,6 +55,14 @@ public class UIManager : MonoBehaviour
             else
                 return;
         }
-    }
+        else if(build == 2 && curFrienUI)
+        {
+            curFrienUI = false;
+            if (friendlyBuild.activeSelf == true)
+            {
+                friendlyBuild.SetActive(false);
+            }
+        }
 
+    }
 }

@@ -5,7 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "FriendlyData.asset", menuName = "Friendly/FriendlyData")]
 public class FriendlyData : ScriptableObject
 {
-    
+    //이름
+    public string friendName;
     //사거리
     public float range;
     public float attackRange;

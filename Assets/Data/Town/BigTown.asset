@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 072b07f32813e0546a4ffab95c5b74ba, type: 3}
-  m_Name: Town1
+  m_Name: BigTown
   m_EditorClassIdentifier: 
-  hp: 1
+  townName: "\uD070 \uAC74\uBB3C"
+  hp: 100
   getCost: 3
   getDelay: 6
   cost: 5
+  prefab: {fileID: 4854580533280251383, guid: 898534d13f5c4a94b863a2d8e0a7b56d, type: 3}

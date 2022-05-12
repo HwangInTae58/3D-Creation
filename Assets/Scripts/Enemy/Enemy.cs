@@ -9,12 +9,17 @@ public class Enemy : MonoBehaviour, IDamaged
     int HP;
     float Speed;
 
+    float ranged;
+    float attackranged;
+
     float attackDelay = 0f;
     bool attacked = false;
    
     private void Awake()
     {
         HP = data.hp;
+        ranged = data.range;
+        attackranged = data.attackRange;
     }
     private void FixedUpdate()
     {
@@ -27,8 +32,8 @@ public class Enemy : MonoBehaviour, IDamaged
     }
     private void FindTarget()
     {
-        Collider[] findTarget = Physics.OverlapSphere(transform.position, data.range, LayerMask.GetMask("Friendly"));
-        Collider[] attackedTarget = Physics.OverlapSphere(transform.position, data.attackRange, LayerMask.GetMask("Friendly"));
+        Collider[] findTarget = Physics.OverlapSphere(transform.position, ranged, LayerMask.GetMask("Friendly"));
+        Collider[] attackedTarget = Physics.OverlapSphere(transform.position, attackranged, LayerMask.GetMask("Friendly"));
 
         if (findTarget.Length <= 0)
         {
@@ -48,7 +53,11 @@ public class Enemy : MonoBehaviour, IDamaged
                 }
             }
             Vector3 dir = findTarget[index].transform.position - transform.position;
-            transform.LookAt(dir);
+
+            //바라보게 하기 코드
+            Quaternion q = Quaternion.LookRotation(dir.normalized);
+            transform.rotation = q;
+
             transform.Translate(dir.normalized * Speed * Time.deltaTime, Space.World);
             if (attackedTarget.Length > 0)
             {
@@ -93,8 +102,8 @@ public class Enemy : MonoBehaviour, IDamaged
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, data.range);
-        Gizmos.DrawWireSphere(transform.position, data.attackRange);
+        Gizmos.DrawWireSphere(transform.position, ranged);
+        Gizmos.DrawWireSphere(transform.position, attackranged);
     }
 
     private void FireDelay()
