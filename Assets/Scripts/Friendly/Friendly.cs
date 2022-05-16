@@ -12,20 +12,21 @@ public class Friendly : MonoBehaviour, IDamaged
     public Transform face;
 
     int HP;
-    float Speed;
+    float Speed = 0;
 
     float attackDelay = 0f;
-    bool attacked = false;
+    bool attacked = true;
 
     float ranged;
     float attackranged;
+
+    public Vector3 originalPos;
 
     bool isDie = false;
 
     private void Awake()
     {
         HP = data.hp;
-        Speed = data.speed;
         ranged = data.range;
         attackranged = data.attackRange;
 
@@ -34,10 +35,7 @@ public class Friendly : MonoBehaviour, IDamaged
         anime = GetComponent<Animator>();
         fricollider = GetComponent<Collider>();
     }
-    private void FixedUpdate()
-    {
-        FireDelay();
-    }
+    
     private void Update()
     {
        
@@ -67,14 +65,13 @@ public class Friendly : MonoBehaviour, IDamaged
                 }
             }
             Vector3 dir = findTarget[index].transform.position - transform.position;
-
             //바라보게 하기 코드
             Quaternion q = Quaternion.LookRotation(dir.normalized);
             transform.rotation = q;
-           
             transform.Translate(dir.normalized * Speed * Time.deltaTime, Space.World);
             if (attackedTarget.Length > 0)
             {
+                FireDelay();
                 Attack(attackedTarget);
                 Speed = 0;
             }
@@ -88,7 +85,17 @@ public class Friendly : MonoBehaviour, IDamaged
         }
         else
         {
-            Speed = 0;
+            if (Vector3.Distance(originalPos, transform.position) <= 0.04f)
+            {
+                Debug.Log("이동");
+                Vector3 purdir = originalPos - transform.position;
+                transform.Translate(purdir.normalized * Speed * Time.deltaTime, Space.World);
+                Quaternion q = Quaternion.LookRotation(purdir.normalized);
+                transform.rotation = q;
+               
+            }
+            if (Vector3.Distance(originalPos, transform.position) > 0.04f)
+                Speed = 0;
             return;
 
         }
@@ -97,6 +104,7 @@ public class Friendly : MonoBehaviour, IDamaged
     {
         if (isDie)
             return;
+
         IDamaged damaged = target[0].GetComponent<IDamaged>();
         if (!attacked) {
             attacked = true;

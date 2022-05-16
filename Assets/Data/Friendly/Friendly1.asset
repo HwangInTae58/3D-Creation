@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Friendly1
   m_EditorClassIdentifier: 
   friendName: "\uC77C\uBC18\uBCD1\uC0AC"
-  range: 20
+  range: 10
   attackRange: 1
   hp: 10
-  damage: 2
+  damage: 5
   fireDelay: 0.3
   speed: 2
   prefab: {fileID: 5248552892047330515, guid: c647a6e9ba715004ebbf4dc6d7bd1e7a, type: 3}

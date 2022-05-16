@@ -13,6 +13,10 @@ public class UIManager : MonoBehaviour
     public GameObject friendlyBuild;
     public GameObject townBuild;
 
+    public Text stageNumber;
+    public Text monsterCount;
+    public Text waveWaitTime;
+
     bool curtownUI = false;
     bool curFrienUI = false;
 
@@ -31,6 +35,10 @@ public class UIManager : MonoBehaviour
             if (friendlyBuild.activeSelf == true)
             {
                 friendlyBuild.SetActive(false);
+                if (BuildManager.instance.selectedFriendly != null)
+                {
+                    BuildManager.instance.selectedFriendly = null;
+                }
             }
            
             else
@@ -41,6 +49,10 @@ public class UIManager : MonoBehaviour
             curtownUI = false;
             if (townBuild.activeSelf == true)
             {
+                if(BuildManager.instance.selectedTown != null) 
+                { 
+                    BuildManager.instance.selectedTown = null;
+                }
                 townBuild.SetActive(false);
             }
         }
@@ -51,6 +63,10 @@ public class UIManager : MonoBehaviour
             if (townBuild.activeSelf == true)
             {
                 townBuild.SetActive(false);
+                if (BuildManager.instance.selectedTown != null)
+                {
+                    BuildManager.instance.selectedTown = null;
+                }
             }
             else
                 return;
@@ -60,6 +76,10 @@ public class UIManager : MonoBehaviour
             curFrienUI = false;
             if (friendlyBuild.activeSelf == true)
             {
+                if (BuildManager.instance.selectedFriendly != null)
+                {
+                    BuildManager.instance.selectedFriendly = null;
+                }
                 friendlyBuild.SetActive(false);
             }
         }

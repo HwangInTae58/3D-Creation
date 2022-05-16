@@ -20,6 +20,7 @@ public class Town : MonoBehaviour, IDamaged
     {
         GetDelay();
         OnCost();
+        ChangeYRote();
     }
     public void OnCost()
     {
@@ -56,5 +57,12 @@ private void Die()
     {
         Destroy(gameObject);
     }
-
+    private void ChangeYRote()
+    {
+        if (Input.GetButtonDown("Fire2"))
+        {
+            transform.Rotate(new Vector3(0, 90));
+        }
+    }
 }
+

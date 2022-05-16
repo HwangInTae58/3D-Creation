@@ -13,7 +13,7 @@ public class BuildManager : MonoBehaviour
 
     public Friendly selectedFriendly;
     public Town selectedTown;
-    
+
     public int startCost = 20;
     public int Cost;
 
@@ -21,14 +21,16 @@ public class BuildManager : MonoBehaviour
     {
         if (null == _instance)
             _instance = this;
+        
     }
    
     private void Start()
     {
         Cost = startCost;
-        costCount.text = startCost.ToString();
         changeCost += OnCost;
+        changeCost?.Invoke();
     }
+
     public void GetCost(int getCost)
     {
         Cost += getCost;
@@ -40,25 +42,31 @@ public class BuildManager : MonoBehaviour
     }
 
 
-    public void OnTownBuild(Vector3 vec)
+    public void OnTownBuild(RaycastHit pos)
     {
-        if (selectedTown.data.cost > Cost)
-            return;
         if (selectedTown == null)
             return;
-        changeCost?.Invoke();
-        Cost -= selectedTown.data.cost;
-        Town town = Instantiate(selectedTown, vec, Quaternion.identity);
-    }
-    public void OnFriendlyBuild(Vector3 vec)
-    {
-        if (selectedFriendly.data.cost > Cost)
+        if (selectedTown.data.cost > Cost)
             return;
+        else 
+        { 
+        Town town = Instantiate(selectedTown, pos.point, Quaternion.identity);
+        Cost -= selectedTown.data.cost;
+            changeCost?.Invoke();
+        }
+    }
+    public void OnFriendlyBuild(RaycastHit pos)
+    {
         if (selectedFriendly == null)
             return;
-        changeCost?.Invoke();
-        Cost -= selectedFriendly.data.cost;
-       Friendly friendly = Instantiate(selectedFriendly, vec, Quaternion.identity);
+        if (selectedFriendly.data.cost > Cost)
+            return;
+        else { 
+            Cost -= selectedFriendly.data.cost;
+            Friendly friendly = Instantiate(selectedFriendly, pos.point, Quaternion.identity);
+            friendly.originalPos = pos.point;
+            changeCost?.Invoke();
+        }
     }
 
 

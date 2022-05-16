@@ -1,26 +1,45 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class TerrainScript : MonoBehaviour
 {
-    Vector3 mousePos;
+    public Camera gameCamera;
 
     private void Update()
     {
-        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        
+        OnBuild();
     }
-    private void OnMouseDown()
+ 
+    private void OnBuild() 
     {
-        if (BuildManager.instance.selectedTown != null)
-        { 
-            BuildManager.instance.OnTownBuild(mousePos);
-            Debug.Log("집소환");
-        }
-        if (BuildManager.instance.selectedFriendly != null)
-        { 
-            BuildManager.instance.OnFriendlyBuild(mousePos);
-            Debug.Log("병사소환");
+        
+        Ray ray = gameCamera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Input.GetButtonDown("Fire1") ) 
+        {
+            if (EventSystem.current.IsPointerOverGameObject() == false) 
+            {  //UI이 위가 아니면 빌드
+                if (BuildManager.instance.selectedTown != null && Physics.Raycast(ray, out hit))
+                {
+                    if (hit.rigidbody != null)
+                        return;
+                    BuildManager.instance.OnTownBuild(hit);
+                    Debug.Log("집소환");
+                }
+                if (BuildManager.instance.selectedFriendly != null && Physics.Raycast(ray, out hit))
+                {
+                    if (hit.rigidbody != null)
+                        return;
+                    BuildManager.instance.OnFriendlyBuild(hit);
+                    Debug.Log("병사소환");
+                }
+            }
+        
         }
     }
+
 }

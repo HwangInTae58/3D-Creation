@@ -6,6 +6,9 @@ public class Enemy : MonoBehaviour, IDamaged
 {
     public EnemyData data;
 
+    Animator anime;
+    Collider enemyCollider;
+
     int HP;
     float Speed;
 
@@ -13,17 +16,19 @@ public class Enemy : MonoBehaviour, IDamaged
     float attackranged;
 
     float attackDelay = 0f;
-    bool attacked = false;
-   
+    bool attacked = true;
+
+
+    bool isDie = false;
     private void Awake()
     {
         HP = data.hp;
         ranged = data.range;
         attackranged = data.attackRange;
-    }
-    private void FixedUpdate()
-    {
-        FireDelay();
+        Speed = data.speed;
+
+        enemyCollider = GetComponent<Collider>();
+        anime = GetComponent<Animator>();
     }
     private void Update()
     {
@@ -32,9 +37,13 @@ public class Enemy : MonoBehaviour, IDamaged
     }
     private void FindTarget()
     {
+       
         Collider[] findTarget = Physics.OverlapSphere(transform.position, ranged, LayerMask.GetMask("Friendly"));
         Collider[] attackedTarget = Physics.OverlapSphere(transform.position, attackranged, LayerMask.GetMask("Friendly"));
+        anime.SetFloat("IsSpeed", Speed);
 
+        if (isDie)
+            return;
         if (findTarget.Length <= 0)
         {
             return;
@@ -61,8 +70,9 @@ public class Enemy : MonoBehaviour, IDamaged
             transform.Translate(dir.normalized * Speed * Time.deltaTime, Space.World);
             if (attackedTarget.Length > 0)
             {
+                Speed = 0;
                 Attack(attackedTarget);
-
+                FireDelay();
             }
             else
             {
@@ -75,13 +85,15 @@ public class Enemy : MonoBehaviour, IDamaged
     }
     private void Attack(Collider[] target)
     {
+        if (isDie)
+            return;
+
         IDamaged damaged = target[0].GetComponent<IDamaged>();
         if (!attacked)
         {
-            Speed = 0;
             attacked = true;
             damaged?.Damaged(data.damage);
-
+            anime.SetTrigger("IsAttack");
         }
     }
     public void Damaged(int attck)
@@ -90,20 +102,27 @@ public class Enemy : MonoBehaviour, IDamaged
 
         if(HP <= 0)
         {
+            Speed = 0;
+            ranged = 0;
+            attackranged = 0;
+            isDie = true;
+            enemyCollider.enabled = false;
+            //TODO : 죽으면서 콜라이더 꺼서 한번만 죽게 만들기
             Die();
         }
     }
     private void Die()
     {
-        //TODO : 몬스터 죽음
-        Destroy(gameObject);
+        WaveManager.instance.monsterCount += -1;
+        anime.SetTrigger("IsDie");
+        Destroy(gameObject, 1.3f);
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, ranged);
-        Gizmos.DrawWireSphere(transform.position, attackranged);
+        Gizmos.DrawWireSphere(transform.position, data.range);
+        Gizmos.DrawWireSphere(transform.position, data.attackRange);
     }
 
     private void FireDelay()

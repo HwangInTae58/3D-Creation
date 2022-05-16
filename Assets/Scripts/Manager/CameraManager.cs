@@ -10,7 +10,7 @@ public class CameraManager : MonoBehaviour
     public float zoomSpeed = 100f;
     public float Distance;
 
-    private Camera camera;
+    private Camera gameCamera;
     private RaycastHit hit;
     private Ray ray;
 
@@ -22,8 +22,8 @@ public class CameraManager : MonoBehaviour
 
     private void Awake()
     {
-        camera = GetComponent<Camera>();
-        mainTransForm = camera.transform;
+        gameCamera = GetComponent<Camera>();
+        mainTransForm = gameCamera.transform;
         forwardDir = Vector3.ProjectOnPlane(transform.forward, Vector3.up).normalized;
         mouseOnScreenBorder = -1;
         mouseOnScreenCoroutine = null;
@@ -45,7 +45,6 @@ public class CameraManager : MonoBehaviour
             TranslateCamera(3);
         if (Mathf.Abs(Input.mouseScrollDelta.y) > 0f)
             Zoom(Input.mouseScrollDelta.y > 0f ? 1 : -1);
-
     }
     private void TranslateCamera(int dir)
     {
@@ -75,8 +74,8 @@ public class CameraManager : MonoBehaviour
     }
     private void Zoom(int zoomDir)
     {
-        camera.orthographicSize -= zoomDir * Time.deltaTime * zoomSpeed;
-        camera.orthographicSize = Mathf.Clamp(camera.orthographicSize, 8f, 26f);
+        gameCamera.orthographicSize -= zoomDir * Time.deltaTime * zoomSpeed;
+        gameCamera.orthographicSize = Mathf.Clamp(gameCamera.orthographicSize, 8f, 26f);
 
     }
 

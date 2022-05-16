@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8a5f04f2169d2846af3b982dfbba1b0, type: 3}
   m_Name: Enemy1
   m_EditorClassIdentifier: 
-  range: 100
-  attackRange: 1
+  range: 200
+  attackRange: 0.2
   hp: 20
-  damage: 1
-  fireDelay: 0.3
+  damage: 5
+  fireDelay: 0.6
   speed: 2
-  prefab: {fileID: 9045522453075733528, guid: fd0759e3bf0a1cb469f05dd5b1a44c56, type: 3}
+  prefab: {fileID: -2940535942348367713, guid: 55776efecb0cd134ea5f418c2f97a705, type: 3}
