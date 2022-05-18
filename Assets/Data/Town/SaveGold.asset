@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 072b07f32813e0546a4ffab95c5b74ba, type: 3}
-  m_Name: BigTown
+  m_Name: SaveGold
   m_EditorClassIdentifier: 
-  townName: "\uD070 \uAC74\uBB3C"
-  townManual: "\uB3C8\uC744 \uB9CE\uC774 \uC218\uAE09\uD574\uC900\uB2E4"
+  townName: "\uC800\uC7A5\uACE0"
+  townManual: "\uACE8\uB4DC \uC800\uC7A5\uACE0\uB97C \uB298\uB9B0\uB2E4"
   hp: 100
-  getCost: 7
-  maxCostUp: 0
-  getDelay: 30
-  cost: 30
-  prefab: {fileID: 4854580533280251383, guid: 898534d13f5c4a94b863a2d8e0a7b56d, type: 3}
+  getCost: 0
+  maxCostUp: 5
+  getDelay: 0
+  cost: 15
+  prefab: {fileID: 1147908901589310901, guid: 0bc04ed0e95d04c41a04fea8f6a0413a, type: 3}
   Life: 0

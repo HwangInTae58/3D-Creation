@@ -8,18 +8,17 @@ public class FriendlyBuild : MonoBehaviour
     public FriendlyData data;
 
     public Text friendName;
+    public Text friendManual;
     public Text cost;
     public Button buyButton;
 
     private void Awake()
     {
         friendName.text = data.friendName;
+        friendManual.text = data.friendManual;
         cost.text = data.cost.ToString();
     }
-    private void OnEnable()
-    {
-        
-    }
+   
     public void OnClick()
     {
         if (BuildManager.instance.selectedTown == null)

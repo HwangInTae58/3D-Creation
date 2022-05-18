@@ -7,14 +7,11 @@ public class WaveManager : MonoBehaviour
     static WaveManager _instance;
     public static WaveManager instance { get { return _instance; } }
 
-   
-
     public GameObject[] monsterPotal;
-
     public Enemy[] enemies;
 
-    public float waveTime = 5f;
-    bool waveStart = false;
+    public float waveTime = 10f;
+    public bool waveStart = false;
 
     public int monsterCount = 0;
     int monCount;
@@ -25,7 +22,12 @@ public class WaveManager : MonoBehaviour
 
     int stage = 0;
     int hard = 0;
-    
+
+    int spawnOke = 1000;
+    int spawnBadWizard = 1000;
+    int spawnGolem = 1000;
+    //int spawnDragon = 1000;
+
 
     private void Awake()
     {
@@ -37,8 +39,6 @@ public class WaveManager : MonoBehaviour
         //int random = Random.Range(0, enemies.Length);
         UIManager.instance.monsterCount.text = monsterCount.ToString();
         UIManager.instance.waveWaitTime.text = Mathf.Floor(waveTime).ToString();
-
-        
     }
     private void FixedUpdate()
     {
@@ -71,28 +71,74 @@ public class WaveManager : MonoBehaviour
     IEnumerator OnMonster()
     {
         float ranTime;
-        ranTime = Random.Range(0.1f, 1f);
-        int i = 0;
+        ranTime = Random.Range(0.8f, 2f);
+        int randomPotal;
+        int randomEnemy;
+
         yield return new WaitForSeconds(1f);
         while (monsterCount < monsterMaxCount && !monsterSpawn)
         {
-                i = Random.Range(0,monsterPotal.Length);
-            Instantiate(enemies[0].data.prefab, monsterPotal[i].transform.position, Quaternion.identity);
-                monsterCount++;
+            randomPotal = Random.Range(0, monsterPotal.Length);
+            randomEnemy = Random.Range(0, enemies.Length);
+
+            Instantiate(enemies[RandomMonster()].data.prefab, monsterPotal[randomPotal].transform.position, Quaternion.identity);
+
+            monsterCount++;
             monCount++;
-                Debug.Log("몬스터 소환");
-                yield return new WaitForSeconds(ranTime);
+
+            yield return new WaitForSeconds(ranTime);
         }
         mons = 0;
+    }
+    private int RandomMonster()
+    {
+        int random = Random.Range(0, 1000);
+
+        int slime = 0;
+
+        int oke = 1;
+
+        int badWizard = 2;
+
+        int golem = 3;
+
+        //int dragon;
+    
+        Debug.Log(random);
+        if(random > spawnGolem && spawnBadWizard < spawnGolem)
+            return golem;
+        if (random > spawnBadWizard && spawnOke <spawnBadWizard)
+            return badWizard;
+        if (random > spawnOke)
+            return oke;
+        
+        return slime;
     }
     private void DifficultyUP()
     {
         hard++;
-        if(hard == 5)
+        if(hard >= 2)
         {
             //TODO : 강한몬스터 확률로 더 높은 확률로 나오게 만들기
-            monsterMaxCount += 5;
-            hard = 0;
+            if (spawnOke >= 0)
+                spawnOke -= 200;
+
+            if (spawnBadWizard >= 400)
+                spawnBadWizard -= 80;
+
+            if (spawnGolem >= 700)
+                spawnGolem -= 20;
+
+            if(hard == 5)
+            {
+                monsterMaxCount += 20;
+                if (spawnOke >= 0)
+                    spawnOke -= 200;
+                if (spawnBadWizard >= 400) 
+                    spawnBadWizard -= 100;
+                hard = 0;
+            }
+           
         }
     }
     public void WaveWait()
@@ -105,8 +151,7 @@ public class WaveManager : MonoBehaviour
 
         if (waveTime <= 0)
         {
-            Debug.Log("Stagestart");
-            waveTime = 20f;
+            waveTime = 15f;
             stage++;
             DifficultyUP();
             UIManager.instance.waveWaitTime.text = Mathf.Floor(waveTime).ToString();

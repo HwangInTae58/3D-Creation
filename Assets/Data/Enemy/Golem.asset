@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8a5f04f2169d2846af3b982dfbba1b0, type: 3}
+  m_Name: Golem
+  m_EditorClassIdentifier: 
+  monsterName: "\uACE8\uB818"
+  range: 200
+  attackRange: 3.2
+  hp: 190
+  damage: 20
+  fireDelay: 2.5
+  speed: 1.5
+  prefab: {fileID: 8615661683222297547, guid: 04864f8f2e30c1842bc3b821365b25aa, type: 3}

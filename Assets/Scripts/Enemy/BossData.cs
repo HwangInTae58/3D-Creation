@@ -2,18 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-[CreateAssetMenu(fileName = "EnemyData.asset", menuName = "Enemy/EnemyData")]
-public class EnemyData : ScriptableObject
+[CreateAssetMenu(fileName = "BossData.asset", menuName = "Boss/BossData")]
+public class BossData : ScriptableObject
 {
-    /*
-     몬스터 설명
-    몬스터 아이콘
-    */
     public string monsterName;
     //사거리
     public float range;
-    public float attackRange;
+    public float attackFarRange;
+    public float attackCloseRange;
+    public int attacker;
     //HP
     public int hp;
     //데미지
@@ -23,6 +20,7 @@ public class EnemyData : ScriptableObject
     //스피드
     public float speed;
     //prefab
-    public Enemy prefab;
-
+    public Boss prefab;
+    //victory
+    public bool victory;
 }

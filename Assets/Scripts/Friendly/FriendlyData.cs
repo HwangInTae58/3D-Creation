@@ -7,6 +7,8 @@ public class FriendlyData : ScriptableObject
 {
     //이름
     public string friendName;
+    //병사 설명
+    public string friendManual;
     //사거리
     public float range;
     public float attackRange;

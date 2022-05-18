@@ -8,6 +8,7 @@ public class TownBuild : MonoBehaviour
     public TownData data;
 
     public Text townName;
+    public Text townManual;
     public Text cost;
     public Button buyButton;
 
@@ -15,6 +16,7 @@ public class TownBuild : MonoBehaviour
     {
         townName.text = data.townName;
         cost.text = data.cost.ToString();
+        townManual.text = data.townManual;
     }
     public void OnClick()
     {

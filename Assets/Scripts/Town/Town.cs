@@ -5,13 +5,17 @@ using UnityEngine;
 public class Town : MonoBehaviour, IDamaged
 {
     public TownData data;
-
     int HP;
 
     float costDelay = 0f;
     bool costCount = true;
 
-   
+    int Life = 1;
+
+    private void Start()
+    {
+        GetMaxCost();
+    }
     private void Awake()
     {
         HP = data.hp;
@@ -20,7 +24,6 @@ public class Town : MonoBehaviour, IDamaged
     {
         GetDelay();
         OnCost();
-        ChangeYRote();
     }
     public void OnCost()
     {
@@ -30,6 +33,10 @@ public class Town : MonoBehaviour, IDamaged
             BuildManager.instance.GetCost(data.getCost);
             costCount = true;
         }
+    }
+    public void GetMaxCost()
+    {
+        BuildManager.instance.plusMaxCost(data.maxCostUp);
     }
    
     private void GetDelay()
@@ -51,18 +58,21 @@ public class Town : MonoBehaviour, IDamaged
         if (0 >= HP)
         {
             Die();
+            //GameOver();
         }
     }
 private void Die()
     {
         Destroy(gameObject);
+        Life -= data.Life;
     }
-    private void ChangeYRote()
+  /* public void GameOver()
     {
-        if (Input.GetButtonDown("Fire2"))
+        if (Life == 0)
         {
-            transform.Rotate(new Vector3(0, 90));
+
         }
-    }
+       
+    }*/
 }
 

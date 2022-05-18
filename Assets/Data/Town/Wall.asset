@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: Wall
   m_EditorClassIdentifier: 
   townName: "\uC131\uBCBD"
-  hp: 200
+  townManual: "\uB3C8\uC740 \uC548\uC8FC\uC9C0\uB9CC \uB2E8\uB2E8\uD568"
+  hp: 500
   getCost: 0
+  maxCostUp: 0
   getDelay: 0
-  cost: 3
+  cost: 10
   prefab: {fileID: 404048362521811421, guid: 1c4084cb110f31d4396773ad7347b33c, type: 3}
+  Life: 0

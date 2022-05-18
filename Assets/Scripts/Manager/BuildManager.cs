@@ -9,13 +9,16 @@ public class BuildManager : MonoBehaviour
     static BuildManager _instance;
     public static BuildManager instance{ get { return _instance; } }
     public UnityAction changeCost;
+
     public Text costCount;
+    public Text max;
 
     public Friendly selectedFriendly;
     public Town selectedTown;
 
-    public int startCost = 20;
+    public int startCost = 25;
     public int Cost;
+    public int maxCost = 50;
 
     private void Awake()
     {
@@ -29,12 +32,29 @@ public class BuildManager : MonoBehaviour
         Cost = startCost;
         changeCost += OnCost;
         changeCost?.Invoke();
+        max.text = maxCost.ToString();
     }
 
     public void GetCost(int getCost)
     {
-        Cost += getCost;
-        changeCost?.Invoke();
+        if (Cost < maxCost)
+        {
+            Cost += getCost;
+            changeCost?.Invoke();
+        }
+        else if (Cost > maxCost)
+        {
+            Cost = maxCost;
+            changeCost?.Invoke();
+        }
+        else
+            return;
+            
+    }
+    public void plusMaxCost(int get)
+    {
+        maxCost += get;
+        max.text = maxCost.ToString();
     }
     private void OnCost()
     {
@@ -63,8 +83,7 @@ public class BuildManager : MonoBehaviour
             return;
         else { 
             Cost -= selectedFriendly.data.cost;
-            Friendly friendly = Instantiate(selectedFriendly, pos.point, Quaternion.identity);
-            friendly.originalPos = pos.point;
+            Friendly friendly = Instantiate(selectedFriendly, pos.point,Quaternion.identity);
             changeCost?.Invoke();
         }
     }

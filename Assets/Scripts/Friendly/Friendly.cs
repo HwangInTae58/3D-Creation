@@ -7,7 +7,6 @@ public class Friendly : MonoBehaviour, IDamaged
     public FriendlyData data;
 
     Animator anime;
-    Rigidbody rigid;
     Collider fricollider;
     public Transform face;
 
@@ -31,11 +30,14 @@ public class Friendly : MonoBehaviour, IDamaged
         attackranged = data.attackRange;
 
         
-        rigid = GetComponent<Rigidbody>();
         anime = GetComponent<Animator>();
         fricollider = GetComponent<Collider>();
     }
-    
+    private void OnEnable()
+    {
+        originalPos = transform.position;
+    }
+
     private void Update()
     {
        
@@ -85,16 +87,16 @@ public class Friendly : MonoBehaviour, IDamaged
         }
         else
         {
-            if (Vector3.Distance(originalPos, transform.position) <= 0.04f)
+            if (Vector3.Distance(originalPos, transform.position) >= 0.04f)
             {
-                Debug.Log("이동");
+                Speed = data.speed;
                 Vector3 purdir = originalPos - transform.position;
                 transform.Translate(purdir.normalized * Speed * Time.deltaTime, Space.World);
                 Quaternion q = Quaternion.LookRotation(purdir.normalized);
                 transform.rotation = q;
-               
+                
             }
-            if (Vector3.Distance(originalPos, transform.position) > 0.04f)
+            if (Vector3.Distance(originalPos, transform.position) < 0.04f)
                 Speed = 0;
             return;
 
@@ -104,14 +106,12 @@ public class Friendly : MonoBehaviour, IDamaged
     {
         if (isDie)
             return;
-
-        IDamaged damaged = target[0].GetComponent<IDamaged>();
-        if (!attacked) {
-            attacked = true;
+        if (attacked)
+            return;
             anime.SetTrigger("IsAttack");
+            IDamaged damaged = target[0].GetComponent<IDamaged>();
+            attacked = true;
             damaged?.Damaged(data.damage);
-
-        }
     }
     private void OnDrawGizmos()
     {
@@ -119,7 +119,6 @@ public class Friendly : MonoBehaviour, IDamaged
         Gizmos.DrawWireSphere(transform.position, ranged);
         Gizmos.DrawWireSphere(transform.position, attackranged);
     }
-
     public void Damaged(int attck)
     {
         HP -= attck;

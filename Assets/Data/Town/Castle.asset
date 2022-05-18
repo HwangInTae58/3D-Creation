@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: Castle
   m_EditorClassIdentifier: 
   townName: "\uC131"
+  townManual: "\uC774\uAC70 \uD130\uC9C0\uBA74 \uAC9C\uC624\uBC84"
   hp: 1000
   getCost: 10
+  maxCostUp: 0
   getDelay: 60
   cost: 0
   prefab: {fileID: 3508289350725827909, guid: 88f3f415b02aef941b5068ac320d27bd, type: 3}
+  Life: 1

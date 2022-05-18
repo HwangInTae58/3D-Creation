@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 072b07f32813e0546a4ffab95c5b74ba, type: 3}
-  m_Name: BigTown
+  m_Name: WindMill
   m_EditorClassIdentifier: 
-  townName: "\uD070 \uAC74\uBB3C"
-  townManual: "\uB3C8\uC744 \uB9CE\uC774 \uC218\uAE09\uD574\uC900\uB2E4"
-  hp: 100
-  getCost: 7
+  townName: "\uD48D\uCC28"
+  townManual: "\uB3C8\uC744 \uC870\uAE08 \uC218\uAE09\uD55C\uB2E4"
+  hp: 50
+  getCost: 1
   maxCostUp: 0
-  getDelay: 30
-  cost: 30
-  prefab: {fileID: 4854580533280251383, guid: 898534d13f5c4a94b863a2d8e0a7b56d, type: 3}
+  getDelay: 7
+  cost: 10
+  prefab: {fileID: 466850131705042647, guid: 8cc8753ada7f8a949bd4c94b1ee75700, type: 3}
   Life: 0
