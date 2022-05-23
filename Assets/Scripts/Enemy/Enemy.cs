@@ -9,6 +9,13 @@ public class Enemy : MonoBehaviour, IDamaged
     Animator anime;
     Collider enemyCollider;
 
+    Transform enermyTargetPos;
+    public GameObject effect;
+    public Transform effectPos;
+
+    public GameObject damageEffect;
+    public Transform bloodPos;
+
     int HP;
     float Speed;
 
@@ -65,13 +72,13 @@ public class Enemy : MonoBehaviour, IDamaged
                     min = distance;
                 }
             }
-            Vector3 dir = findTarget[index].transform.position - transform.position;
 
             //바라보게 하기 코드
+            Vector3 dir = findTarget[index].transform.position - transform.position;
             Quaternion q = Quaternion.LookRotation(dir.normalized);
             transform.rotation = q;
-
             transform.Translate(dir.normalized * Speed * Time.deltaTime, Space.World);
+
             if (attackedTarget.Length > 0)
             {
                 Speed = 0;
@@ -105,18 +112,34 @@ public class Enemy : MonoBehaviour, IDamaged
             return;
         if (attacked)
             return;
-
-       
+        if(null != effect)
        anime.SetTrigger("IsAttack");
        IDamaged damaged = target[0].GetComponent<IDamaged>();
        attacked = true;
        damaged?.Damaged(data.damage);
- 
+        enermyTargetPos = target[0].transform;
+    }
+    private void HitEffact()
+    {
+        GameObject saveEffact;
+        if (effectPos == null)
+            saveEffact = Instantiate(effect, enermyTargetPos.position, Quaternion.identity);
+        else
+            saveEffact = Instantiate(effect, effectPos.position, Quaternion.identity);
+        Destroy(saveEffact, 1f);
+    }
+    private void DamageEffect()
+    {
+        if (null == damageEffect)
+            return;
+       GameObject saveEffact = Instantiate(damageEffect, bloodPos.position, Quaternion.identity);
+       Destroy(saveEffact, 0.8f);
     }
     public void Damaged(int attck)
     {
         HP -= attck;
-        if(HP <= 0)
+        DamageEffect();
+        if (HP <= 0)
         {
             Speed = 0;
             ranged = 0;
@@ -152,6 +175,6 @@ public class Enemy : MonoBehaviour, IDamaged
         Gizmos.DrawWireSphere(transform.position, data.range);
         Gizmos.DrawWireSphere(transform.position, data.attackRange);
     }
-
+    
     
 }

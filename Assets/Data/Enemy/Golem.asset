@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterName: "\uACE8\uB818"
   range: 200
-  attackRange: 3.2
-  hp: 190
+  attackRange: 3.8
+  hp: 500
   damage: 20
   fireDelay: 2.5
   speed: 1.5

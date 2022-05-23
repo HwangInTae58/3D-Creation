@@ -17,6 +17,7 @@ public class BossData : ScriptableObject
     public int damage;
     //딜 딜레이
     public float fireDelay;
+    public float flameDelay;
     //스피드
     public float speed;
     //prefab

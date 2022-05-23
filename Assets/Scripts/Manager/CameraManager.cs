@@ -28,20 +28,20 @@ public class CameraManager : MonoBehaviour
         mouseOnScreenBorder = -1;
         mouseOnScreenCoroutine = null;
     }
-
+    
     private void Update()
     {
         if(mouseOnScreenBorder >= 0)
         {
             TranslateCamera(mouseOnScreenBorder);
         }
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.W))
             TranslateCamera(0);
-        else if (Input.GetKey(KeyCode.DownArrow))
+        else if (Input.GetKey(KeyCode.S))
             TranslateCamera(1);
-        else if (Input.GetKey(KeyCode.RightArrow))
+        else if (Input.GetKey(KeyCode.D))
             TranslateCamera(2);
-        else if (Input.GetKey(KeyCode.LeftArrow))
+        else if (Input.GetKey(KeyCode.A))
             TranslateCamera(3);
         if (Mathf.Abs(Input.mouseScrollDelta.y) > 0f)
             Zoom(Input.mouseScrollDelta.y > 0f ? 1 : -1);

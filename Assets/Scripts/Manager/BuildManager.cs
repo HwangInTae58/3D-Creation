@@ -16,7 +16,7 @@ public class BuildManager : MonoBehaviour
     public Friendly selectedFriendly;
     public Town selectedTown;
 
-    public int startCost = 25;
+    public int startCost = 35;
     public int Cost;
     public int maxCost = 50;
 
@@ -34,7 +34,7 @@ public class BuildManager : MonoBehaviour
         changeCost?.Invoke();
         max.text = maxCost.ToString();
     }
-
+    
     public void GetCost(int getCost)
     {
         if (Cost < maxCost)
@@ -51,6 +51,7 @@ public class BuildManager : MonoBehaviour
             return;
             
     }
+    
     public void plusMaxCost(int get)
     {
         maxCost += get;

@@ -8,7 +8,9 @@ public class WaveManager : MonoBehaviour
     public static WaveManager instance { get { return _instance; } }
 
     public GameObject[] monsterPotal;
+    public GameObject bossPotal;
     public Enemy[] enemies;
+    public Boss[] bosses;
 
     public float waveTime = 10f;
     public bool waveStart = false;
@@ -20,14 +22,15 @@ public class WaveManager : MonoBehaviour
     bool monsterSpawn = false;
     int mons = 0;
 
-    int stage = 0;
+    public int stage = 0;
+    public int dragonSpawn = 0;
+    public int bossStage = 0;
     int hard = 0;
+    int collecter;
 
     int spawnOke = 1000;
     int spawnBadWizard = 1000;
     int spawnGolem = 1000;
-    //int spawnDragon = 1000;
-
 
     private void Awake()
     {
@@ -71,22 +74,105 @@ public class WaveManager : MonoBehaviour
     IEnumerator OnMonster()
     {
         float ranTime;
-        ranTime = Random.Range(0.8f, 2f);
+        ranTime = Random.Range(0.3f, 1f);
         int randomPotal;
-        int randomEnemy;
+        
 
         yield return new WaitForSeconds(1f);
         while (monsterCount < monsterMaxCount && !monsterSpawn)
         {
             randomPotal = Random.Range(0, monsterPotal.Length);
-            randomEnemy = Random.Range(0, enemies.Length);
 
             Instantiate(enemies[RandomMonster()].data.prefab, monsterPotal[randomPotal].transform.position, Quaternion.identity);
-
+            
             monsterCount++;
             monCount++;
 
             yield return new WaitForSeconds(ranTime);
+        }
+        if (dragonSpawn == 8)
+        {
+            randomPotal = Random.Range(0, monsterPotal.Length);
+            Instantiate(bosses[0].data.prefab, monsterPotal[randomPotal].transform.position, Quaternion.identity);
+            dragonSpawn = 7;
+            monsterCount++;
+            monCount++;
+            switch (stage) {
+                case 18:
+                case 19:
+                case 20:
+                case 21:
+                case 22:
+                case 23:
+                case 24:
+                    for (int i = 0; i <= 1; i++)
+                    {
+                        yield return new WaitForSeconds(0.5f);
+                        randomPotal = Random.Range(0, monsterPotal.Length);
+                        Instantiate(bosses[0].data.prefab, monsterPotal[randomPotal].transform.position, Quaternion.identity);
+                        monsterCount++;
+                        monCount++;
+                    }
+                    break;
+                case 25:
+                case 26:
+                case 27:
+                case 28:
+                case 29:
+                    for (int i = 0; i <= 2; i++)
+                    {
+                        yield return new WaitForSeconds(0.5f);
+                        randomPotal = Random.Range(0, monsterPotal.Length);
+                        Instantiate(bosses[0].data.prefab, monsterPotal[randomPotal].transform.position, Quaternion.identity);
+                        monsterCount++;
+                        monCount++;
+                    }
+                    break;
+                case 30:
+                case 31:
+                case 32:
+                case 33:
+                case 34:
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        yield return new WaitForSeconds(0.5f);
+                        randomPotal = Random.Range(0, monsterPotal.Length);
+                        Instantiate(bosses[0].data.prefab, monsterPotal[randomPotal].transform.position, Quaternion.identity);
+                        monsterCount++;
+                        monCount++;
+                    }
+                    break;
+                case 35:
+                case 36:
+                case 37:
+                case 38:
+                case 39:
+                case 40:
+                    for (int i = 0; i <= 5; i++)
+                    {
+                        yield return new WaitForSeconds(0.5f);
+                        randomPotal = Random.Range(0, monsterPotal.Length);
+                        Instantiate(bosses[0].data.prefab, monsterPotal[randomPotal].transform.position, Quaternion.identity);
+                        monsterCount++;
+                        monCount++;
+                    }
+                    break;
+            }
+        }
+        yield return new WaitForSeconds(0.4f);
+        if (bossStage == 20)
+        {
+           
+            collecter = 1;
+            if (collecter == 3)
+            {
+                collecter = 1;
+            }
+            Instantiate(bosses[collecter].data.prefab, bossPotal.transform.position, Quaternion.identity);
+            bossStage = 10;
+            monsterCount++;
+            monCount++;
+            collecter++;
         }
         mons = 0;
     }
@@ -153,13 +239,13 @@ public class WaveManager : MonoBehaviour
         {
             waveTime = 15f;
             stage++;
+            bossStage++;
+            dragonSpawn++;
             DifficultyUP();
             UIManager.instance.waveWaitTime.text = Mathf.Floor(waveTime).ToString();
             UIManager.instance.stageNumber.text = stage.ToString();
             waveStart = true;
             monsterSpawn = false;
         }
-
-            
     }
 }

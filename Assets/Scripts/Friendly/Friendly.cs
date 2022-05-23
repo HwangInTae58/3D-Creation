@@ -10,6 +10,13 @@ public class Friendly : MonoBehaviour, IDamaged
     Collider fricollider;
     public Transform face;
 
+    Transform enermyTargetPos;
+    public GameObject effect;
+    public Transform effectPos;
+
+    public GameObject damageEffect;
+    public Transform bloodPos;
+
     int HP;
     float Speed = 0;
 
@@ -19,9 +26,12 @@ public class Friendly : MonoBehaviour, IDamaged
     float ranged;
     float attackranged;
 
+    private float moveDelay = 0f;
+    private bool move = true;
     public Vector3 originalPos;
 
     bool isDie = false;
+   // bool isCall = true;
 
     private void Awake()
     {
@@ -29,7 +39,6 @@ public class Friendly : MonoBehaviour, IDamaged
         ranged = data.range;
         attackranged = data.attackRange;
 
-        
         anime = GetComponent<Animator>();
         fricollider = GetComponent<Collider>();
     }
@@ -66,40 +75,57 @@ public class Friendly : MonoBehaviour, IDamaged
                     min = distance;
                 }
             }
-            Vector3 dir = findTarget[index].transform.position - transform.position;
             //바라보게 하기 코드
+            Vector3 dir = findTarget[index].transform.position - transform.position;
             Quaternion q = Quaternion.LookRotation(dir.normalized);
             transform.rotation = q;
             transform.Translate(dir.normalized * Speed * Time.deltaTime, Space.World);
+
             if (attackedTarget.Length > 0)
             {
                 FireDelay();
                 Attack(attackedTarget);
                 Speed = 0;
+                move = false;
             }
             else
             {
-                //어택사거리에 적이 없으면 다시 속도가 생기게 하기
-                Speed = data.speed;
-                return;
+                if (!move)
+                    MoveDelay();
+                else
+                    Speed = data.speed;
             }
             
         }
         else
         {
+            if (!move) {
+                MoveDelay();
+                return;
+            }
             if (Vector3.Distance(originalPos, transform.position) >= 0.04f)
             {
-                Speed = data.speed;
                 Vector3 purdir = originalPos - transform.position;
                 transform.Translate(purdir.normalized * Speed * Time.deltaTime, Space.World);
                 Quaternion q = Quaternion.LookRotation(purdir.normalized);
                 transform.rotation = q;
-                
             }
-            if (Vector3.Distance(originalPos, transform.position) < 0.04f)
+            else if (Vector3.Distance(originalPos, transform.position) < 0.04f)
                 Speed = 0;
             return;
-
+        }
+    }
+    private void MoveDelay()
+    {
+        if (!move)
+        {
+            moveDelay += Time.deltaTime;
+            if (moveDelay >= 1f)
+            {
+                Speed = data.speed;
+                move = true;
+                moveDelay = 0f;
+            }
         }
     }
     private void Attack(Collider[] target)
@@ -112,6 +138,7 @@ public class Friendly : MonoBehaviour, IDamaged
             IDamaged damaged = target[0].GetComponent<IDamaged>();
             attacked = true;
             damaged?.Damaged(data.damage);
+        enermyTargetPos = target[0].transform;
     }
     private void OnDrawGizmos()
     {
@@ -121,8 +148,17 @@ public class Friendly : MonoBehaviour, IDamaged
     }
     public void Damaged(int attck)
     {
+        //TODO : 자신이 공격당하였을때
+        //if(Vector3.Distance(target[0].transform.position, transform.position) > data.range)
+        //{
+        //    Vector3 dir = target[0].transform.position - transform.position;
+        //    transform.Translate(dir.normalized * Speed * Time.deltaTime, Space.World);
+        //    Quaternion q = Quaternion.LookRotation(dir.normalized);
+        //    transform.rotation = q;
+        //}
         HP -= attck;
-        if(0 >= HP)
+        DamageEffect();
+        if (HP <= 0)
         {
             Speed = 0;
             ranged = 0;
@@ -132,9 +168,25 @@ public class Friendly : MonoBehaviour, IDamaged
             Die();
         }
     }
+    private void HitEffact()
+    {
+        GameObject saveEffact;
+        if (effectPos == null)
+            saveEffact = Instantiate(effect, enermyTargetPos.position, Quaternion.identity);
+        else
+            saveEffact = Instantiate(effect, effectPos.position, Quaternion.identity);
+        Destroy(saveEffact, 1f);
+    }
+    private void DamageEffect()
+    {
+        if (null == damageEffect)
+            return;
+        GameObject saveEffact = Instantiate(damageEffect, bloodPos.position, Quaternion.identity);
+        Destroy(saveEffact, 0.8f);
+    }
+
     private void Die()
     {
-        // TODO : 아군 죽음
         anime.SetTrigger("IsDie");
         Destroy(gameObject, 1.3f);
     }

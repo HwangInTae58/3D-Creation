@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce1f0f06c300bfe4ca15e3f98892bb45, type: 3}
-  m_Name: BossData
+  m_Name: Dragon
   m_EditorClassIdentifier: 
   monsterName: "\uB4DC\uB798\uACE4"
   range: 200
   attackFarRange: 0
-  attackCloseRange: 5
+  attackCloseRange: 6
   attacker: 3
   hp: 300
   damage: 30
-  fireDelay: 3
+  fireDelay: 2
+  flameDelay: 0
   speed: 5
   prefab: {fileID: 1623373517030444575, guid: f39c0cb45b555164ea36b762cb429a8e, type: 3}
   victory: 0

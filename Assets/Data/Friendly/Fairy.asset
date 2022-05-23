@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Fairy
   m_EditorClassIdentifier: 
   friendName: "\uC694\uC815"
-  friendManual: "\uADFC\uC811\uC5D0\uC11C \uAC15\uD558\uB2E4"
-  range: 10
+  friendManual: "\uBE60\uB978 \uADFC\uC811 \uACF5\uACA9"
+  range: 13
   attackRange: 2
   hp: 80
   damage: 10
