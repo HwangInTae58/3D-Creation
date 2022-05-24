@@ -26,7 +26,7 @@ public class WaveManager : MonoBehaviour
     public int dragonSpawn = 0;
     public int bossStage = 0;
     int hard = 0;
-    int collecter;
+    int collecter = 1;
 
     int spawnOke = 1000;
     int spawnBadWizard = 1000;
@@ -163,7 +163,6 @@ public class WaveManager : MonoBehaviour
         if (bossStage == 20)
         {
            
-            collecter = 1;
             if (collecter == 3)
             {
                 collecter = 1;

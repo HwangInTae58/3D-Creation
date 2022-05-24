@@ -8,8 +8,8 @@ public class Enemy : MonoBehaviour, IDamaged
 
     Animator anime;
     Collider enemyCollider;
-
     Transform enermyTargetPos;
+
     public GameObject effect;
     public Transform effectPos;
 
@@ -138,7 +138,7 @@ public class Enemy : MonoBehaviour, IDamaged
     public void Damaged(int attck)
     {
         HP -= attck;
-        DamageEffect();
+        Invoke("DamageEffect", 0.3f);
         if (HP <= 0)
         {
             Speed = 0;

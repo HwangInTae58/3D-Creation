@@ -13,6 +13,11 @@ public class Boss : MonoBehaviour, IDamaged
     public Flame flame;
     public Transform flamePos;
 
+    public GameObject effect;
+    public Transform effectPos;
+    public GameObject damageEffect;
+    public Transform bloodPos;
+
     int HP;
     float Speed;
     float ranged;
@@ -24,6 +29,7 @@ public class Boss : MonoBehaviour, IDamaged
     bool meleeAttacked = true;
     float flameDelay = 0f;
     bool flameAttack = false;
+    float flameFire = 0f;
 
     bool isDie = false;
 
@@ -36,8 +42,6 @@ public class Boss : MonoBehaviour, IDamaged
     Collider[] findTarget;
     Collider[] attackedCloseTarget;
     public Collider[] attackedFarTarget;
-    Collider[] saveFarTarget;
-
     private void Awake()
     {
         enemyCollider = GetComponent<Collider>();
@@ -91,10 +95,17 @@ public class Boss : MonoBehaviour, IDamaged
 
             if (attackedFarTarget.Length > 0 && attackedCloseTarget.Length <= 0)
             {
+                if (isDie)
+                    return;
+                if (flameAttack) { 
+                    FlameDelay();
+                    return;
+                }
                 Speed = 0;
                 //TODO : 원거리 공격 오브젝트 날리기
-                FlameAttack(attackedFarTarget);
-                FlameDelay();
+                anime.SetTrigger("IsFlame");
+                
+                flameAttack = true;
             }
             else if (attackedCloseTarget.Length > 0)
             {
@@ -128,15 +139,9 @@ public class Boss : MonoBehaviour, IDamaged
             anime.SetTrigger("IsStart");
         }
     }
-    private void FlameAttack(Collider[] target)
+    private void FlameAttack()
     {
-        if (isDie)
-            return;
-        if (flameAttack)
-            return;
-        anime.SetTrigger("IsFlame");
         flame.OnFlame(flamePos);
-        flameAttack = true;
     }
     private void MeleeAttack(Collider[] target)
     {
@@ -160,10 +165,23 @@ public class Boss : MonoBehaviour, IDamaged
             meleeAttacked = true;
         }
     }
-    
+    private void HitEffact()
+    {
+        GameObject saveEffact;
+            saveEffact = Instantiate(effect, effectPos.position, Quaternion.identity);
+        Destroy(saveEffact, 1f);
+    }
+    private void DamageEffect()
+    {
+        if (null == damageEffect)
+            return;
+        GameObject saveEffact = Instantiate(damageEffect, bloodPos.position, Quaternion.identity);
+        Destroy(saveEffact, 1.5f);
+    }
     public void Damaged(int attck)
     {
         HP -= attck;
+        Invoke("DamageEffect", 0.3f);
         if (HP <= 0)
         {
             Speed = 0;
@@ -192,7 +210,13 @@ public class Boss : MonoBehaviour, IDamaged
         if (flameAttack)
         {
             flameDelay += Time.deltaTime;
-            Speed = data.speed;
+            flameFire += Time.deltaTime;
+            if(flameFire >= data.flameFire)
+            {
+                Speed = data.speed;
+                flameFire = 0f;
+            }
+            
             if (flameDelay >= data.flameDelay)
             {
                 flameAttack = false;

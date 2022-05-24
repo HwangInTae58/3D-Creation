@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce1f0f06c300bfe4ca15e3f98892bb45, type: 3}
-  m_Name: 20StageBoss
+  m_Name: 40Boss
   m_EditorClassIdentifier: 
-  monsterName: "\uB6B1\uB6B1\uD55C \uB4DC\uB798\uACE4"
+  monsterName: "\uB9C9\uBCF4"
   range: 200
-  attackFarRange: 35
-  attackCloseRange: 6
+  attackFarRange: 50
+  attackCloseRange: 15
   attacker: 0
-  hp: 1300
-  damage: 40
-  fireDelay: 4
-  flameDelay: 6
-  flameFire: 0.7
-  speed: 2
-  prefab: {fileID: 1066184301, guid: 9d207873149689343a306520b815b12b, type: 3}
+  hp: 3000
+  damage: 60
+  fireDelay: 2
+  flameDelay: 3
+  flameFire: 0
+  speed: 3
+  prefab: {fileID: 1364863434, guid: ee2de3a77a643a84c95b8ec85cccba9f, type: 3}
   victory: 0

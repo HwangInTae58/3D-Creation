@@ -66,8 +66,10 @@ public class Flame : MonoBehaviour
 
             if(Vector3.Distance(findTarget[index].transform.position, transform.position) < 0.1f)
             {
-                prefab.SetActive(false);
-                endPrefab.SetActive(true);
+                if(null != prefab)
+                    prefab.SetActive(false);
+                if(null != endPrefab)
+                    endPrefab.SetActive(true);
                 hitflame(findDamageTarget);
             }
             

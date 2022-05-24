@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da5751e40b4677249ac4d3855a83cf13, type: 3}
   m_Name: FutureSoldier
   m_EditorClassIdentifier: 
-  friendName: "\uBBF8\uB798\uAD70\uC778"
+  friendName: "\uB85C\uBD07"
   friendManual: "\uAC15\uB825\uD568"
-  range: 15
-  attackRange: 10
+  range: 30
+  attackRange: 20
   hp: 100
   damage: 20
   fireDelay: 1

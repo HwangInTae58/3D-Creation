@@ -157,7 +157,7 @@ public class Friendly : MonoBehaviour, IDamaged
         //    transform.rotation = q;
         //}
         HP -= attck;
-        DamageEffect();
+        Invoke("DamageEffect", 0.3f);
         if (HP <= 0)
         {
             Speed = 0;
