@@ -22,6 +22,6 @@ MonoBehaviour:
   fireDelay: 4
   flameDelay: 6
   flameFire: 0.7
-  speed: 2
+  speed: 3
   prefab: {fileID: 1066184301, guid: 9d207873149689343a306520b815b12b, type: 3}
   victory: 0

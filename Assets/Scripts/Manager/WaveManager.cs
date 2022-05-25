@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WaveManager : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class WaveManager : MonoBehaviour
 
     public int monsterCount = 0;
     int monCount;
-    public int monsterMaxCount = 10;
+    public int monsterMaxCount = 15;
     public float monsterDelay = 0f;
     bool monsterSpawn = false;
     int mons = 0;
@@ -40,7 +41,6 @@ public class WaveManager : MonoBehaviour
     private void Start()
     {
         //int random = Random.Range(0, enemies.Length);
-        UIManager.instance.monsterCount.text = monsterCount.ToString();
         UIManager.instance.waveWaitTime.text = Mathf.Floor(waveTime).ToString();
     }
     private void FixedUpdate()
@@ -52,7 +52,6 @@ public class WaveManager : MonoBehaviour
     {
         if (!waveStart)
             return;
-        UIManager.instance.monsterCount.text = monsterCount.ToString();
        if(mons == 0) { 
         StartCoroutine(OnMonster());
             mons++;
@@ -74,7 +73,7 @@ public class WaveManager : MonoBehaviour
     IEnumerator OnMonster()
     {
         float ranTime;
-        ranTime = Random.Range(0.3f, 1f);
+        ranTime = Random.Range(0.2f, 0.5f);
         int randomPotal;
         
 
@@ -162,8 +161,9 @@ public class WaveManager : MonoBehaviour
         yield return new WaitForSeconds(0.4f);
         if (bossStage == 20)
         {
-           
-            if (collecter == 3)
+            UIManager.instance.bossName.text = bosses[collecter].data.monsterName;
+            UIManager.instance.bossAppear.SetActive(true);
+            if (collecter == 4)
             {
                 collecter = 1;
             }
@@ -172,6 +172,8 @@ public class WaveManager : MonoBehaviour
             monsterCount++;
             monCount++;
             collecter++;
+            yield return new WaitForSeconds(1.5f);
+            UIManager.instance.bossAppear.SetActive(false);
         }
         mons = 0;
     }
@@ -236,7 +238,8 @@ public class WaveManager : MonoBehaviour
 
         if (waveTime <= 0)
         {
-            waveTime = 15f;
+            StartCoroutine(WaveStartUI());
+            waveTime = 10f;
             stage++;
             bossStage++;
             dragonSpawn++;
@@ -246,5 +249,11 @@ public class WaveManager : MonoBehaviour
             waveStart = true;
             monsterSpawn = false;
         }
+    }
+    IEnumerator WaveStartUI()
+    {
+        UIManager.instance.waveStart.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        UIManager.instance.waveStart.SetActive(false);
     }
 }

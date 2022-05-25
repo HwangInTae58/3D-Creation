@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce1f0f06c300bfe4ca15e3f98892bb45, type: 3}
   m_Name: 40Boss
   m_EditorClassIdentifier: 
-  monsterName: "\uB9C9\uBCF4"
+  monsterName: "\uB9C8\uC9C0\uB9C9 \uC6A9"
   range: 200
   attackFarRange: 50
   attackCloseRange: 15
   attacker: 0
-  hp: 3000
+  hp: 3500
   damage: 60
   fireDelay: 2
-  flameDelay: 3
-  flameFire: 0
-  speed: 3
+  flameDelay: 6
+  flameFire: 3
+  speed: 4
   prefab: {fileID: 1364863434, guid: ee2de3a77a643a84c95b8ec85cccba9f, type: 3}
-  victory: 0
+  victory: 1

@@ -18,5 +18,5 @@ MonoBehaviour:
   hp: 10
   damage: 2
   fireDelay: 1
-  speed: 3
+  speed: 4
   prefab: {fileID: -2940535942348367713, guid: 55776efecb0cd134ea5f418c2f97a705, type: 3}

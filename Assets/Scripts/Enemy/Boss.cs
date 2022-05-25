@@ -37,7 +37,7 @@ public class Boss : MonoBehaviour, IDamaged
     private bool move;
 
     public bool isStart = false;
-    public bool Victory = false;
+    bool Victory = false;
 
     Collider[] findTarget;
     Collider[] attackedCloseTarget;
@@ -90,7 +90,8 @@ public class Boss : MonoBehaviour, IDamaged
             //바라보게 하기 코드
             Vector3 dir = findTarget[index].transform.position - transform.position;
             Quaternion q = Quaternion.LookRotation(dir.normalized);
-            transform.rotation = q;
+            //transform.rotation = q;
+            transform.rotation = Quaternion.LookRotation(dir.normalized * Time.deltaTime);
             transform.Translate(dir.normalized * Speed * Time.deltaTime, Space.World);
 
             if (attackedFarTarget.Length > 0 && attackedCloseTarget.Length <= 0)
@@ -156,8 +157,8 @@ public class Boss : MonoBehaviour, IDamaged
             
             for (int i = 0; i < target.Length; i++) {
                 Vector3 dir = target[0].transform.position - transform.position;
-                Quaternion q = Quaternion.LookRotation(dir.normalized);
-                transform.rotation = q;
+                //Quaternion q = Quaternion.LookRotation(dir.normalized * Time.deltaTime);
+                transform.rotation = Quaternion.LookRotation(dir.normalized * Time.deltaTime);
 
                 IDamaged damaged = target[i].GetComponent<IDamaged>();
                 damaged?.Damaged(data.damage);

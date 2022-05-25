@@ -13,8 +13,17 @@ public class Gamemanager : MonoBehaviour
         if (_instance == null)
             _instance = this;
     }
+    public void ChangeScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+
     public void GameOver()
     {
-        //SceneManager.
+        //SceneManager.LoadScene(GameOverScene);
+    }
+    public void GameExit()
+    {
+        Application.Quit();
     }
 }

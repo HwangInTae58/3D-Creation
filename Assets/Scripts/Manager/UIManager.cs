@@ -8,14 +8,19 @@ public class UIManager : MonoBehaviour
     static UIManager _instance;
     public static UIManager instance { get { return _instance; } }
 
+    public Button changeScene;
+
     public Button town;
     public Button friendly;
     public GameObject friendlyBuild;
     public GameObject townBuild;
 
     public Text stageNumber;
-    public Text monsterCount;
     public Text waveWaitTime;
+    public GameObject waveStart;
+
+    public GameObject bossAppear;
+    public Text bossName;
 
     bool curtownUI = false;
     bool curFrienUI = false;

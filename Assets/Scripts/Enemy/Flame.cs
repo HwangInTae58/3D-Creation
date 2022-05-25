@@ -14,6 +14,7 @@ public class Flame : MonoBehaviour
     float speed;
     float range;
     float atRange;
+    float atExtent;
 
     public bool hitFlame;
 
@@ -25,7 +26,8 @@ public class Flame : MonoBehaviour
     private void Start()
     {
         range = boss.data.attackFarRange;
-        atRange = 1f;
+        atRange = data.atRange;
+        atExtent = data.atExtent;
     }
     public void OnFlame(Transform FlamePos)
     {
@@ -39,7 +41,8 @@ public class Flame : MonoBehaviour
     public void MoveFlame()
     {
         Collider[] findTarget = Physics.OverlapSphere(transform.position, range, LayerMask.GetMask("Friendly", "Town"));
-        Collider[] findDamageTarget = Physics.OverlapSphere(transform.position, atRange, LayerMask.GetMask("Friendly", "Town"));
+        Collider[] findDamageTarget = Physics.OverlapBox(transform.position, new Vector3(atExtent, 5, atRange), Quaternion.identity, LayerMask.GetMask("Friendly", "Town"));
+        //Physics.OverlapSphere(transform.position, atRange, LayerMask.GetMask("Friendly", "Town"));
         if (findTarget.Length <= 0)
         {
             return;
@@ -90,6 +93,11 @@ public class Flame : MonoBehaviour
             }
         }
        
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(transform.position,new Vector3(data.atExtent, 5, data.atRange));
     }
 }
     //public void MoveFlame(Transform FlamePos, Collider[] target)

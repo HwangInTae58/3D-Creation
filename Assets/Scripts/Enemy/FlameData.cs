@@ -11,4 +11,6 @@ public class FlameData : ScriptableObject
 
     public float speed;
 
+    public float atRange;
+    public float atExtent;
 }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2258434999567611412}
   - component: {fileID: 3648812278408693904}
   m_Layer: 0
-  m_Name: FireFlame
+  m_Name: FireFlame2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,8 +84,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bede88f87810af247a3ed8a9a99f60df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boss: {fileID: 1370934794, guid: b34fe41f1eaacfd40af02f95f38b3028, type: 3}
-  data: {fileID: 11400000, guid: 824d3f8a3ddd74e42b8d4c43e3a13e19, type: 2}
+  boss: {fileID: 1364863434, guid: ee2de3a77a643a84c95b8ec85cccba9f, type: 3}
+  data: {fileID: 11400000, guid: e5e351097d705c54ba94a10b527ceab1, type: 2}
   prefab: {fileID: 0}
   endPrefab: {fileID: 0}
   hitFlame: 0
