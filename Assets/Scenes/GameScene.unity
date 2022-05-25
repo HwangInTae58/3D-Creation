@@ -493,7 +493,6 @@ GameObject:
   - component: {fileID: 54243532}
   - component: {fileID: 54243535}
   - component: {fileID: 54243534}
-  - component: {fileID: 54243536}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -605,6 +604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 866b5aa7f2b74564388befb27599e8e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  changeScene: {fileID: 0}
   town: {fileID: 1539357410}
   friendly: {fileID: 357960512}
   friendlyBuild: {fileID: 746405562}
@@ -614,18 +614,6 @@ MonoBehaviour:
   waveStart: {fileID: 155940044}
   bossAppear: {fileID: 508170790}
   bossName: {fileID: 1193668937}
---- !u!114 &54243536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 54243530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85e3a3d06353a86408b74c5ab1138e26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &68998636
 GameObject:
   m_ObjectHideFlags: 0

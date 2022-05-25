@@ -15,8 +15,8 @@ MonoBehaviour:
   monsterName: "\uACE8\uB818"
   range: 200
   attackRange: 3.8
-  hp: 500
+  hp: 400
   damage: 20
-  fireDelay: 2.5
+  fireDelay: 3.5
   speed: 2.5
   prefab: {fileID: 8615661683222297547, guid: 04864f8f2e30c1842bc3b821365b25aa, type: 3}
