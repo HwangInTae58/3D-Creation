@@ -15,9 +15,19 @@ public class Gamemanager : MonoBehaviour
     }
     public void ChangeScene(string sceneName)
     {
+        if (Time.timeScale <= 0)
+            Time.timeScale = 1;
         SceneManager.LoadScene(sceneName);
     }
-
+    public void ContinueGame()
+    {
+        if (Time.timeScale <= 0)
+            Time.timeScale = 1;
+        if (UIManager.instance.pausdWindow.activeSelf == true) { 
+            UIManager.instance.pausdWindow.SetActive(false);
+            UIManager.instance.pausd = false;
+        }
+    }
     public void GameOver()
     {
         //SceneManager.LoadScene(GameOverScene);

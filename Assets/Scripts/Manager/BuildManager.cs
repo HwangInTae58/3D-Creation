@@ -67,6 +67,8 @@ public class BuildManager : MonoBehaviour
     {
         if (selectedTown == null)
             return;
+        if (Time.timeScale <= 0)
+            return;
         if (selectedTown.data.cost > Cost)
             return;
         else 
@@ -79,6 +81,8 @@ public class BuildManager : MonoBehaviour
     public void OnFriendlyBuild(RaycastHit pos)
     {
         if (selectedFriendly == null)
+            return;
+        if (Time.timeScale <= 0)
             return;
         if (selectedFriendly.data.cost > Cost)
             return;

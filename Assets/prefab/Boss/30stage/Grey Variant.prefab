@@ -80,7 +80,6 @@ MonoBehaviour:
     type: 3}
   bloodPos: {fileID: 2243918582923339332}
   isStart: 0
-  Victory: 0
   attackedFarTarget: []
 --- !u!1 &2920094922897211859
 GameObject:
@@ -590,15 +589,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 409426, guid: 20a769104331d8b48ac7d1ea0d49cdf3, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.7
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 409426, guid: 20a769104331d8b48ac7d1ea0d49cdf3, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.7
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 409426, guid: 20a769104331d8b48ac7d1ea0d49cdf3, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.7
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 409426, guid: 20a769104331d8b48ac7d1ea0d49cdf3, type: 3}
       propertyPath: m_LocalPosition.x

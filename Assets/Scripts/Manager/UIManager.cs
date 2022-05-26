@@ -8,12 +8,13 @@ public class UIManager : MonoBehaviour
     static UIManager _instance;
     public static UIManager instance { get { return _instance; } }
 
-    public Button changeScene;
-
     public Button town;
     public Button friendly;
+
     public GameObject friendlyBuild;
     public GameObject townBuild;
+
+    public GameObject pausdWindow;
 
     public Text stageNumber;
     public Text waveWaitTime;
@@ -24,15 +25,32 @@ public class UIManager : MonoBehaviour
 
     bool curtownUI = false;
     bool curFrienUI = false;
+    public bool pausd = false;
 
     private void Awake()
     {
         if (null == _instance)
             _instance = this;
     }
-  
+   
+    public void OpenPausdWindow()
+    {
+        if (pausd)
+        {
+            pausd = false;
+            Gamemanager.instance.ContinueGame();
+        }
+        else
+        {
+            pausd = true;
+            pausdWindow.SetActive(true);
+            Time.timeScale = 0;
+        }
+    }
     public void OnBuildUI(int build)
     {
+        if (Time.timeScale <= 0)
+            return;
         if(build == 1 && !curtownUI)
         {
             curtownUI = true;

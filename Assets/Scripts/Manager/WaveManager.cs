@@ -16,6 +16,8 @@ public class WaveManager : MonoBehaviour
     public float waveTime = 10f;
     public bool waveStart = false;
 
+    public bool boss = false;
+
     public int monsterCount = 0;
     int monCount;
     public int monsterMaxCount = 15;
@@ -168,6 +170,7 @@ public class WaveManager : MonoBehaviour
                 collecter = 1;
             }
             Instantiate(bosses[collecter].data.prefab, bossPotal.transform.position, Quaternion.identity);
+            boss = true;
             bossStage = 10;
             monsterCount++;
             monCount++;
@@ -177,6 +180,7 @@ public class WaveManager : MonoBehaviour
         }
         mons = 0;
     }
+  
     private int RandomMonster()
     {
         int random = Random.Range(0, 1000);
@@ -191,7 +195,6 @@ public class WaveManager : MonoBehaviour
 
         //int dragon;
     
-        Debug.Log(random);
         if(random > spawnGolem && spawnBadWizard < spawnGolem)
             return golem;
         if (random > spawnBadWizard && spawnOke <spawnBadWizard)
