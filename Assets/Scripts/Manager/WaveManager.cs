@@ -99,13 +99,12 @@ public class WaveManager : MonoBehaviour
             monsterCount++;
             monCount++;
             switch (stage) {
-                case 18:
-                case 19:
-                case 20:
-                case 21:
-                case 22:
-                case 23:
-                case 24:
+                case 10:
+                case 11:
+                case 12:
+                case 13:
+                case 14:
+                case 15:
                     for (int i = 0; i <= 1; i++)
                     {
                         yield return new WaitForSeconds(0.5f);
@@ -115,11 +114,11 @@ public class WaveManager : MonoBehaviour
                         monCount++;
                     }
                     break;
-                case 25:
-                case 26:
-                case 27:
-                case 28:
-                case 29:
+                case 16:
+                case 17:
+                case 18:
+                case 19:
+                case 20:
                     for (int i = 0; i <= 2; i++)
                     {
                         yield return new WaitForSeconds(0.5f);
@@ -129,26 +128,10 @@ public class WaveManager : MonoBehaviour
                         monCount++;
                     }
                     break;
-                case 30:
-                case 31:
-                case 32:
-                case 33:
-                case 34:
-                    for (int i = 0; i <= 3; i++)
-                    {
-                        yield return new WaitForSeconds(0.5f);
-                        randomPotal = Random.Range(0, monsterPotal.Length);
-                        Instantiate(bosses[0].data.prefab, monsterPotal[randomPotal].transform.position, Quaternion.identity);
-                        monsterCount++;
-                        monCount++;
-                    }
-                    break;
-                case 35:
-                case 36:
-                case 37:
-                case 38:
-                case 39:
-                case 40:
+                case 21:
+                case 22:
+                case 23:
+                case 24:
                     for (int i = 0; i <= 5; i++)
                     {
                         yield return new WaitForSeconds(0.5f);
@@ -161,7 +144,7 @@ public class WaveManager : MonoBehaviour
             }
         }
         yield return new WaitForSeconds(0.4f);
-        if (bossStage == 20)
+        if (bossStage == 10)
         {
             UIManager.instance.bossName.text = bosses[collecter].data.monsterName;
             UIManager.instance.bossAppear.SetActive(true);
@@ -171,7 +154,7 @@ public class WaveManager : MonoBehaviour
             }
             Instantiate(bosses[collecter].data.prefab, bossPotal.transform.position, Quaternion.identity);
             boss = true;
-            bossStage = 10;
+            bossStage = 3;
             monsterCount++;
             monCount++;
             collecter++;
@@ -213,10 +196,10 @@ public class WaveManager : MonoBehaviour
             if (spawnOke >= 0)
                 spawnOke -= 200;
 
-            if (spawnBadWizard >= 400)
+            if (spawnBadWizard >= 500)
                 spawnBadWizard -= 80;
 
-            if (spawnGolem >= 700)
+            if (spawnGolem >= 750)
                 spawnGolem -= 20;
 
             if(hard == 5)
@@ -224,7 +207,7 @@ public class WaveManager : MonoBehaviour
                 monsterMaxCount += 20;
                 if (spawnOke >= 0)
                     spawnOke -= 200;
-                if (spawnBadWizard >= 400) 
+                if (spawnBadWizard >= 500) 
                     spawnBadWizard -= 100;
                 hard = 0;
             }

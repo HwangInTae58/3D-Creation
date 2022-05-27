@@ -13,7 +13,6 @@ public class Cameramanager : MonoBehaviour
     private Camera gameCamera;
 
     public GameObject saveOriginalPos;
-    public GameObject cameraSavePos;
 
     private Vector3 forwardDir;
     private int mouseOnScreenBorder;
@@ -48,10 +47,8 @@ public class Cameramanager : MonoBehaviour
             Zoom(Input.mouseScrollDelta.y > 0f ? 1 : -1);
         if (Input.GetKeyDown(KeyCode.Space))
             transform.position = saveOriginalPos.transform.position;
-        if (WaveManager.instance.boss) { 
-        BossScene(WaveManager.instance.boss);
-
-        }
+        if (WaveManager.instance.boss) 
+            StartCoroutine(BossSceneMove());
     }
     private void TranslateCamera(int dir)
     {
@@ -65,20 +62,15 @@ public class Cameramanager : MonoBehaviour
             transform.Translate(-transform.right * Time.deltaTime * translationSpeed);
 
     }
-    public void BossScene(bool boss)
-    {
-        cameraSavePos.transform.position = gameCamera.transform.position;
-        gameCamera.transform.position = new Vector3(280, 60, 146);
-        Debug.Log("/?");
-        StartCoroutine(BossSceneMove());
-    }
+    
     private IEnumerator BossSceneMove()
     {
-        Debug.Log("123");
-        yield return new WaitForSeconds(2f);
+        gameCamera.transform.position = new Vector3(280, 60, 146);
         //TODO : Lerp사용
-        gameCamera.transform.Translate(cameraSavePos.transform.position.normalized * 100 * Time.deltaTime, Space.World);
+        yield return new WaitForSeconds(3.5f);
+        gameCamera.transform.position = Vector3.Lerp(gameCamera.transform.position, saveOriginalPos.transform.position, 0.05f);
         WaveManager.instance.boss = false;
+            Debug.Log("123");
     }
     public void OnMouseEnterScreenBorder(int borderIndex)
     {

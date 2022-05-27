@@ -112,6 +112,8 @@ public class Enemy : MonoBehaviour, IDamaged
             return;
         if (attacked)
             return;
+        if (target[0] == null)
+            return;
         if(null != effect)
        anime.SetTrigger("IsAttack");
        IDamaged damaged = target[0].GetComponent<IDamaged>();
@@ -146,7 +148,6 @@ public class Enemy : MonoBehaviour, IDamaged
             attackranged = 0;
             isDie = true;
             enemyCollider.enabled = false;
-            //TODO : 죽으면서 콜라이더 꺼서 한번만 죽게 만들기
             Die();
         }
     }

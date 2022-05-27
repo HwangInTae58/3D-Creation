@@ -177,6 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: eaddbe0209e8fdc489d6a5c187de3013, type: 2}
+  closeAttackPos: {fileID: 1150929754065805948}
   flame: {fileID: 2258434999567611412, guid: ff90c7ac5ae15d942801d0c31be41065, type: 3}
   flamePos: {fileID: 1588901725273875421}
   effect: {fileID: 4184831820040277122, guid: 1bee58de964145a42bfce895cf98666d, type: 3}

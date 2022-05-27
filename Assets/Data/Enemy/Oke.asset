@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterName: "\uC624\uD06C"
   range: 200
-  attackRange: 1.5
+  attackRange: 3
   hp: 30
   damage: 5
   fireDelay: 1.2

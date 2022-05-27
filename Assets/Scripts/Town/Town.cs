@@ -5,20 +5,27 @@ using UnityEngine;
 public class Town : MonoBehaviour, IDamaged
 {
     public TownData data;
+    Animator anim;
+    Collider coll;
+    int MaxHP;
     int HP;
+    bool isLowHP = false;
+    bool isBroken =false;
 
     float costDelay = 0f;
     bool costCount = true;
 
     int Life = 1;
-
+    private void Awake()
+    {
+        anim = GetComponent<Animator>();
+        coll = GetComponent<Collider>();
+        MaxHP = data.hp;
+        HP = data.hp;
+    }
     private void Start()
     {
         GetMaxCost();
-    }
-    private void Awake()
-    {
-        HP = data.hp;
     }
     private void Update()
     {
@@ -55,24 +62,28 @@ public class Town : MonoBehaviour, IDamaged
     public void Damaged(int attck)
     {
         HP -= attck;
+        if(HP < (MaxHP / 3))
+        {
+            isLowHP = true;
+            anim.SetBool("IsLowHP", isLowHP);
+        }
         if (0 >= HP)
         {
+            isBroken = true;
+            coll.enabled = false;
             Die();
-            //GameOver();
         }
     }
 private void Die()
     {
-        Destroy(gameObject);
+        anim.SetBool("IsBroken", isBroken);
+        Destroy(gameObject , 0.6f);
         Life -= data.Life;
-    }
-  /* public void GameOver()
-    {
-        if (Life == 0)
+        BuildManager.instance.MinusMaxCost(data.maxCostUp);
+        if(Life <= 0)
         {
-
+            //Gamemanager.instuns.GameOver();
         }
-       
-    }*/
+    }
 }
 

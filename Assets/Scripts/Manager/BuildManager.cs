@@ -57,6 +57,11 @@ public class BuildManager : MonoBehaviour
         maxCost += get;
         max.text = maxCost.ToString();
     }
+    public void MinusMaxCost(int minus)
+    {
+        maxCost -= minus;
+        max.text = maxCost.ToString();
+    }
     private void OnCost()
     {
         costCount.text = Cost.ToString();

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 072b07f32813e0546a4ffab95c5b74ba, type: 3}
   m_Name: BigTown
   m_EditorClassIdentifier: 
-  townName: "\uD070 \uAC74\uBB3C"
+  townName: "\uB300 \uC800\uD0DD"
   townManual: "\uB3C8\uC744 \uB9CE\uC774 \uC218\uAE09\uD574\uC900\uB2E4"
-  hp: 100
+  hp: 200
   getCost: 7
   maxCostUp: 0
   getDelay: 30

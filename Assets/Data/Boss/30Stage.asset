@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterName: "\uC804\uAE30\uC6A9"
   range: 200
-  attackFarRange: 25
-  attackCloseRange: 7
-  attacker: 0
-  hp: 2000
+  attackFarRange: 50
+  attackCloseRange: 10
+  attacker: 5
+  hp: 4500
   damage: 60
   fireDelay: 4
   flameDelay: 6

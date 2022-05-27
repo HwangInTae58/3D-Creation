@@ -10,6 +10,7 @@ public class Boss : MonoBehaviour, IDamaged
     Animator anime;
     Collider enemyCollider;
 
+    public Transform closeAttackPos;
     public Flame flame;
     public Transform flamePos;
 
@@ -42,6 +43,7 @@ public class Boss : MonoBehaviour, IDamaged
     Collider[] findTarget;
     Collider[] attackedCloseTarget;
     public Collider[] attackedFarTarget;
+    float distance;
     private void Awake()
     {
         enemyCollider = GetComponent<Collider>();
@@ -53,16 +55,19 @@ public class Boss : MonoBehaviour, IDamaged
         ranged = data.range;
         attackFarRange = data.attackFarRange;
         attackCloseRange = data.attackCloseRange;
+        distance = 0;
+
     }
     private void Update()
     {
         FindTarget();
     }
+    
     private void FindTarget()
     {
 
         findTarget         =  Physics.OverlapSphere(transform.position, ranged, LayerMask.GetMask("Friendly", "Town"));
-        attackedCloseTarget = Physics.OverlapSphere(transform.position, attackCloseRange, LayerMask.GetMask("Friendly", "Town"));
+        attackedCloseTarget = Physics.OverlapBox(transform.position,new Vector3(5,10, attackCloseRange), Quaternion.identity,LayerMask.GetMask("Friendly", "Town"));
         attackedFarTarget   = Physics.OverlapSphere(transform.position, attackFarRange, LayerMask.GetMask("Friendly", "Town"));
 
         anime.SetFloat("IsSpeed", Speed);
@@ -79,21 +84,21 @@ public class Boss : MonoBehaviour, IDamaged
             int index = 0;
             for (int i = 0; i < findTarget.Length; i++)
             {
-                float distance = Vector3.Distance(transform.position, findTarget[i].transform.position);
+                distance = Vector3.Distance(transform.position, findTarget[i].transform.position);
                 if (min > distance)
                 {
                     index = i;
                     min = distance;
-                    //TODO : 보스가 어느정도 거리면 날 수 있게
                 }
             }
-            //바라보게 하기 코드
-            Vector3 dir = findTarget[index].transform.position - transform.position;
-            Quaternion q = Quaternion.LookRotation(dir.normalized);
-            //transform.rotation = q;
-            transform.rotation = Quaternion.LookRotation(dir.normalized * Time.deltaTime);
-            transform.Translate(dir.normalized * Speed * Time.deltaTime, Space.World);
 
+            Vector3 dir = findTarget[index].transform.position - transform.position;
+            Quaternion q = Quaternion.LookRotation(dir.normalized * Time.deltaTime);
+            transform.rotation = q;
+            transform.Translate(dir.normalized * Speed * Time.deltaTime, Space.World);
+            //바라보게 하기 코드
+            //transform.rotation = q;
+            //transform.rotation = Quaternion.LookRotation(dir.normalized * Time.deltaTime);
             if (attackedFarTarget.Length > 0 && attackedCloseTarget.Length <= 0)
             {
                 if (isDie)
@@ -110,9 +115,14 @@ public class Boss : MonoBehaviour, IDamaged
             }
             else if (attackedCloseTarget.Length > 0)
             {
+                Vector3 dird = attackedCloseTarget[0].transform.position - transform.position;
                 Speed = 0;
                 MeleeAttack(attackedCloseTarget);
                 meleeDelay();
+                if (!meleeAttacked) {
+                    Quaternion qq = Quaternion.LookRotation(dird.normalized * Time.deltaTime);
+                    transform.rotation = qq;
+                }
             }
             else
             {
@@ -156,13 +166,10 @@ public class Boss : MonoBehaviour, IDamaged
             anime.SetTrigger("IsCloseAttack");
             
             for (int i = 0; i < target.Length; i++) {
-                Vector3 dir = target[0].transform.position - transform.position;
-                //Quaternion q = Quaternion.LookRotation(dir.normalized * Time.deltaTime);
-                transform.rotation = Quaternion.LookRotation(dir.normalized * Time.deltaTime);
-
                 IDamaged damaged = target[i].GetComponent<IDamaged>();
                 damaged?.Damaged(data.damage);
             }
+           
             meleeAttacked = true;
         }
     }
@@ -240,7 +247,7 @@ public class Boss : MonoBehaviour, IDamaged
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, data.range);
         Gizmos.DrawWireSphere(transform.position, data.attackFarRange);
-        Gizmos.DrawWireSphere(transform.position, data.attackCloseRange);
+        Gizmos.DrawWireCube(closeAttackPos.position, new Vector3(5,10 ,data.attackCloseRange));
 
     }
     public void OnVictory()

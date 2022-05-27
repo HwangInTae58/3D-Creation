@@ -72,6 +72,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 7dc962f3d81d58746a5513a79d208e41, type: 2}
+  closeAttackPos: {fileID: 2281465143045640408}
   flame: {fileID: 6834452825917225707, guid: 2994bc4af0bdddb44a9e49a0cb29faf7, type: 3}
   flamePos: {fileID: 466000873}
   effect: {fileID: 194062, guid: 8c27aeead6d968e4ba986702d6b84335, type: 3}

@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   friendName: "\uB85C\uBD07"
   friendManual: "\uAC15\uB825\uD568"
-  range: 30
-  attackRange: 20
+  range: 40
+  attackRange: 30
   hp: 100
   damage: 20
   fireDelay: 1
   speed: 4
   prefab: {fileID: 816664778850204526, guid: 7a29f559eb7056f4f935dff05d5dc0fb, type: 3}
-  cost: 50
+  cost: 35
