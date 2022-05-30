@@ -15,8 +15,11 @@ public class TownBuild : MonoBehaviour
     private void Awake()
     {
         townName.text = data.townName;
-        cost.text = data.cost.ToString();
         townManual.text = data.townManual;
+    }
+    private void Start()
+    {
+        cost.text = data.cost.ToString();
     }
     public void OnClick()
     {

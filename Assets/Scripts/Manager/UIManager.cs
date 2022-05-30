@@ -23,14 +23,21 @@ public class UIManager : MonoBehaviour
     public GameObject bossAppear;
     public Text bossName;
 
-    bool curtownUI = false;
-    bool curFrienUI = false;
-    public bool pausd = false;
+    public GameObject victory;
+    public GameObject lose;
+
+    bool        curtownUI;
+    bool        curFrienUI;
+    public bool pausd;
 
     private void Awake()
     {
         if (null == _instance)
             _instance = this;
+
+        curtownUI = false;
+        curFrienUI = false;
+        pausd = false;
     }
    
     public void OpenPausdWindow()
@@ -47,64 +54,60 @@ public class UIManager : MonoBehaviour
             Time.timeScale = 0;
         }
     }
+    public void GameVictory()
+    {
+        victory.SetActive(true);
+       Time.timeScale = 0;
+    }
+    public void GameLose()
+    {
+        lose.SetActive(true);
+        Time.timeScale = 0;
+    }
+
     public void OnBuildUI(int build)
     {
         if (Time.timeScale <= 0)
             return;
         if(build == 1 && !curtownUI)
         {
-            curtownUI = true;
-            townBuild.SetActive(true);
-            if (friendlyBuild.activeSelf == true)
+            if (friendlyBuild.activeSelf)
             {
                 friendlyBuild.SetActive(false);
                 if (BuildManager.instance.selectedFriendly != null)
-                {
                     BuildManager.instance.selectedFriendly = null;
-                }
             }
-           
-            else
-                return;
+            townBuild.SetActive(true);
+            curtownUI = true;
+            if (curFrienUI)
+                curFrienUI = false;
         }
         else if(build == 1 && curtownUI)
         {
-            curtownUI = false;
-            if (townBuild.activeSelf == true)
-            {
-                if(BuildManager.instance.selectedTown != null) 
-                { 
-                    BuildManager.instance.selectedTown = null;
-                }
+            if (BuildManager.instance.selectedTown != null)
+                   BuildManager.instance.selectedTown = null;
                 townBuild.SetActive(false);
-            }
+            curtownUI = false;
         }
         if (build == 2 && !curFrienUI)
         {
-            curFrienUI = true;
-            friendlyBuild.SetActive(true);
-            if (townBuild.activeSelf == true)
+            if (townBuild.activeSelf)
             {
                 townBuild.SetActive(false);
                 if (BuildManager.instance.selectedTown != null)
-                {
                     BuildManager.instance.selectedTown = null;
-                }
             }
-            else
-                return;
+            friendlyBuild.SetActive(true);
+            curFrienUI = true;
+            if (curtownUI)
+                curtownUI = false;
         }
         else if(build == 2 && curFrienUI)
         {
+            if (BuildManager.instance.selectedFriendly != null)
+                BuildManager.instance.selectedFriendly = null;
+            friendlyBuild.SetActive(false);
             curFrienUI = false;
-            if (friendlyBuild.activeSelf == true)
-            {
-                if (BuildManager.instance.selectedFriendly != null)
-                {
-                    BuildManager.instance.selectedFriendly = null;
-                }
-                friendlyBuild.SetActive(false);
-            }
         }
 
     }

@@ -10,7 +10,6 @@ public class BossData : ScriptableObject
     public float range;
     public float attackFarRange;
     public float attackCloseRange;
-    public int attacker;
     //HP
     public int hp;
     //데미지

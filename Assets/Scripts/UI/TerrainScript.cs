@@ -7,9 +7,7 @@ using UnityEngine.EventSystems;
 public class TerrainScript : MonoBehaviour
 {
     public Camera gameCamera;
-
     bool waveStart;
-
 
     private void Update()
     {

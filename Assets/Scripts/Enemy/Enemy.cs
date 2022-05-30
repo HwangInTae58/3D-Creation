@@ -22,12 +22,10 @@ public class Enemy : MonoBehaviour, IDamaged
     float ranged;
     float attackranged;
 
-    float attackDelay = 0f;
-    bool attacked = true;
-
-
-    bool isDie = false;
-    private float moveDelay = 0f;
+    float   attackDelay;
+    bool    attacked;
+    bool    isDie;
+    private float moveDelay;
     private bool move;
 
     private void Awake()
@@ -36,7 +34,13 @@ public class Enemy : MonoBehaviour, IDamaged
         ranged = data.range;
         attackranged = data.attackRange;
         Speed = data.speed;
-
+        attackDelay = data.fireDelay;
+        attacked = true;
+        isDie = false;
+        moveDelay = 0f;
+    }
+    private void Start()
+    {
         enemyCollider = GetComponent<Collider>();
         anime = GetComponent<Animator>();
     }
@@ -55,10 +59,10 @@ public class Enemy : MonoBehaviour, IDamaged
 
         if (isDie)
             return;
-        if (findTarget.Length <= 0)
-        {
+        if (Time.timeScale <= 0)
             return;
-        }
+        if (findTarget.Length <= 0)
+            return;
         else
         {
             float min = int.MaxValue;

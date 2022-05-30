@@ -18,27 +18,34 @@ public class Friendly : MonoBehaviour, IDamaged
     public Transform bloodPos;
 
     int HP;
-    float Speed = 0;
-
-    float attackDelay = 0f;
-    bool attacked = true;
+    float Speed;
+    float attackDelay;
+    bool  attacked;
 
     float ranged;
     float attackranged;
 
-    private float moveDelay = 0f;
-    private bool move = true;
+    private float moveDelay;
+    private bool  move;
     public Vector3 originalPos;
 
-    bool isDie = false;
+    bool isDie;
    // bool isCall = true;
 
     private void Awake()
     {
         HP = data.hp;
+        Speed = data.speed;
+        attackDelay = data.fireDelay;
         ranged = data.range;
         attackranged = data.attackRange;
-
+        moveDelay = 0f;
+        attacked = true;
+        move = true;
+        isDie = false;
+    }
+    private void Start()
+    {
         anime = GetComponent<Animator>();
         fricollider = GetComponent<Collider>();
     }
@@ -60,7 +67,8 @@ public class Friendly : MonoBehaviour, IDamaged
         anime.SetFloat("IsSpeed", Speed);
         if (isDie)
             return;
-
+        if (Time.timeScale <= 0)
+            return;
         if (findTarget.Length > 0)
         {
             float min = int.MaxValue;

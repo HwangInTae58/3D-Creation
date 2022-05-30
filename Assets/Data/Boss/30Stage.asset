@@ -16,7 +16,6 @@ MonoBehaviour:
   range: 200
   attackFarRange: 50
   attackCloseRange: 10
-  attacker: 5
   hp: 4500
   damage: 60
   fireDelay: 4

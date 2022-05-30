@@ -13,33 +13,51 @@ public class WaveManager : MonoBehaviour
     public Enemy[] enemies;
     public Boss[] bosses;
 
-    public float waveTime = 10f;
-    public bool waveStart = false;
+    public float    waveTime;
+    public bool     waveStart;
 
-    public bool boss = false;
+    public bool     boss;
 
-    public int monsterCount = 0;
+    public int      monsterCount;
     int monCount;
-    public int monsterMaxCount = 15;
-    public float monsterDelay = 0f;
-    bool monsterSpawn = false;
-    int mons = 0;
+    public int      monsterMaxCount;
+    public float    monsterDelay;
+    bool            monsterSpawn;
+    int             mons;
 
-    public int stage = 0;
-    public int dragonSpawn = 0;
-    public int bossStage = 0;
-    int hard = 0;
-    int collecter = 1;
+    public int      stage;
+    public int      dragonSpawn;
+    public int      bossStage;
+    int             hard;
+    int             collecter;
 
-    int spawnOke = 1000;
-    int spawnBadWizard = 1000;
-    int spawnGolem = 1000;
+    int             spawnOke;
+    int             spawnBadWizard;
+    int             spawnGolem;
 
     private void Awake()
     {
         if (null == _instance)
             _instance = this;
+
+        waveTime = 10f;
+        waveStart = false;
+        boss = false;
+        monsterCount = 0;
+        monsterMaxCount = 15;
+        monsterDelay = 0f;
+        monsterSpawn = false;
+        mons = 0;
+        stage = 0;
+        dragonSpawn = 0;
+        bossStage = 0;
+        hard = 0;
+        collecter = 1;
+        spawnOke = 1000;
+        spawnBadWizard = 1000;
+        spawnGolem = 1000;
     }
+
     private void Start()
     {
         //int random = Random.Range(0, enemies.Length);
@@ -66,11 +84,8 @@ public class WaveManager : MonoBehaviour
                 monsterSpawn = true;
             monCount = 0;
         }
-
         if (monsterCount == 0 && monsterSpawn)
-        {
             waveStart = false;
-        }
     }
     IEnumerator OnMonster()
     {
@@ -78,17 +93,13 @@ public class WaveManager : MonoBehaviour
         ranTime = Random.Range(0.2f, 0.5f);
         int randomPotal;
         
-
         yield return new WaitForSeconds(1f);
         while (monsterCount < monsterMaxCount && !monsterSpawn)
         {
             randomPotal = Random.Range(0, monsterPotal.Length);
-
             Instantiate(enemies[RandomMonster()].data.prefab, monsterPotal[randomPotal].transform.position, Quaternion.identity);
-            
             monsterCount++;
             monCount++;
-
             yield return new WaitForSeconds(ranTime);
         }
         if (dragonSpawn == 8)
@@ -149,9 +160,7 @@ public class WaveManager : MonoBehaviour
             UIManager.instance.bossName.text = bosses[collecter].data.monsterName;
             UIManager.instance.bossAppear.SetActive(true);
             if (collecter == 4)
-            {
                 collecter = 1;
-            }
             Instantiate(bosses[collecter].data.prefab, bossPotal.transform.position, Quaternion.identity);
             boss = true;
             bossStage = 3;
@@ -169,14 +178,9 @@ public class WaveManager : MonoBehaviour
         int random = Random.Range(0, 1000);
 
         int slime = 0;
-
         int oke = 1;
-
         int badWizard = 2;
-
         int golem = 3;
-
-        //int dragon;
     
         if(random > spawnGolem && spawnBadWizard < spawnGolem)
             return golem;
@@ -184,7 +188,6 @@ public class WaveManager : MonoBehaviour
             return badWizard;
         if (random > spawnOke)
             return oke;
-        
         return slime;
     }
     private void DifficultyUP()
@@ -211,17 +214,14 @@ public class WaveManager : MonoBehaviour
                     spawnBadWizard -= 100;
                 hard = 0;
             }
-           
         }
     }
     public void WaveWait()
     {
         if (waveStart)
             return;
-       
         waveTime -= Time.deltaTime;
         UIManager.instance.waveWaitTime.text = Mathf.Floor(waveTime).ToString();
-
         if (waveTime <= 0)
         {
             StartCoroutine(WaveStartUI());

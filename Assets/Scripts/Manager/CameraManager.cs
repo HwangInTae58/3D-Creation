@@ -5,9 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(Camera))]
 public class Cameramanager : MonoBehaviour
 {
-    public float translationSpeed = 40f;
-    public float altitude = 40f;
-    public float zoomSpeed = 100f;
+    public float translationSpeed;
+    public float altitude;
+    public float zoomSpeed;
     public float Distance;
 
     private Camera gameCamera;
@@ -20,13 +20,16 @@ public class Cameramanager : MonoBehaviour
 
     private void Awake()
     {
-        gameCamera = GetComponent<Camera>();
-        forwardDir = Vector3.ProjectOnPlane(transform.forward, Vector3.up).normalized;
+        translationSpeed = 40f;
+        altitude = 40f;
+        zoomSpeed = 100f;
         mouseOnScreenBorder = -1;
         mouseOnScreenCoroutine = null;
     }
     private void Start()
     {
+        forwardDir = Vector3.ProjectOnPlane(transform.forward, Vector3.up).normalized;
+        gameCamera = GetComponent<Camera>();
         saveOriginalPos.transform.position = transform.position;
     }
     private void Update()
@@ -70,7 +73,6 @@ public class Cameramanager : MonoBehaviour
         yield return new WaitForSeconds(3.5f);
         gameCamera.transform.position = Vector3.Lerp(gameCamera.transform.position, saveOriginalPos.transform.position, 0.05f);
         WaveManager.instance.boss = false;
-            Debug.Log("123");
     }
     public void OnMouseEnterScreenBorder(int borderIndex)
     {
@@ -91,7 +93,6 @@ public class Cameramanager : MonoBehaviour
     {
         gameCamera.orthographicSize -= zoomDir * Time.deltaTime * zoomSpeed;
         gameCamera.orthographicSize = Mathf.Clamp(gameCamera.orthographicSize, 8f, 40f);
-
     }
 
 }

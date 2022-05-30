@@ -9,26 +9,33 @@ public class Town : MonoBehaviour, IDamaged
     Collider coll;
     int MaxHP;
     int HP;
-    bool isLowHP = false;
-    bool isBroken =false;
+    bool    isLowHP;
+    bool    isBroken;
 
-    float costDelay = 0f;
-    bool costCount = true;
+    float   costDelay;
+    bool    costCount;
 
-    int Life = 1;
+    bool Life;
     private void Awake()
     {
-        anim = GetComponent<Animator>();
-        coll = GetComponent<Collider>();
+        Life = false;
         MaxHP = data.hp;
         HP = data.hp;
+        isLowHP = false;
+        isBroken = false;
+        costDelay = 0f;
+        costCount = true;
     }
     private void Start()
     {
+        anim = GetComponent<Animator>();
+        coll = GetComponent<Collider>();
         GetMaxCost();
     }
     private void Update()
     {
+        if (Life)
+            StartCoroutine(OnLose());
         GetDelay();
         OnCost();
     }
@@ -78,12 +85,15 @@ private void Die()
     {
         anim.SetBool("IsBroken", isBroken);
         Destroy(gameObject , 0.6f);
-        Life -= data.Life;
+        Life = data.Life;
         BuildManager.instance.MinusMaxCost(data.maxCostUp);
-        if(Life <= 0)
-        {
-            //Gamemanager.instuns.GameOver();
-        }
+    }
+    public IEnumerator OnLose()
+    {
+        yield return new WaitForSeconds(0.5f);
+        UIManager.instance.GameLose();
+        yield return new WaitForSecondsRealtime(3f);
+        Gamemanager.instance.ChangeScene("TitleScene");
     }
 }
 

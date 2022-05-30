@@ -16,9 +16,11 @@ public class FriendlyBuild : MonoBehaviour
     {
         friendName.text = data.friendName;
         friendManual.text = data.friendManual;
+    }
+    private void Start()
+    {
         cost.text = data.cost.ToString();
     }
-   
     public void OnClick()
     {
         if (BuildManager.instance.selectedTown == null)

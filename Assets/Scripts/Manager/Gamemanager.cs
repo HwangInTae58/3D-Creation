@@ -28,10 +28,7 @@ public class Gamemanager : MonoBehaviour
             UIManager.instance.pausd = false;
         }
     }
-    public void GameOver()
-    {
-        //SceneManager.LoadScene(GameOverScene);
-    }
+    
     public void GameExit()
     {
         Application.Quit();

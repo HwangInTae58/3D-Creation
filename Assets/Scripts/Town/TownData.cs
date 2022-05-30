@@ -22,6 +22,6 @@ public class TownData : ScriptableObject
     //prefab
     public Town prefab;
     //이게 0이면 게임오버
-    public int Life;
+    public bool Life;
 
 }

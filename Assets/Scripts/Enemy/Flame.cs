@@ -21,13 +21,10 @@ public class Flame : MonoBehaviour
     private void Awake()
     {
         speed = data.speed;
-        hitFlame = false;
-    }
-    private void Start()
-    {
         range = boss.data.attackFarRange;
         atRange = data.atRange;
         atExtent = data.atExtent;
+        hitFlame = false;
     }
     public void OnFlame(Transform FlamePos)
     {
@@ -41,7 +38,7 @@ public class Flame : MonoBehaviour
     public void MoveFlame()
     {
         Collider[] findTarget = Physics.OverlapSphere(transform.position, range, LayerMask.GetMask("Friendly", "Town"));
-        Collider[] findDamageTarget = Physics.OverlapBox(transform.position, new Vector3(atExtent, 5, atRange), Quaternion.identity, LayerMask.GetMask("Friendly", "Town"));
+        Collider[] findDamageTarget = Physics.OverlapBox(transform.position, new Vector3(atExtent, 5, atRange), boss.transform.rotation, LayerMask.GetMask("Friendly", "Town"));
         //Physics.OverlapSphere(transform.position, atRange, LayerMask.GetMask("Friendly", "Town"));
         if (findTarget.Length <= 0)
         {

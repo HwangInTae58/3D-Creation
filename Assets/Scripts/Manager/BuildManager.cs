@@ -16,25 +16,25 @@ public class BuildManager : MonoBehaviour
     public Friendly selectedFriendly;
     public Town selectedTown;
 
-    public int startCost = 35;
+    public int startCost;
     public int Cost;
-    public int maxCost = 50;
+    public int maxCost;
 
     private void Awake()
     {
         if (null == _instance)
             _instance = this;
-        
+
+        startCost = 35;
+        maxCost = 50;
+        Cost = startCost;
     }
-   
     private void Start()
     {
-        Cost = startCost;
         changeCost += OnCost;
         changeCost?.Invoke();
         max.text = maxCost.ToString();
     }
-    
     public void GetCost(int getCost)
     {
         if (Cost < maxCost)
@@ -49,9 +49,7 @@ public class BuildManager : MonoBehaviour
         }
         else
             return;
-            
     }
-    
     public void plusMaxCost(int get)
     {
         maxCost += get;
@@ -66,8 +64,6 @@ public class BuildManager : MonoBehaviour
     {
         costCount.text = Cost.ToString();
     }
-
-
     public void OnTownBuild(RaycastHit pos)
     {
         if (selectedTown == null)
@@ -97,6 +93,4 @@ public class BuildManager : MonoBehaviour
             changeCost?.Invoke();
         }
     }
-
-
 }

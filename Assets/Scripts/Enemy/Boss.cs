@@ -26,19 +26,19 @@ public class Boss : MonoBehaviour, IDamaged
     float attackFarRange;
     float attackCloseRange;
 
-    float attackDelay = 0f;
-    bool meleeAttacked = true;
-    float flameDelay = 0f;
-    bool flameAttack = false;
-    float flameFire = 0f;
+    float   attackDelay;
+    bool    meleeAttacked;
+    float   flameDelay;
+    bool    flameAttack;
+    float   flameFire;
 
-    bool isDie = false;
+    bool isDie;
 
     private float moveDelay = 0f;
     private bool move;
 
-    public bool isStart = false;
-    bool Victory = false;
+    public bool isStart;
+    public bool Victory;
 
     Collider[] findTarget;
     Collider[] attackedCloseTarget;
@@ -46,38 +46,46 @@ public class Boss : MonoBehaviour, IDamaged
     float distance;
     private void Awake()
     {
-        enemyCollider = GetComponent<Collider>();
-        anime = GetComponent<Animator>();
-    }
-    private void Start()
-    {
         HP = data.hp;
         ranged = data.range;
         attackFarRange = data.attackFarRange;
         attackCloseRange = data.attackCloseRange;
-        distance = 0;
+        attackDelay = data.fireDelay;
+        flameDelay = data.flameDelay;
+        meleeAttacked = true;
+        flameAttack = false;
+        isDie = false;
+        Victory = false;
+        isStart = false;
+        flameFire = 0f;
 
+        distance = 0;
+    }
+    private void Start()
+    {
+        enemyCollider = GetComponent<Collider>();
+        anime = GetComponent<Animator>();
     }
     private void Update()
     {
+        if (Victory)
+            StartCoroutine(OnVictory());
         FindTarget();
     }
     
     private void FindTarget()
     {
-
         findTarget         =  Physics.OverlapSphere(transform.position, ranged, LayerMask.GetMask("Friendly", "Town"));
-        attackedCloseTarget = Physics.OverlapBox(transform.position,new Vector3(5,10, attackCloseRange), Quaternion.identity,LayerMask.GetMask("Friendly", "Town"));
+        attackedCloseTarget = Physics.OverlapBox(closeAttackPos.position,new Vector3(5,10, attackCloseRange), transform.rotation,LayerMask.GetMask("Friendly", "Town"));
         attackedFarTarget   = Physics.OverlapSphere(transform.position, attackFarRange, LayerMask.GetMask("Friendly", "Town"));
 
         anime.SetFloat("IsSpeed", Speed);
-
+        if (Time.timeScale <= 0)
+            return;
         if (isDie)
             return;
         if (findTarget.Length <= 0)
-        {
             return;
-        }
         else
         {
             float min = int.MaxValue;
@@ -91,7 +99,6 @@ public class Boss : MonoBehaviour, IDamaged
                     min = distance;
                 }
             }
-
             Vector3 dir = findTarget[index].transform.position - transform.position;
             Quaternion q = Quaternion.LookRotation(dir.normalized * Time.deltaTime);
             transform.rotation = q;
@@ -103,7 +110,7 @@ public class Boss : MonoBehaviour, IDamaged
             {
                 if (isDie)
                     return;
-                if (flameAttack) { 
+                if (flameAttack) {
                     FlameDelay();
                     return;
                 }
@@ -125,15 +132,12 @@ public class Boss : MonoBehaviour, IDamaged
                 }
             }
             else
-            {
-                move = true;
                 MoveDelay();
-            }
-
         }
     }
     private void MoveDelay()
     {
+        move = true;
         if (move)
         {
             moveDelay += Time.deltaTime;
@@ -160,16 +164,13 @@ public class Boss : MonoBehaviour, IDamaged
             return;
         if (meleeAttacked)
             return;
-       
         if (target.Length > 0)
         {
             anime.SetTrigger("IsCloseAttack");
-            
             for (int i = 0; i < target.Length; i++) {
                 IDamaged damaged = target[i].GetComponent<IDamaged>();
                 damaged?.Damaged(data.damage);
             }
-           
             meleeAttacked = true;
         }
     }
@@ -234,24 +235,24 @@ public class Boss : MonoBehaviour, IDamaged
     }
     private void Die()
     {
-        //TODO : 승리
         Victory = data.victory;
-        if (Victory)
-            OnVictory();
         WaveManager.instance.monsterCount += -1;
         anime.SetTrigger("IsDie");
         Destroy(gameObject, 3f);
     }
     private void OnDrawGizmos()
     {
+        //TODO : 사정거리를 눈으로 확인하기 위한 작업 제작완료시 삭제
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, data.range);
         Gizmos.DrawWireSphere(transform.position, data.attackFarRange);
         Gizmos.DrawWireCube(closeAttackPos.position, new Vector3(5,10 ,data.attackCloseRange));
-
     }
-    public void OnVictory()
+    public IEnumerator OnVictory()
     {
-        Debug.Log("승리");
+        yield return new WaitForSeconds(2.9f);
+        UIManager.instance.GameVictory();
+        yield return new WaitForSecondsRealtime(3f);
+        Gamemanager.instance.ChangeScene("TitleScene");
     }
 }
