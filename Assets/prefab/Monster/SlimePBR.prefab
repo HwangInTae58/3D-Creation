@@ -442,8 +442,7 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: 1a5f28b0e915b774fa9a223e0e0bec68, type: 2}
   effect: {fileID: 5372246984845678456, guid: e16f0a7039517ee439df2679211d6f35, type: 3}
   effectPos: {fileID: 5708537850216228562}
-  damageEffect: {fileID: 1000012909287652, guid: abb9f519b142e304d9c45b56afa768bc,
-    type: 3}
+  damageEffect: {fileID: 100000, guid: bc98890f6028f444eaa7789bde5e2eeb, type: 3}
   bloodPos: {fileID: 4023215848608658}
 --- !u!54 &-6669917243017492690
 Rigidbody:

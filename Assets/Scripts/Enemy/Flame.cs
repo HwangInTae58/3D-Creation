@@ -84,9 +84,13 @@ public class Flame : MonoBehaviour
             Destroy(gameObject, 1f);
             for (int i = 0; i < target.Length; i++)
             {
-                IDamaged damaged = target[i].GetComponent<IDamaged>();
-                damaged?.Damaged(data.damage);
-                
+                if (target[i] != null)
+                {
+                    IDamaged damaged = target[i].GetComponent<IDamaged>();
+                    damaged?.Damaged(data.damage);
+                }
+                else
+                    return;
             }
         }
        

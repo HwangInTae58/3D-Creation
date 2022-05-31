@@ -164,12 +164,18 @@ public class Boss : MonoBehaviour, IDamaged
             return;
         if (meleeAttacked)
             return;
+        
         if (target.Length > 0)
         {
             anime.SetTrigger("IsCloseAttack");
             for (int i = 0; i < target.Length; i++) {
-                IDamaged damaged = target[i].GetComponent<IDamaged>();
-                damaged?.Damaged(data.damage);
+                if (target[i] != null)
+                {
+                    IDamaged damaged = target[i].GetComponent<IDamaged>();
+                    damaged?.Damaged(data.damage);
+                }
+                else
+                    return;
             }
             meleeAttacked = true;
         }

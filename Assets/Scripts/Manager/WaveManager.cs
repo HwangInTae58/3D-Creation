@@ -199,7 +199,7 @@ public class WaveManager : MonoBehaviour
             if (spawnOke >= 0)
                 spawnOke -= 200;
 
-            if (spawnBadWizard >= 500)
+            if (spawnBadWizard >= 580)
                 spawnBadWizard -= 80;
 
             if (spawnGolem >= 750)
@@ -210,7 +210,7 @@ public class WaveManager : MonoBehaviour
                 monsterMaxCount += 20;
                 if (spawnOke >= 0)
                     spawnOke -= 200;
-                if (spawnBadWizard >= 500) 
+                if (spawnBadWizard >= 580) 
                     spawnBadWizard -= 100;
                 hard = 0;
             }

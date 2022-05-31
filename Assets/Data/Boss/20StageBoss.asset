@@ -15,8 +15,7 @@ MonoBehaviour:
   monsterName: "\uB6B1\uB6B1\uD55C \uB4DC\uB798\uACE4"
   range: 200
   attackFarRange: 50
-  attackCloseRange: 10
-  attacker: 5
+  attackCloseRange: 5
   hp: 3000
   damage: 40
   fireDelay: 4

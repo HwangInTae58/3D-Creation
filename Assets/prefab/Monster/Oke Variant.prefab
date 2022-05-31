@@ -105,8 +105,7 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: 5c5075a74efa5a94a9f2b3f1afcd5f54, type: 2}
   effect: {fileID: 4212237911574779972, guid: f34d53a9f8cd409428b8d1e3addf4807, type: 3}
   effectPos: {fileID: 6943730064573683690}
-  damageEffect: {fileID: 1000012909287652, guid: abb9f519b142e304d9c45b56afa768bc,
-    type: 3}
+  damageEffect: {fileID: 100000, guid: bc98890f6028f444eaa7789bde5e2eeb, type: 3}
   bloodPos: {fileID: 3172566660168046974}
 --- !u!1001 &6143267617463552200
 PrefabInstance:

@@ -162,8 +162,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.2044618, y: 2.0582037, z: 11.959028}
-  m_Center: {x: 0, y: 1.03, z: 0.67352027}
+  m_Size: {x: 3.2044618, y: 2.0582037, z: 9.300638}
+  m_Center: {x: -3.8544945e-10, y: 1.03, z: -0.6556757}
 --- !u!114 &1364863434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,8 +182,7 @@ MonoBehaviour:
   flamePos: {fileID: 1588901725273875421}
   effect: {fileID: 4184831820040277122, guid: 1bee58de964145a42bfce895cf98666d, type: 3}
   effectPos: {fileID: 1150929754065805948}
-  damageEffect: {fileID: 1000012909287652, guid: 391e65617c4d17f41a313db0dfecec42,
-    type: 3}
+  damageEffect: {fileID: 100000, guid: 6c223421fabd38c41acc0c0090da584d, type: 3}
   bloodPos: {fileID: 847202153986268612}
   isStart: 0
   Victory: 0

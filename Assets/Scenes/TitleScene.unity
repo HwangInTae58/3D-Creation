@@ -484,7 +484,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Load
+  m_Text: Load Game
 --- !u!222 &720854550
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -748,6 +748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 949b9dbc83261c042a8310760bb44657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedText: {fileID: 0}
 --- !u!4 &948804969
 Transform:
   m_ObjectHideFlags: 0
@@ -1178,7 +1179,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: GameStart
+  m_Text: New Game
 --- !u!222 &1355605419
 CanvasRenderer:
   m_ObjectHideFlags: 0

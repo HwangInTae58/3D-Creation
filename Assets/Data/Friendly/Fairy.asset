@@ -21,4 +21,4 @@ MonoBehaviour:
   fireDelay: 1
   speed: 5
   prefab: {fileID: 1613019738144774511, guid: 853a96e1ecfe9fb4c8b53529fa3295cf, type: 3}
-  cost: 15
+  cost: 10

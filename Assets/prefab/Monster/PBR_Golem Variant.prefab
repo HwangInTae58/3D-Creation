@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 46370c92573db5d4687e229767960f71, type: 2}
-  effect: {fileID: 1834194341294532, guid: d5f26854a8904624c8073139cd2eb346, type: 3}
+  effect: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
   effectPos: {fileID: 5925876586421072328}
   damageEffect: {fileID: 1834194341294532, guid: d5f26854a8904624c8073139cd2eb346,
     type: 3}

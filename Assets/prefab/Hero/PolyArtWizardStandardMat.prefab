@@ -706,10 +706,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: ef6423ff66c62d342bfafc7c26dddfca, type: 2}
   face: {fileID: 0}
-  effect: {fileID: 1000011128802252, guid: 96730f8640590934eacb6f860058e7f9, type: 3}
+  effect: {fileID: 1134129239631916, guid: 7e48ba6b1b968764490bbc70b66e3fe1, type: 3}
   effectPos: {fileID: 0}
-  damageEffect: {fileID: 1000012909287652, guid: abb9f519b142e304d9c45b56afa768bc,
-    type: 3}
+  damageEffect: {fileID: 100000, guid: bc98890f6028f444eaa7789bde5e2eeb, type: 3}
   bloodPos: {fileID: 4625204724982288394}
   originalPos: {x: 0, y: 0, z: 0}
 --- !u!54 &1764543908227808514

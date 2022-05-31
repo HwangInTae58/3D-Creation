@@ -10,26 +10,22 @@ public class UIManager : MonoBehaviour
 
     public Button town;
     public Button friendly;
-
+   
     public GameObject friendlyBuild;
     public GameObject townBuild;
-
     public GameObject pausdWindow;
+    public GameObject waveStart;
+    public GameObject bossAppear;
+    public GameObject victory;
+    public GameObject lose;
 
     public Text stageNumber;
     public Text waveWaitTime;
-    public GameObject waveStart;
-
-    public GameObject bossAppear;
     public Text bossName;
-
-    public GameObject victory;
-    public GameObject lose;
 
     bool        curtownUI;
     bool        curFrienUI;
     public bool pausd;
-
     private void Awake()
     {
         if (null == _instance)
@@ -39,7 +35,6 @@ public class UIManager : MonoBehaviour
         curFrienUI = false;
         pausd = false;
     }
-   
     public void OpenPausdWindow()
     {
         if (pausd)

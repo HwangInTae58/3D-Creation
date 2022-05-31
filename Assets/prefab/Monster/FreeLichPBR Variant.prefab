@@ -45,8 +45,7 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: 87119fbf38a45f94c8e6a33e391fa1b4, type: 2}
   effect: {fileID: 2312591318274358134, guid: 77da29788f3010e4396994ea52057980, type: 3}
   effectPos: {fileID: 0}
-  damageEffect: {fileID: 1000012909287652, guid: abb9f519b142e304d9c45b56afa768bc,
-    type: 3}
+  damageEffect: {fileID: 100000, guid: bc98890f6028f444eaa7789bde5e2eeb, type: 3}
   bloodPos: {fileID: 7568053183055541525}
 --- !u!1 &5155693357050419445
 GameObject:

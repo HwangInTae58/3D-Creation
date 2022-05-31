@@ -85,6 +85,7 @@ public class Enemy : MonoBehaviour, IDamaged
 
             if (attackedTarget.Length > 0)
             {
+                
                 Speed = 0;
                 Attack(attackedTarget);
                 FireDelay();
@@ -118,18 +119,21 @@ public class Enemy : MonoBehaviour, IDamaged
             return;
         if (target[0] == null)
             return;
-        if(null != effect)
-       anime.SetTrigger("IsAttack");
-       IDamaged damaged = target[0].GetComponent<IDamaged>();
-       attacked = true;
-       damaged?.Damaged(data.damage);
+        
+        anime.SetTrigger("IsAttack");
         enermyTargetPos = target[0].transform;
+        IDamaged damaged = target[0].GetComponent<IDamaged>();
+        attacked = true;
+        damaged?.Damaged(data.damage);
     }
     private void HitEffact()
     {
         GameObject saveEffact;
-        if (effectPos == null)
+        if (effectPos == null) {
+            if (enermyTargetPos == null)
+                return;
             saveEffact = Instantiate(effect, enermyTargetPos.position, Quaternion.identity);
+        }
         else
             saveEffact = Instantiate(effect, effectPos.position, Quaternion.identity);
         Destroy(saveEffact, 1f);

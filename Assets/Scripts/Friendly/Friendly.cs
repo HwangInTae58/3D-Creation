@@ -111,14 +111,14 @@ public class Friendly : MonoBehaviour, IDamaged
                 MoveDelay();
                 return;
             }
-            if (Vector3.Distance(originalPos, transform.position) >= 0.04f)
+            if (Vector3.Distance(originalPos, transform.position) >= 0.1f)
             {
                 Vector3 purdir = originalPos - transform.position;
                 transform.Translate(purdir.normalized * Speed * Time.deltaTime, Space.World);
                 Quaternion q = Quaternion.LookRotation(purdir.normalized);
                 transform.rotation = q;
             }
-            else if (Vector3.Distance(originalPos, transform.position) < 0.04f)
+            else if (Vector3.Distance(originalPos, transform.position) < 0.1f)
                 Speed = 0;
             return;
         }
@@ -142,11 +142,14 @@ public class Friendly : MonoBehaviour, IDamaged
             return;
         if (attacked)
             return;
-            anime.SetTrigger("IsAttack");
-            IDamaged damaged = target[0].GetComponent<IDamaged>();
-            attacked = true;
-            damaged?.Damaged(data.damage);
+        if (target[0] == null)
+            return;
+
+        anime.SetTrigger("IsAttack");
         enermyTargetPos = target[0].transform;
+        IDamaged damaged = target[0].GetComponent<IDamaged>();
+        attacked = true;
+        damaged?.Damaged(data.damage);
     }
     private void OnDrawGizmos()
     {
