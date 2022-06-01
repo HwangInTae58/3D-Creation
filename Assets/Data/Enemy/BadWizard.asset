@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BadWizard
   m_EditorClassIdentifier: 
   monsterName: "\uB098\uC05C\uB9C8\uBC95\uC0AC"
-  range: 200
+  range: 300
   attackRange: 20
   hp: 15
   damage: 7

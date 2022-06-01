@@ -157,10 +157,10 @@ public class WaveManager : MonoBehaviour
         yield return new WaitForSeconds(0.4f);
         if (bossStage == 10)
         {
-            UIManager.instance.bossName.text = bosses[collecter].data.monsterName;
-            UIManager.instance.bossAppear.SetActive(true);
             if (collecter == 4)
                 collecter = 1;
+            UIManager.instance.bossName.text = bosses[collecter].data.monsterName;
+            UIManager.instance.bossAppear.SetActive(true);
             Instantiate(bosses[collecter].data.prefab, bossPotal.transform.position, Quaternion.identity);
             boss = true;
             bossStage = 3;

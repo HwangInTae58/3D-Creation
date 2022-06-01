@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: 40Boss
   m_EditorClassIdentifier: 
   monsterName: "\uB9C8\uC9C0\uB9C9 \uC6A9"
-  range: 200
+  range: 300
   attackFarRange: 60
   attackCloseRange: 10
-  attacker: 7
   hp: 5000
   damage: 60
   fireDelay: 2

@@ -13,7 +13,7 @@ public class Cameramanager : MonoBehaviour
     private Camera gameCamera;
 
     public GameObject saveOriginalPos;
-
+    public GameObject bossSpawnPos;
     private Vector3 forwardDir;
     private int mouseOnScreenBorder;
     private Coroutine mouseOnScreenCoroutine;
@@ -68,7 +68,7 @@ public class Cameramanager : MonoBehaviour
     
     private IEnumerator BossSceneMove()
     {
-        gameCamera.transform.position = new Vector3(280, 60, 146);
+        gameCamera.transform.position = bossSpawnPos.transform.position;
         //TODO : Lerp사용
         yield return new WaitForSeconds(3.5f);
         gameCamera.transform.position = Vector3.Lerp(gameCamera.transform.position, saveOriginalPos.transform.position, 0.05f);

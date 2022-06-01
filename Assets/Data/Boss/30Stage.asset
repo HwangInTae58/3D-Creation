@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 30Stage
   m_EditorClassIdentifier: 
   monsterName: "\uC804\uAE30\uC6A9"
-  range: 200
+  range: 300
   attackFarRange: 50
   attackCloseRange: 10
   hp: 4500

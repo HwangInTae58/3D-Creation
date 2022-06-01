@@ -17,7 +17,7 @@ MonoBehaviour:
   hp: 150
   getCost: 1
   maxCostUp: 0
-  getDelay: 7
+  getDelay: 5
   cost: 10
   prefab: {fileID: 466850131705042647, guid: 8cc8753ada7f8a949bd4c94b1ee75700, type: 3}
   Life: 0

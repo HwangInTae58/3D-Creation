@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   friendName: "\uAC1C"
   friendManual: "\uB2E8\uB2E8\uD55C \uAC1C"
-  range: 30
+  range: 40
   attackRange: 5
   hp: 500
   damage: 30

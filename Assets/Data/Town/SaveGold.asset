@@ -16,7 +16,7 @@ MonoBehaviour:
   townManual: "\uACE8\uB4DC \uC800\uC7A5\uACE0\uB97C \uB298\uB9B0\uB2E4"
   hp: 200
   getCost: 0
-  maxCostUp: 5
+  maxCostUp: 10
   getDelay: 0
   cost: 15
   prefab: {fileID: 1147908901589310901, guid: 0bc04ed0e95d04c41a04fea8f6a0413a, type: 3}

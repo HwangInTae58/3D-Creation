@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a10ac05069d5db4b92c2988c103b16d, type: 3}
   m_Name: Boss2
   m_EditorClassIdentifier: 
-  damage: 30
+  damage: 25
   prefab: {fileID: 2258434999567611412, guid: 106f1c81b9dd52e41a9fa051051bea42, type: 3}
   speed: 30
-  atRange: 30
+  atRange: 20
   atExtent: 30

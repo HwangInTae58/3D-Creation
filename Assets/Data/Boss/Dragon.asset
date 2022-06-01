@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dragon
   m_EditorClassIdentifier: 
   monsterName: "\uAE30\uBCF8 \uB4DC\uB798\uACE4"
-  range: 200
+  range: 300
   attackFarRange: 0
   attackCloseRange: 8
   hp: 300
