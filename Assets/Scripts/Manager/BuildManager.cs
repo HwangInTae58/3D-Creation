@@ -14,7 +14,10 @@ public class BuildManager : MonoBehaviour
     public Text max;
 
     public Friendly selectedFriendly;
+    public List<Friendly> friendlies;
     public Town selectedTown;
+    public List<Town> towns;
+    public Transform castlePos;
 
     public int startCost;
     public int Cost;
@@ -75,6 +78,7 @@ public class BuildManager : MonoBehaviour
         else 
         { 
         Town town = Instantiate(selectedTown, pos.point, Quaternion.identity);
+            towns.Add(town);
         Cost -= selectedTown.data.cost;
             changeCost?.Invoke();
         }
@@ -90,6 +94,7 @@ public class BuildManager : MonoBehaviour
         else { 
             Cost -= selectedFriendly.data.cost;
             Friendly friendly = Instantiate(selectedFriendly, pos.point,Quaternion.identity);
+            friendlies.Add(friendly);
             changeCost?.Invoke();
         }
     }

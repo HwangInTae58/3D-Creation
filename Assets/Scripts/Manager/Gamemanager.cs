@@ -11,11 +11,12 @@ public class Gamemanager : MonoBehaviour
 
     public Text speedText;
     int speed;
+    public bool load;
     private void Awake()
     {
         if (_instance == null)
             _instance = this;
-
+        load = false;
         speed = 1;
     }
     private void Start()
@@ -28,6 +29,12 @@ public class Gamemanager : MonoBehaviour
         if (Time.timeScale <= 0)
             Time.timeScale = 1;
         SceneManager.LoadScene(sceneName);
+    }
+    public void Load()
+    {
+        ChangeScene("GameScene");
+        load = true;
+        WaveManager.instance.LoadGame();
     }
     public void ContinueGame()
     {

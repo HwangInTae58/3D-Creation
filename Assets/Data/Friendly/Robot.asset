@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da5751e40b4677249ac4d3855a83cf13, type: 3}
-  m_Name: FutureSoldier
+  m_Name: Robot
   m_EditorClassIdentifier: 
   friendName: "\uB85C\uBD07"
-  friendManual: "\uAC15\uB825\uD568"
+  friendManual: "\uAC15\uD55C \uC6D0\uAC70\uB9AC \uC720\uB2DB"
   range: 45
   attackRange: 30
   hp: 100
