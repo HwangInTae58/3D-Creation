@@ -17,7 +17,7 @@ MonoBehaviour:
   range: 45
   attackRange: 22
   hp: 15
-  damage: 7
+  damage: 8
   fireDelay: 1.2
   speed: 2.5
   prefab: {fileID: 8221691336064252157, guid: ccd8c3b89aa02e943a08ab9238a8a70c, type: 3}

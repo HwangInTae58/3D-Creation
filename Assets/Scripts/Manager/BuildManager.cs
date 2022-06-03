@@ -55,6 +55,11 @@ public class BuildManager : MonoBehaviour
     }
     public void plusMaxCost(int get)
     {
+        if(maxCost >= 250)
+        {
+            maxCost = 200;
+            return;
+        }
         maxCost += get;
         max.text = maxCost.ToString();
     }

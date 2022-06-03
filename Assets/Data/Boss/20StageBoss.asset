@@ -16,11 +16,11 @@ MonoBehaviour:
   range: 300
   attackFarRange: 50
   attackCloseRange: 5
-  hp: 3000
-  damage: 40
-  fireDelay: 4
+  hp: 4500
+  damage: 70
+  fireDelay: 3
   flameDelay: 6
   flameFire: 0.7
-  speed: 3
+  speed: 3.5
   prefab: {fileID: 1066184301, guid: 9d207873149689343a306520b815b12b, type: 3}
   victory: 0

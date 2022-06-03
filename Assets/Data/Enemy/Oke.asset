@@ -15,7 +15,7 @@ MonoBehaviour:
   monsterName: "\uC624\uD06C"
   range: 300
   attackRange: 3
-  hp: 30
+  hp: 50
   damage: 5
   fireDelay: 1.2
   speed: 4

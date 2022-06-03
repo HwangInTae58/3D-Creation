@@ -55,9 +55,14 @@ public class Gamemanager : MonoBehaviour
             speed = 2;
             Time.timeScale = speed;
         }
-        else { 
-            speed = 1;
+        else if(Time.timeScale == 2){ 
+            speed = 3;
             Time.timeScale = speed;
+        }
+        else
+        {
+            speed = 1;
+            Time.timeScale = 1;
         }
         speedText.text = speed.ToString();
     }

@@ -16,8 +16,8 @@ MonoBehaviour:
   friendManual: "\uADFC\uC811\uBCD1\uC0AC"
   range: 40
   attackRange: 2.2
-  hp: 35
-  damage: 4
+  hp: 40
+  damage: 6
   fireDelay: 1
   speed: 3
   prefab: {fileID: 5248552892047330515, guid: c647a6e9ba715004ebbf4dc6d7bd1e7a, type: 3}

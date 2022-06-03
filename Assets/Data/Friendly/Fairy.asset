@@ -16,9 +16,9 @@ MonoBehaviour:
   friendManual: "\uBE60\uB978 \uADFC\uC811 \uACF5\uACA9"
   range: 40
   attackRange: 3.5
-  hp: 120
+  hp: 150
   damage: 20
-  fireDelay: 1
+  fireDelay: 0.7
   speed: 5
   prefab: {fileID: 1613019738144774511, guid: 853a96e1ecfe9fb4c8b53529fa3295cf, type: 3}
   cost: 10

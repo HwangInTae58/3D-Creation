@@ -21,7 +21,7 @@ public class Flame : MonoBehaviour
     private void Awake()
     {
         speed = data.speed;
-        range = boss.data.attackFarRange;
+        range = boss.data.range;
         atRange = data.atRange;
         atExtent = data.atExtent;
         hitFlame = false;
@@ -64,7 +64,7 @@ public class Flame : MonoBehaviour
             transform.rotation = q;
             transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
 
-            if(Vector3.Distance(findTarget[index].transform.position, transform.position) < 0.1f)
+            if(Vector3.Distance(findTarget[index].transform.position, transform.position) < 0.3f)
             {
                 if(null != prefab)
                     prefab.SetActive(false);

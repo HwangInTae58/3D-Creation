@@ -18,7 +18,7 @@ public class CameraManager : MonoBehaviour
 
     private void Awake()
     {
-        translationSpeed = 40f;
+        translationSpeed = 100f;
         altitude = 40f;
         zoomSpeed = 100f;
     }

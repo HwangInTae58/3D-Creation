@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 public class Boss : MonoBehaviour, IDamaged
 {
     public BossData data;
+    NavMeshAgent agent;
 
     Animator anime;
     Collider enemyCollider;
@@ -20,7 +22,6 @@ public class Boss : MonoBehaviour, IDamaged
     public Transform bloodPos;
 
     int HP;
-    float Speed;
     float ranged;
 
     float attackFarRange;
@@ -65,6 +66,8 @@ public class Boss : MonoBehaviour, IDamaged
     {
         enemyCollider = GetComponent<Collider>();
         anime = GetComponent<Animator>();
+        agent = GetComponent<NavMeshAgent>();
+        agent.speed = data.speed;
     }
     private void Update()
     {
@@ -79,7 +82,7 @@ public class Boss : MonoBehaviour, IDamaged
         attackedCloseTarget = Physics.OverlapBox(closeAttackPos.position,new Vector3(5,10, attackCloseRange), transform.rotation,LayerMask.GetMask("Friendly", "Town"));
         attackedFarTarget   = Physics.OverlapSphere(transform.position, attackFarRange, LayerMask.GetMask("Friendly", "Town"));
 
-        anime.SetFloat("IsSpeed", Speed);
+        anime.SetFloat("IsSpeed", agent.speed);
         if (Time.timeScale <= 0)
             return;
         if (isDie)
@@ -99,10 +102,11 @@ public class Boss : MonoBehaviour, IDamaged
                     min = distance;
                 }
             }
-            Vector3 dir = findTarget[index].transform.position - transform.position;
-            Quaternion q = Quaternion.LookRotation(dir.normalized * Time.deltaTime);
-            transform.rotation = q;
-            transform.Translate(dir.normalized * Speed * Time.deltaTime, Space.World);
+            //Vector3 dir = findTarget[index].transform.position - transform.position;
+            //Quaternion q = Quaternion.LookRotation(dir.normalized * Time.deltaTime);
+            //transform.rotation = q;
+            //transform.Translate(dir.normalized * Speed * Time.deltaTime, Space.World);
+            agent.SetDestination(findTarget[index].transform.position);
             //바라보게 하기 코드
             //transform.rotation = q;
             //transform.rotation = Quaternion.LookRotation(dir.normalized * Time.deltaTime);
@@ -114,7 +118,7 @@ public class Boss : MonoBehaviour, IDamaged
                     FlameDelay();
                     return;
                 }
-                Speed = 0;
+                agent.speed = 0;
                 //TODO : 원거리 공격 오브젝트 날리기
                 anime.SetTrigger("IsFlame");
                 
@@ -123,12 +127,12 @@ public class Boss : MonoBehaviour, IDamaged
             else if (attackedCloseTarget.Length > 0)
             {
                 Vector3 dird = attackedCloseTarget[0].transform.position - transform.position;
-                Speed = 0;
+                agent.speed = 0;
                 MeleeAttack(attackedCloseTarget);
                 meleeDelay();
                 if (!meleeAttacked) {
                     Quaternion qq = Quaternion.LookRotation(dird.normalized * Time.deltaTime);
-                    transform.rotation = qq;
+                    agent.transform.rotation = qq;
                 }
             }
             else
@@ -143,7 +147,7 @@ public class Boss : MonoBehaviour, IDamaged
             moveDelay += Time.deltaTime;
             if (moveDelay >= 5f)
             {
-                Speed = data.speed;
+                agent.speed = data.speed;
                 moveDelay = 0;
                 move = false;
             }
@@ -199,7 +203,7 @@ public class Boss : MonoBehaviour, IDamaged
         Invoke("DamageEffect", 0.3f);
         if (HP <= 0)
         {
-            Speed = 0;
+            agent.speed = 0;
             ranged = 0;
             attackFarRange = 0;
             isDie = true;
@@ -228,7 +232,7 @@ public class Boss : MonoBehaviour, IDamaged
             flameFire += Time.deltaTime;
             if(flameFire >= data.flameFire)
             {
-                Speed = data.speed;
+                agent.speed = data.speed;
                 flameFire = 0f;
             }
             

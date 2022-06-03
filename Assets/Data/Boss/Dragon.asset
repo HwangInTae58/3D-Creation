@@ -16,7 +16,7 @@ MonoBehaviour:
   range: 300
   attackFarRange: 0
   attackCloseRange: 8
-  hp: 300
+  hp: 400
   damage: 30
   fireDelay: 2
   flameDelay: 0

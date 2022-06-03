@@ -46,7 +46,7 @@ public class WaveManager : MonoBehaviour
         waveStart = false;
         boss = false;
         monsterCount = 0;
-        monsterMaxCount = 15;
+        monsterMaxCount = 20;
         monsterDelay = 0f;
         monsterSpawn = false;
         mons = 0;
@@ -105,12 +105,11 @@ public class WaveManager : MonoBehaviour
         }
         if(spawnDragon)
             switch (stage) {
-                case 10:
-                case 11:
-                case 12:
-                case 13:
-                case 14:
-                case 15:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
                     for (int i = 0; i <= 2; i++)
                     {
                         yield return new WaitForSeconds(0.5f);
@@ -121,11 +120,11 @@ public class WaveManager : MonoBehaviour
                     }
                     spawnDragon = false;
                     break;
-                case 16:
-                case 17:
-                case 18:
-                case 19:
-                case 20:
+                case 10:
+                case 11:
+                case 12:
+                case 13:
+                case 14:
                     for (int i = 0; i <= 4; i++)
                     {
                         yield return new WaitForSeconds(0.5f);
@@ -136,10 +135,14 @@ public class WaveManager : MonoBehaviour
                     }
                     spawnDragon = false;
                     break;
+                case 15:
+                case 16:
+                case 17:
+                case 18:
+                case 19:
+                case 20:
                 case 21:
                 case 22:
-                case 23:
-                case 24:
                     for (int i = 0; i <= 7; i++)
                     {
                         yield return new WaitForSeconds(0.5f);
@@ -152,7 +155,7 @@ public class WaveManager : MonoBehaviour
                     break;
         }
         yield return new WaitForSeconds(0.4f);
-        if (bossStage == 10)
+        if (bossStage == 5)
         {
             if (collecter == 4)
                 collecter = 1;
@@ -160,7 +163,7 @@ public class WaveManager : MonoBehaviour
             UIManager.instance.bossAppear.SetActive(true);
             Instantiate(bosses[collecter].data.prefab, bossPotal.transform.position, Quaternion.identity);
             boss = true;
-            bossStage = 3;
+            bossStage = 1;
             monsterCount++;
             monCount++;
             collecter++;
@@ -204,7 +207,7 @@ public class WaveManager : MonoBehaviour
 
             if(hard == 5)
             {
-                monsterMaxCount += 30;
+                monsterMaxCount += 35;
                 if (spawnOke > 0)
                     spawnOke -= 200;
                 if (spawnBadWizard > 580) 

@@ -18,6 +18,6 @@ MonoBehaviour:
   getCost: 0
   maxCostUp: 10
   getDelay: 0
-  cost: 15
+  cost: 20
   prefab: {fileID: 1147908901589310901, guid: 0bc04ed0e95d04c41a04fea8f6a0413a, type: 3}
   Life: 0

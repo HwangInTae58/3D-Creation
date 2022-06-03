@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Friendly : MonoBehaviour, IDamaged
 {
     public FriendlyData data;
+    NavMeshAgent agent;
 
     Animator anime;
     Collider fricollider;
@@ -18,7 +20,6 @@ public class Friendly : MonoBehaviour, IDamaged
     public Transform bloodPos;
 
     int HP;
-    float Speed;
     float attackDelay;
     bool  attacked;
 
@@ -35,7 +36,6 @@ public class Friendly : MonoBehaviour, IDamaged
     private void Awake()
     {
         HP = data.hp;
-        Speed = data.speed;
         attackDelay = data.fireDelay;
         ranged = data.range;
         attackranged = data.attackRange;
@@ -46,8 +46,10 @@ public class Friendly : MonoBehaviour, IDamaged
     }
     private void Start()
     {
+        agent = GetComponent<NavMeshAgent>();
         anime = GetComponent<Animator>();
         fricollider = GetComponent<Collider>();
+        agent.speed = data.speed;
     }
     private void OnEnable()
     {
@@ -64,7 +66,7 @@ public class Friendly : MonoBehaviour, IDamaged
     {
         Collider[] findTarget = Physics.OverlapSphere(transform.position, ranged, LayerMask.GetMask("Enemy"));
         Collider[] attackedTarget = Physics.OverlapSphere(transform.position, attackranged, LayerMask.GetMask("Enemy"));
-        anime.SetFloat("IsSpeed", Speed);
+        anime.SetFloat("IsSpeed", agent.speed);
         if (isDie)
             return;
         if (Time.timeScale <= 0)
@@ -84,16 +86,20 @@ public class Friendly : MonoBehaviour, IDamaged
                 }
             }
             //바라보게 하기 코드
-            Vector3 dir = findTarget[index].transform.position - transform.position;
-            Quaternion q = Quaternion.LookRotation(dir.normalized);
-            transform.rotation = q;
-            transform.Translate(dir.normalized * Speed * Time.deltaTime, Space.World);
+            //Vector3 dir = findTarget[index].transform.position - transform.position;
+            //Quaternion q = Quaternion.LookRotation(dir.normalized);
+            //transform.rotation = q;
+            //transform.Translate(dir.normalized * Speed * Time.deltaTime, Space.World);
+            agent.SetDestination(findTarget[index].transform.position);
 
             if (attackedTarget.Length > 0)
             {
+                Vector3 dird = attackedTarget[0].transform.position - transform.position;
+                Quaternion qq = Quaternion.LookRotation(dird.normalized * Time.deltaTime);
+                agent.transform.rotation = qq;
                 FireDelay();
                 Attack(attackedTarget);
-                Speed = 0;
+                agent.speed = 0;
                 move = false;
             }
             else
@@ -101,7 +107,7 @@ public class Friendly : MonoBehaviour, IDamaged
                 if (!move)
                     MoveDelay();
                 else
-                    Speed = data.speed;
+                    agent.speed = data.speed;
             }
             
         }
@@ -111,15 +117,12 @@ public class Friendly : MonoBehaviour, IDamaged
                 MoveDelay();
                 return;
             }
-            if (Vector3.Distance(originalPos, transform.position) >= 0.1f)
+            if (Vector3.Distance(originalPos, transform.position) >= 0.3f)
             {
-                Vector3 purdir = originalPos - transform.position;
-                transform.Translate(purdir.normalized * Speed * Time.deltaTime, Space.World);
-                Quaternion q = Quaternion.LookRotation(purdir.normalized);
-                transform.rotation = q;
+                agent.SetDestination(originalPos);
             }
-            else if (Vector3.Distance(originalPos, transform.position) < 0.1f)
-                Speed = 0;
+            else if (Vector3.Distance(originalPos, transform.position) < 0.3f)
+                agent.speed = 0;
             return;
         }
     }
@@ -130,7 +133,7 @@ public class Friendly : MonoBehaviour, IDamaged
             moveDelay += Time.deltaTime;
             if (moveDelay >= 1f)
             {
-                Speed = data.speed;
+                agent.speed = data.speed;
                 move = true;
                 moveDelay = 0f;
             }
@@ -145,6 +148,7 @@ public class Friendly : MonoBehaviour, IDamaged
         if (target[0] == null)
             return;
 
+        
         anime.SetTrigger("IsAttack");
         enermyTargetPos = target[0].transform;
         IDamaged damaged = target[0].GetComponent<IDamaged>();
@@ -159,19 +163,11 @@ public class Friendly : MonoBehaviour, IDamaged
     }
     public void Damaged(int attck)
     {
-        //TODO : 자신이 공격당하였을때
-        //if(Vector3.Distance(target[0].transform.position, transform.position) > data.range)
-        //{
-        //    Vector3 dir = target[0].transform.position - transform.position;
-        //    transform.Translate(dir.normalized * Speed * Time.deltaTime, Space.World);
-        //    Quaternion q = Quaternion.LookRotation(dir.normalized);
-        //    transform.rotation = q;
-        //}
         HP -= attck;
         Invoke("DamageEffect", 0.3f);
         if (HP <= 0)
         {
-            Speed = 0;
+            agent.speed = 0;
             ranged = 0;
             attackranged = 0;
             isDie = true;

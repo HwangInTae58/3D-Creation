@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour, IDamaged
 {
     public EnemyData data;
+    NavMeshAgent agent;
 
     Animator anime;
     Collider enemyCollider;
@@ -17,7 +19,6 @@ public class Enemy : MonoBehaviour, IDamaged
     public Transform bloodPos;
 
     int HP;
-    float Speed;
 
     float ranged;
     float attackranged;
@@ -33,7 +34,7 @@ public class Enemy : MonoBehaviour, IDamaged
         HP = data.hp;
         ranged = data.range;
         attackranged = data.attackRange;
-        Speed = data.speed;
+       
         attackDelay = data.fireDelay;
         attacked = true;
         isDie = false;
@@ -41,8 +42,10 @@ public class Enemy : MonoBehaviour, IDamaged
     }
     private void Start()
     {
+        agent = GetComponent<NavMeshAgent>();
         enemyCollider = GetComponent<Collider>();
         anime = GetComponent<Animator>();
+        agent.speed = data.speed;
     }
     private void Update()
     {
@@ -50,12 +53,11 @@ public class Enemy : MonoBehaviour, IDamaged
     }
     private void FindTarget()
     {
-       
         Collider[] findTarget = Physics.OverlapSphere(transform.position, ranged, LayerMask.GetMask("Friendly", "Town"));
         Collider[] attackedTarget = Physics.OverlapSphere(transform.position, attackranged, LayerMask.GetMask("Friendly", "Town"));
 
 
-        anime.SetFloat("IsSpeed", Speed);
+        anime.SetFloat("IsSpeed", agent.speed);
 
         if (isDie)
             return;
@@ -78,24 +80,24 @@ public class Enemy : MonoBehaviour, IDamaged
             }
 
             //바라보게 하기 코드
-            Vector3 dir = findTarget[index].transform.position - transform.position;
-            Quaternion q = Quaternion.LookRotation(dir.normalized);
-            transform.rotation = q;
-            transform.Translate(dir.normalized * Speed * Time.deltaTime, Space.World);
+            agent.SetDestination(findTarget[index].transform.position);
 
             if (attackedTarget.Length > 0)
             {
-                
-                Speed = 0;
+
+                agent.speed = 0;
                 Attack(attackedTarget);
                 FireDelay();
+                Vector3 dird = findTarget[0].transform.position - transform.position;
+                Quaternion qq = Quaternion.LookRotation(dird.normalized * Time.deltaTime);
+                agent.transform.rotation = qq;
             }
             else
             {
                 move = true;
                 MoveDelay();
-                if (moveDelay >= 3f && move) { 
-                    Speed = data.speed;
+                if (moveDelay >= 3f && move) {
+                    agent.speed = data.speed;
                     moveDelay = 0;
                     move = false;
                     return;
@@ -151,7 +153,7 @@ public class Enemy : MonoBehaviour, IDamaged
         Invoke("DamageEffect", 0.3f);
         if (HP <= 0)
         {
-            Speed = 0;
+            agent.speed = 0;
             ranged = 0;
             attackranged = 0;
             isDie = true;

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   townName: "\uC131\uBCBD"
   townManual: "\uB3C8\uC740 \uC548\uC8FC\uC9C0\uB9CC \uB2E8\uB2E8\uD568"
-  hp: 500
+  hp: 1000
   getCost: 0
   maxCostUp: 0
   getDelay: 0
