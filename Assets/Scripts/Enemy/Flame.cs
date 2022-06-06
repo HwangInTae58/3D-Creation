@@ -9,7 +9,10 @@ public class Flame : MonoBehaviour
     public FlameData data;
 
     public GameObject prefab;
-    public GameObject endPrefab; 
+    public GameObject endPrefab;
+
+    AudioSource audiosource;
+    public AudioClip[] audioClip;
 
     float speed;
     float range;
@@ -26,6 +29,10 @@ public class Flame : MonoBehaviour
         atExtent = data.atExtent;
         hitFlame = false;
     }
+    private void Start()
+    {
+        audiosource = GetComponent<AudioSource>();
+    }
     public void OnFlame(Transform FlamePos)
     {
         Instantiate(data.prefab, FlamePos.position, Quaternion.identity);
@@ -41,9 +48,7 @@ public class Flame : MonoBehaviour
         Collider[] findDamageTarget = Physics.OverlapBox(transform.position, new Vector3(atExtent, 5, atRange), boss.transform.rotation, LayerMask.GetMask("Friendly", "Town"));
         //Physics.OverlapSphere(transform.position, atRange, LayerMask.GetMask("Friendly", "Town"));
         if (findTarget.Length <= 0)
-        {
             return;
-        }
         else
         {
             float min = int.MaxValue;
@@ -64,21 +69,27 @@ public class Flame : MonoBehaviour
             transform.rotation = q;
             transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
 
-            if(Vector3.Distance(findTarget[index].transform.position, transform.position) < 0.3f)
+            if (Vector3.Distance(findTarget[index].transform.position, transform.position) < 0.8f)
             {
-                if(null != prefab)
+                if (null != prefab)
                     prefab.SetActive(false);
-                if(null != endPrefab)
+                if (null != endPrefab)
                     endPrefab.SetActive(true);
+               
                 hitflame(findDamageTarget);
             }
-            
+
         }
     }
     private void hitflame(Collider[] target)
     {
         if (target.Length > 0 && !hitFlame)
         {
+            if (null != audioClip[0])
+            {
+                audiosource.clip = audioClip[0];
+                audiosource.Play();
+            }
             hitFlame = true;
             speed = 0;
             Destroy(gameObject, 1f);

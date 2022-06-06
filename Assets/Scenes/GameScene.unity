@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44056883, g: 0.48919368, b: 0.5693394, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657892, g: 0.4964133, b: 0.57481736, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -543,7 +543,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &54243532
 MonoBehaviour:
@@ -564,9 +564,9 @@ MonoBehaviour:
   selectedTown: {fileID: 0}
   towns: []
   castlePos: {fileID: 1281425089}
-  startCost: 35
+  startCost: 3000
   Cost: 0
-  maxCost: 50
+  maxCost: 3000
 --- !u!114 &54243533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2811,6 +2811,7 @@ GameObject:
   - component: {fileID: 384172924}
   - component: {fileID: 384172923}
   - component: {fileID: 384172926}
+  - component: {fileID: 384172927}
   m_Layer: 0
   m_Name: GameCamera
   m_TagString: Untagged
@@ -2901,7 +2902,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 384172922}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
   m_Name: 
@@ -2954,6 +2955,14 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!81 &384172927
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384172922}
+  m_Enabled: 1
 --- !u!1 &394861438 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4925127603679876111, guid: c61e722e113583442aba0138078365db,
@@ -4602,7 +4611,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 0.9433962, g: 0.9433962, b: 0.9433962, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -4659,13 +4668,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
-  m_LocalRotation: {x: 0.80416673, y: -0.14337873, z: 0.21547581, w: 0.5350968}
+  m_LocalRotation: {x: 0.40821788, y: 0.23456976, z: -0.10938167, w: 0.8754261}
   m_LocalPosition: {x: 122.05, y: 48.11, z: 134.22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 112.72, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 50, y: 30, z: 0}
 --- !u!1 &707187046 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4925127603679876111, guid: c61e722e113583442aba0138078365db,
@@ -6526,7 +6535,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1071865844
 GameObject:
@@ -8812,7 +8821,7 @@ PrefabInstance:
     - target: {fileID: 968738173690029081, guid: 898534d13f5c4a94b863a2d8e0a7b56d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 968738173690029081, guid: 898534d13f5c4a94b863a2d8e0a7b56d,
         type: 3}
@@ -12666,7 +12675,7 @@ PrefabInstance:
     - target: {fileID: 675939049839541137, guid: 88f3f415b02aef941b5068ac320d27bd,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 675939049839541137, guid: 88f3f415b02aef941b5068ac320d27bd,
         type: 3}

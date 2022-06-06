@@ -16,7 +16,7 @@ MonoBehaviour:
   friendManual: "\uADFC\uC811\uBCD1\uC0AC"
   range: 40
   attackRange: 2.2
-  hp: 40
+  hp: 50
   damage: 6
   fireDelay: 1
   speed: 3

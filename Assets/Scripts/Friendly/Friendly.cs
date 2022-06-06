@@ -7,6 +7,8 @@ public class Friendly : MonoBehaviour, IDamaged
 {
     public FriendlyData data;
     NavMeshAgent agent;
+    AudioSource audiosource;
+    public AudioClip[] audioClip;
 
     Animator anime;
     Collider fricollider;
@@ -49,6 +51,7 @@ public class Friendly : MonoBehaviour, IDamaged
         agent = GetComponent<NavMeshAgent>();
         anime = GetComponent<Animator>();
         fricollider = GetComponent<Collider>();
+        audiosource = GetComponent<AudioSource>();
         agent.speed = data.speed;
     }
     private void OnEnable()
@@ -177,6 +180,8 @@ public class Friendly : MonoBehaviour, IDamaged
     }
     private void HitEffact()
     {
+        audiosource.clip = audioClip[0];
+        audiosource.Play();
         GameObject saveEffact;
         if (effectPos == null)
             saveEffact = Instantiate(effect, enermyTargetPos.position, Quaternion.identity);
@@ -194,6 +199,8 @@ public class Friendly : MonoBehaviour, IDamaged
 
     private void Die()
     {
+        audiosource.clip = audioClip[1];
+        audiosource.Play();
         anime.SetTrigger("IsDie");
         Destroy(gameObject, 1.3f);
     }

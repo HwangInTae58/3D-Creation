@@ -9,6 +9,9 @@ public class Boss : MonoBehaviour, IDamaged
     public BossData data;
     NavMeshAgent agent;
 
+    AudioSource audiosource;
+    public AudioClip[] audioClip;
+
     Animator anime;
     Collider enemyCollider;
 
@@ -54,7 +57,7 @@ public class Boss : MonoBehaviour, IDamaged
         attackDelay = data.fireDelay;
         flameDelay = data.flameDelay;
         meleeAttacked = true;
-        flameAttack = false;
+        flameAttack = true;
         isDie = false;
         Victory = false;
         isStart = false;
@@ -64,6 +67,7 @@ public class Boss : MonoBehaviour, IDamaged
     }
     private void Start()
     {
+        audiosource = GetComponent<AudioSource>();
         enemyCollider = GetComponent<Collider>();
         anime = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
@@ -120,6 +124,8 @@ public class Boss : MonoBehaviour, IDamaged
                 }
                 agent.speed = 0;
                 //TODO : 원거리 공격 오브젝트 날리기
+                audiosource.clip = audioClip[3];
+                audiosource.Play();
                 anime.SetTrigger("IsFlame");
                 
                 flameAttack = true;
@@ -155,11 +161,14 @@ public class Boss : MonoBehaviour, IDamaged
         if(!isStart)
         {
             isStart = true;
+            audiosource.clip = audioClip[0];
+            audiosource.Play();
             anime.SetTrigger("IsStart");
         }
     }
     private void FlameAttack()
     {
+        
         flame.OnFlame(flamePos);
     }
     private void MeleeAttack(Collider[] target)
@@ -186,6 +195,8 @@ public class Boss : MonoBehaviour, IDamaged
     }
     private void HitEffact()
     {
+        audiosource.clip = audioClip[1];
+        audiosource.Play();
         GameObject saveEffact;
             saveEffact = Instantiate(effect, effectPos.position, Quaternion.identity);
         Destroy(saveEffact, 1f);
@@ -245,6 +256,8 @@ public class Boss : MonoBehaviour, IDamaged
     }
     private void Die()
     {
+        audiosource.clip = audioClip[2];
+        audiosource.Play();
         Victory = data.victory;
         WaveManager.instance.monsterCount += -1;
         anime.SetTrigger("IsDie");
