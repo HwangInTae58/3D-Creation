@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657892, g: 0.4964133, b: 0.57481736, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641263, b: 0.5748163, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -522,8 +522,6 @@ GameObject:
   - component: {fileID: 54243532}
   - component: {fileID: 54243535}
   - component: {fileID: 54243534}
-  - component: {fileID: 54243536}
-  - component: {fileID: 54243537}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -564,9 +562,9 @@ MonoBehaviour:
   selectedTown: {fileID: 0}
   towns: []
   castlePos: {fileID: 1281425089}
-  startCost: 3000
+  startCost: 35
   Cost: 0
-  maxCost: 3000
+  maxCost: 50
 --- !u!114 &54243533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -579,8 +577,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 949b9dbc83261c042a8310760bb44657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  optionWindow: {fileID: 0}
+  slider: {fileID: 0}
+  sources: {fileID: 4706231011739694172, guid: 2807f86d97546c548ae374ff04137b70, type: 3}
   speedText: {fileID: 49840825}
-  load: 0
 --- !u!114 &54243534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -663,30 +663,6 @@ MonoBehaviour:
   waveWaitTime: {fileID: 132225178}
   bossName: {fileID: 1193668937}
   pausd: 0
---- !u!114 &54243536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 54243530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ff2e770c80ccdd4ba01003a2d88a821, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &54243537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 54243530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddc1d356c855f0545b5567f92a3246f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &67195844
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -31,7 +31,7 @@ public class Flame : MonoBehaviour
     }
     private void Start()
     {
-        audiosource = GetComponent<AudioSource>();
+        audiosource = Gamemanager.instance.sources;
     }
     public void OnFlame(Transform FlamePos)
     {

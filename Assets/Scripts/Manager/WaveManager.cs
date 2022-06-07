@@ -34,14 +34,11 @@ public class WaveManager : MonoBehaviour
     public int             spawnBadWizard;
     public int             spawnGolem;
     public bool            spawnDragon;
-
-    bool            save;
     private void Awake()
     {
         if (null == _instance)
             _instance = this;
 
-        save = true;
         waveTime = 10f;
         waveStart = false;
         boss = false;
@@ -76,10 +73,7 @@ public class WaveManager : MonoBehaviour
         StartCoroutine(OnMonster());
             mons++;
         }
-
-
         //TODO : 몬스터 소환
-
         if (monCount == monsterMaxCount) { 
                 monsterSpawn = true;
             monCount = 0;
@@ -105,7 +99,6 @@ public class WaveManager : MonoBehaviour
         }
         if(spawnDragon)
             switch (stage) {
-                case 5:
                 case 6:
                 case 7:
                 case 8:
@@ -142,7 +135,6 @@ public class WaveManager : MonoBehaviour
                 case 19:
                 case 20:
                 case 21:
-                case 22:
                     for (int i = 0; i <= 7; i++)
                     {
                         yield return new WaitForSeconds(0.5f);
@@ -163,16 +155,14 @@ public class WaveManager : MonoBehaviour
             UIManager.instance.bossAppear.SetActive(true);
             Instantiate(bosses[collecter].data.prefab, bossPotal.transform.position, Quaternion.identity);
             boss = true;
-            bossStage = 1;
+            bossStage = 0;
             monsterCount++;
             monCount++;
             collecter++;
             yield return new WaitForSeconds(1.5f);
             UIManager.instance.bossAppear.SetActive(false);
         }
-       
     }
-  
     private int RandomMonster()
     {
         int random = Random.Range(0, 1000);
@@ -221,12 +211,7 @@ public class WaveManager : MonoBehaviour
         if (waveStart)
             return;
         mons = 0;
-        if (!save) { 
-            int gold = BuildManager.instance.Cost;
-            SaveData saveData = new SaveData(stage, gold, BuildManager.instance.towns, BuildManager.instance.friendlies, monsterMaxCount, bossStage, collecter, spawnOke, spawnBadWizard, spawnGolem);
-            SaveLoad.Save(saveData, "save_001");
-            save = true;
-        }
+       
         waveTime -= Time.deltaTime;
         UIManager.instance.waveWaitTime.text = Mathf.Floor(waveTime).ToString();
         if (waveTime <= 0)
@@ -240,7 +225,6 @@ public class WaveManager : MonoBehaviour
             UIManager.instance.stageNumber.text = stage.ToString();
             waveStart = true;
             monsterSpawn = false;
-            save = false;
         }
     }
     IEnumerator WaveStartUI()
@@ -248,36 +232,5 @@ public class WaveManager : MonoBehaviour
         UIManager.instance.waveStart.SetActive(true);
         yield return new WaitForSeconds(2f);
         UIManager.instance.waveStart.SetActive(false);
-    }
-    public void LoadGame()
-    {
-        SaveData loadData = SaveLoad.Load("save_001");
-        Debug.Log(loadData.stage);
-        Debug.Log(loadData.saveGold);
-        Debug.Log(loadData.bossStage);
-        Debug.Log(loadData.maxCount);
-        Debug.Log(loadData.collecter);
-        Debug.Log(loadData.Oke);
-       
-        stage = loadData.stage;
-        BuildManager.instance.Cost = loadData.saveGold;
-        bossStage = loadData.bossStage;
-        monsterMaxCount = loadData.maxCount;
-        collecter = loadData.collecter;
-        spawnOke = loadData.Oke;
-        spawnBadWizard = loadData.wizard;
-        spawnGolem = loadData.Golem;
-        for (int i = 0; i <= loadData.townPrefab.Count; i++)
-        {
-            if (null != loadData.townPrefab[i])
-                Instantiate(loadData.townPrefab[i], loadData.townPrefab[i].transform.position, loadData.townPrefab[i].transform.rotation);
-        }
-        for (int j = 0; j < loadData.friendPrefab.Count; j++)
-        {
-            if (null != loadData.friendPrefab[j])
-                Instantiate(loadData.friendPrefab[j], loadData.friendPrefab[j].transform.position, loadData.friendPrefab[j].transform.rotation);
-        }
-        Gamemanager.instance.load = false;
-        Debug.Log("불러오기");
     }
 }

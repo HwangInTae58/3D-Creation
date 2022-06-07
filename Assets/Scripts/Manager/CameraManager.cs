@@ -14,6 +14,9 @@ public class CameraManager : MonoBehaviour
 
     public GameObject saveOriginalPos;
     public GameObject bossSpawnPos;
+
+    private Vector3 preCameraPos;
+    private int i;
     private Vector3 forwardDir;
 
     private void Awake()
@@ -21,6 +24,7 @@ public class CameraManager : MonoBehaviour
         translationSpeed = 40f;
         altitude = 40f;
         zoomSpeed = 100f;
+        i = 0;
     }
     private void Start()
     {
@@ -30,7 +34,11 @@ public class CameraManager : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        KeyOn();
+    }
+    private void KeyOn()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
             UIManager.instance.OpenPausdWindow();
         if (Input.GetKey(KeyCode.W))
             TranslateCamera(0);
@@ -44,8 +52,18 @@ public class CameraManager : MonoBehaviour
             Zoom(Input.mouseScrollDelta.y > 0f ? 1 : -1);
         if (Input.GetKeyDown(KeyCode.Space))
             transform.position = saveOriginalPos.transform.position;
-        if (WaveManager.instance.boss) 
-            StartCoroutine(BossSceneMove());
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+            UIManager.instance.OnBuildUI(1);
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+            UIManager.instance.OnBuildUI(2);
+
+        if (WaveManager.instance.boss) {
+            if(i == 0) { 
+                preCameraPos = gameCamera.transform.position;
+                i++;
+            }
+            StartCoroutine(BossScreeneMove());
+        }
     }
     private void TranslateCamera(int dir)
     {
@@ -61,12 +79,13 @@ public class CameraManager : MonoBehaviour
             transform.Translate(-transform.right * Time.fixedDeltaTime * translationSpeed);
 
     }
-    private IEnumerator BossSceneMove()
+    private IEnumerator BossScreeneMove()
     {
         gameCamera.transform.position = bossSpawnPos.transform.position;
-        yield return new WaitForSeconds(3.5f);
         WaveManager.instance.boss = false;
-        gameCamera.transform.position = saveOriginalPos.transform.position;
+        yield return new WaitForSeconds(2f);
+        gameCamera.transform.position = preCameraPos;
+        i = 0;
     }
     private void Zoom(int zoomDir)
     {

@@ -7,7 +7,8 @@ public class Town : MonoBehaviour, IDamaged
     public TownData data;
     Animator anim;
     Collider coll;
-    AudioSource audiosource;
+    AudioSource audioSource;
+    public AudioClip audioClip;
     int MaxHP;
     int HP;
     bool    isLowHP;
@@ -29,9 +30,9 @@ public class Town : MonoBehaviour, IDamaged
     }
     private void Start()
     {
-        audiosource = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
         coll = GetComponent<Collider>();
+        audioSource = Gamemanager.instance.sources;
         GetMaxCost();
     }
     private void Update()
@@ -85,7 +86,8 @@ public class Town : MonoBehaviour, IDamaged
     }
 private void Die()
     {
-        audiosource.Play();
+        audioSource.clip = audioClip;
+        audioSource.Play();
         anim.SetBool("IsBroken", isBroken);
         Destroy(gameObject , 0.6f);
         Life = data.Life;

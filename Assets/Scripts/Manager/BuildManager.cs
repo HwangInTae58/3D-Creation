@@ -57,7 +57,7 @@ public class BuildManager : MonoBehaviour
     {
         if(maxCost >= 250)
         {
-            maxCost = 200;
+            maxCost = 250;
             return;
         }
         maxCost += get;

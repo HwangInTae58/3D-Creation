@@ -45,7 +45,7 @@ public class Enemy : MonoBehaviour, IDamaged
     }
     private void Start()
     {
-        audiosource = GetComponent<AudioSource>();
+        audiosource = Gamemanager.instance.sources;
         agent = GetComponent<NavMeshAgent>();
         enemyCollider = GetComponent<Collider>();
         anime = GetComponent<Animator>();
@@ -188,13 +188,10 @@ public class Enemy : MonoBehaviour, IDamaged
         anime.SetTrigger("IsDie");
         Destroy(gameObject, 1.3f);
     }
-
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, data.range);
         Gizmos.DrawWireSphere(transform.position, data.attackRange);
     }
-    
-    
 }
