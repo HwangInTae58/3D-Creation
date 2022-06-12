@@ -67,7 +67,7 @@ public class Boss : MonoBehaviour, IDamaged
     }
     private void Start()
     {
-        audiosource = Gamemanager.instance.sources;
+        audiosource = GetComponent<AudioSource>();
         enemyCollider = GetComponent<Collider>();
         anime = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();

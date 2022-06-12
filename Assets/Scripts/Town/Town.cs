@@ -32,7 +32,7 @@ public class Town : MonoBehaviour, IDamaged
     {
         anim = GetComponent<Animator>();
         coll = GetComponent<Collider>();
-        audioSource = Gamemanager.instance.sources;
+        audioSource = GetComponent<AudioSource>();
         GetMaxCost();
     }
     private void Update()

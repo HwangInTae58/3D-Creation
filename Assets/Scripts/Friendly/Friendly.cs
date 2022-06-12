@@ -53,7 +53,7 @@ public class Friendly : MonoBehaviour, IDamaged
         agent = GetComponent<NavMeshAgent>();
         anime = GetComponent<Animator>();
         fricollider = GetComponent<Collider>();
-        audioSource = Gamemanager.instance.sources;
+        audioSource = GetComponent<AudioSource>();
         agent.speed = data.speed;
     }
     private void OnEnable()
