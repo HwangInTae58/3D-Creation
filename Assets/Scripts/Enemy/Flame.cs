@@ -11,7 +11,6 @@ public class Flame : MonoBehaviour
     public GameObject prefab;
     public GameObject endPrefab;
 
-    AudioSource audiosource;
     public AudioClip[] audioClip;
 
     float speed;
@@ -28,10 +27,6 @@ public class Flame : MonoBehaviour
         atRange = data.atRange;
         atExtent = data.atExtent;
         hitFlame = false;
-    }
-    private void Start()
-    {
-        audiosource = GetComponent<AudioSource>();
     }
     public void OnFlame(Transform FlamePos)
     {
@@ -87,8 +82,9 @@ public class Flame : MonoBehaviour
         {
             if (null != audioClip[0])
             {
-                audiosource.clip = audioClip[0];
-                audiosource.Play();
+                //audiosource.clip = audioClip[0];
+                //audiosource.Play();
+                SoundPool.instance.SetSound(audioClip[0], gameObject.transform, 0.8f);
             }
             hitFlame = true;
             speed = 0;

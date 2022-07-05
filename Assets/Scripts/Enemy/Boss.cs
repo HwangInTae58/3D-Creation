@@ -9,7 +9,6 @@ public class Boss : MonoBehaviour, IDamaged
     public BossData data;
     NavMeshAgent agent;
 
-    AudioSource audiosource;
     public AudioClip[] audioClip;
 
     Animator anime;
@@ -67,7 +66,6 @@ public class Boss : MonoBehaviour, IDamaged
     }
     private void Start()
     {
-        audiosource = GetComponent<AudioSource>();
         enemyCollider = GetComponent<Collider>();
         anime = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
@@ -106,14 +104,7 @@ public class Boss : MonoBehaviour, IDamaged
                     min = distance;
                 }
             }
-            //Vector3 dir = findTarget[index].transform.position - transform.position;
-            //Quaternion q = Quaternion.LookRotation(dir.normalized * Time.deltaTime);
-            //transform.rotation = q;
-            //transform.Translate(dir.normalized * Speed * Time.deltaTime, Space.World);
             agent.SetDestination(findTarget[index].transform.position);
-            //바라보게 하기 코드
-            //transform.rotation = q;
-            //transform.rotation = Quaternion.LookRotation(dir.normalized * Time.deltaTime);
             if (attackedFarTarget.Length > 0 && attackedCloseTarget.Length <= 0)
             {
                 if (isDie)
@@ -124,10 +115,8 @@ public class Boss : MonoBehaviour, IDamaged
                 }
                 agent.speed = 0;
                 //TODO : 원거리 공격 오브젝트 날리기
-                audiosource.clip = audioClip[3];
-                audiosource.Play();
+                SoundPool.instance.SetSound(audioClip[3], flamePos, 0.5f);
                 anime.SetTrigger("IsFlame");
-                
                 flameAttack = true;
             }
             else if (attackedCloseTarget.Length > 0)
@@ -161,8 +150,7 @@ public class Boss : MonoBehaviour, IDamaged
         if(!isStart)
         {
             isStart = true;
-            audiosource.clip = audioClip[0];
-            audiosource.Play();
+            SoundPool.instance.SetSound(audioClip[0], gameObject.transform, 3f);
             anime.SetTrigger("IsStart");
         }
     }
@@ -195,8 +183,7 @@ public class Boss : MonoBehaviour, IDamaged
     }
     private void HitEffact()
     {
-        audiosource.clip = audioClip[1];
-        audiosource.Play();
+        SoundPool.instance.SetSound(audioClip[1], effectPos, 3f);
         GameObject saveEffact;
             saveEffact = Instantiate(effect, effectPos.position, Quaternion.identity);
         Destroy(saveEffact, 1f);
@@ -256,8 +243,7 @@ public class Boss : MonoBehaviour, IDamaged
     }
     private void Die()
     {
-        audiosource.clip = audioClip[2];
-        audiosource.Play();
+        SoundPool.instance.SetSound(audioClip[2], gameObject.transform, 3f);
         Victory = data.victory;
         WaveManager.instance.monsterCount += -1;
         anime.SetTrigger("IsDie");

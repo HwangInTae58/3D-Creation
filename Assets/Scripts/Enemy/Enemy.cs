@@ -8,7 +8,6 @@ public class Enemy : MonoBehaviour, IDamaged
     public EnemyData data;
     NavMeshAgent agent;
 
-    AudioSource audiosource;
     public AudioClip[] audioClip;
 
     Animator anime;
@@ -45,7 +44,6 @@ public class Enemy : MonoBehaviour, IDamaged
     }
     private void Start()
     {
-        audiosource = GetComponent<AudioSource>();
         agent = GetComponent<NavMeshAgent>();
         enemyCollider = GetComponent<Collider>();
         anime = GetComponent<Animator>();
@@ -136,8 +134,9 @@ public class Enemy : MonoBehaviour, IDamaged
     {
         GameObject saveEffact;
 
-        audiosource.clip = audioClip[0];
-        audiosource.Play();
+        //audiosource.clip = audioClip[0];
+        //audiosource.Play();
+        SoundPool.instance.SetSound(audioClip[0], gameObject.transform, 0.5f);
         if (effectPos == null) {
             if (enermyTargetPos == null)
                 return;
@@ -182,8 +181,7 @@ public class Enemy : MonoBehaviour, IDamaged
     }
     private void Die()
     {
-        audiosource.clip = audioClip[1];
-        audiosource.Play();
+        SoundPool.instance.SetSound(audioClip[1], gameObject.transform, 0.8f);
         WaveManager.instance.monsterCount += -1;
         anime.SetTrigger("IsDie");
         Destroy(gameObject, 1.3f);
