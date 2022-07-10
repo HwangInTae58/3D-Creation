@@ -186,10 +186,5 @@ public class Enemy : MonoBehaviour, IDamaged
         anime.SetTrigger("IsDie");
         Destroy(gameObject, 1.3f);
     }
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, data.range);
-        Gizmos.DrawWireSphere(transform.position, data.attackRange);
-    }
+
 }

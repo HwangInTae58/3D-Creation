@@ -74,12 +74,12 @@ public class Friendly : MonoBehaviour, IDamaged
             return;
         if (Time.timeScale <= 0)
             return;
-        if (findTarget.Length > 0)
+        if (findTarget.Length > 0) // 사거리에 타겟이 있으면
         {
             float min = int.MaxValue;
             int index = 0;
-            
-            for (int i = 0; i < findTarget.Length; i++)
+            // for문을 통해 가장 가까이 있는 적을 찾아낸다.
+            for (int i = 0; i < findTarget.Length; i++) 
             {
                 float distance = Vector3.Distance(transform.position, findTarget[i].transform.position);
                 if (min > distance)
@@ -88,13 +88,8 @@ public class Friendly : MonoBehaviour, IDamaged
                     min = distance;
                 }
             }
-            //바라보게 하기 코드
-            //Vector3 dir = findTarget[index].transform.position - transform.position;
-            //Quaternion q = Quaternion.LookRotation(dir.normalized);
-            //transform.rotation = q;
-            //transform.Translate(dir.normalized * Speed * Time.deltaTime, Space.World);
             agent.SetDestination(findTarget[index].transform.position);
-
+            //공격 사거리에 적이 있다면 attack을 실행한다.
             if (attackedTarget.Length > 0)
             {
                 Vector3 dird = attackedTarget[0].transform.position - transform.position;
@@ -114,13 +109,14 @@ public class Friendly : MonoBehaviour, IDamaged
             }
             
         }
-        else
+        else//사거리에 타겟이 없으면
         {
             if (!move) {
                 MoveDelay();
                 return;
             }
-            if (Vector3.Distance(originalPos, transform.position) >= 0.3f)
+            // 자신의 원래 자리와 지금 자리의 차이가 크면 돌아간다
+            if (Vector3.Distance(originalPos, transform.position) >= 0.3f) 
             {
                 agent.SetDestination(originalPos);
             }
@@ -142,7 +138,7 @@ public class Friendly : MonoBehaviour, IDamaged
             }
         }
     }
-    private void Attack(Collider[] target)
+    private void Attack(Collider[] target)//콜라이더로 데미지 받는 객체 저장
     {
         if (isDie)
             return;
@@ -150,38 +146,34 @@ public class Friendly : MonoBehaviour, IDamaged
             return;
         if (target[0] == null)
             return;
-
-        
         anime.SetTrigger("IsAttack");
         enermyTargetPos = target[0].transform;
+        //IDamaged인터페이스를 갖는 객체를 갖는다.
         IDamaged damaged = target[0].GetComponent<IDamaged>();
+        damaged?.Damaged(data.damage);//객체에게 데미지를 준다.
         attacked = true;
-        damaged?.Damaged(data.damage);
     }
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, ranged);
-        Gizmos.DrawWireSphere(transform.position, attackranged);
-    }
+    //이 클래스가 인터페이스를 상속받게 해서 사용하게 만든다.
     public void Damaged(int attck)
     {
         HP -= attck;
         Invoke("DamageEffect", 0.3f);
-        if (HP <= 0)
-        {
-            agent.speed = 0;
-            ranged = 0;
-            attackranged = 0;
-            isDie = true;
-            fricollider.enabled = false;
+        if (HP <= 0) // HP가 0이하이면 사망처리를 한다.
             Die();
-        }
+    }
+    private void Die()//사망처리
+    {
+        fricollider.enabled = false;
+        agent.speed = 0;
+        ranged = 0;
+        attackranged = 0;
+        isDie = true;
+        SoundPool.instance.SetSound(audioClip[1], gameObject.transform, 0.8f);
+        anime.SetTrigger("IsDie");
+        Destroy(gameObject, 1.3f);
     }
     private void HitEffact()
     {
-        //audioSource.clip = audioClip[0];
-        //audioSource.Play();
         SoundPool.instance.SetSound(audioClip[0], gameObject.transform, 0.5f);
         GameObject saveEffact;
         if (effectPos == null)
@@ -198,14 +190,7 @@ public class Friendly : MonoBehaviour, IDamaged
         Destroy(saveEffact, 0.8f);
     }
 
-    private void Die()
-    {
-        //audioSource.clip = audioClip[1];
-        //audioSource.Play();
-        SoundPool.instance.SetSound(audioClip[1], gameObject.transform, 0.8f);
-        anime.SetTrigger("IsDie");
-        Destroy(gameObject, 1.3f);
-    }
+  
     private void FireDelay()
     {
         if(attacked && !isDie)

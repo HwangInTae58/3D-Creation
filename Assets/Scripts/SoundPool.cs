@@ -19,37 +19,44 @@ public class SoundPool : MonoBehaviour
     private void Start()
     {
         pool = new List<AudioSource>();
+        //Start지점에서 오브젝트풀을 생성
        PoolCreat();
     }
     private void PoolCreat()
     {
         for (int i = 0; i < maxSoundPrefab; i++)
         {
+            //List로 pool에 Soundprefab을 저장
             pool.Add(CreatObject());
         }
     }
     private AudioSource CreatObject()
     {
+        //오브젝트풀링 기법으로 사용하기 위해 생성즉시 gameObject를 false해줌
         var obj = Instantiate(prefab).GetComponent<AudioSource>();
         obj.gameObject.SetActive(false);
         obj.transform.SetParent(transform);
         return obj;
     }
+    //싱글톤으로 클래스를 만들었기에 어디서든 자신이 원하는 클립과 위치를 정해주고 플레이 타임을 정해주는 식으로 만듬
     public void SetSound(AudioClip _clip, Transform _position, float _time)
     {
+        //for문을 돌려 사용중이면 넘어가고 아니라면 사용해준다.
        for(int i = 0; i <pool.Count; i++) {
             if (pool[i].gameObject.activeSelf)
                 continue;
             else { 
-        pool[i].gameObject.SetActive(true);
-        //pool[i].transform.SetParent(null);
-        pool[i].clip = _clip;
-        pool[i].transform.position = _position.position;
-        pool[i].Play();
-        StartCoroutine(ReturnSoundPool(pool[i], _time));
+                pool[i].gameObject.SetActive(true);
+                //pool[i].transform.SetParent(null);
+                pool[i].clip = _clip;
+                pool[i].transform.position = _position.position;
+                pool[i].Play();
+                //코루틴을 돌려 사용이 끝나면 다시 돌려준다.
+                StartCoroutine(ReturnSoundPool(pool[i], _time));
                 return;
             }
         }
+       //전부 사용중이라면 새로 만들어주고 다시 재귀해준다.
         pool.Add(CreatObject());
         SetSound(_clip, _position, _time);
     }
@@ -61,10 +68,3 @@ public class SoundPool : MonoBehaviour
         source.transform.SetParent(instance.transform);
     }
 }
-/*
- 1. 풀링 리스트에 담음
- 2. for문안에 if(만약 풀링리스트[i]가 setActive(true)면 continue
-    아니면 풀링리스트[i]를 setActive(true)로)
-3. 끝나면 풀링리스트[i]를 setActive(false)로
-4.만약 전부 다 쓰고있으면 풀링리스트.Add(풀링할거)그 다음 다시 실행
- */
