@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Boss" Collapsed="true">
+    <Position X="5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ERQEAAAAQKEAAABBAABEUAACBlQAQAiAACAYAAgAAEA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\Boss.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BossData" Collapsed="true">
+    <Position X="5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAqAAAAgAAAAAAAAAICBAQAAQAAAABIAAgAAAA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\BossData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Enemy">
+    <Position X="0.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABYAAAAAQCAAAABAAAAAEAAAAIAAAAAAAAAYAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\Enemy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="EnemyData" Collapsed="true">
+    <Position X="0.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAqAAAAgAAABAAAAAIAAAAAAQAAAABAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\EnemyData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Flame" Collapsed="true">
+    <Position X="5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQEAAAIAAIAAAAAAAgAAEIABAAggQAAAgASAAIAAEA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\Flame.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FlameData" Collapsed="true">
+    <Position X="5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAgAAAAAAAAAIAAAAgAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\FlameData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Character" Collapsed="true">
+    <Position X="3.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAIAAAAAQCgAUAAAAQARABCgABgAAAAAQCQABA=</HashCode>
+      <FileName>Assets\Scripts\Friendly\Character.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Friendly" Collapsed="true">
+    <Position X="7.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABYAAAAAQCAAAABAAAAAEAAAAIQAAAAAAAAYAAAACEA=</HashCode>
+      <FileName>Assets\Scripts\Friendly\Friendly.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FriendlyData" Collapsed="true">
+    <Position X="7.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAKAAAAgAAABAAAAAIAAAAQAQAAAABACAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Friendly\FriendlyData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuildManager" Collapsed="true">
+    <Position X="11.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CQAEEQAQACAAAIAAIACAABAAQABQAAAIAAIEAAAAQEI=</HashCode>
+      <FileName>Assets\Scripts\Manager\BuildManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CameraManager" Collapsed="true">
+    <Position X="13.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgACAAAAAAEAAAIggAAIIACABAIAAUAABAQEQ=</HashCode>
+      <FileName>Assets\Scripts\Manager\CameraManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gamemanager" Collapsed="true">
+    <Position X="9.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEABACACAAAAAAAAAAIBAAAABggQAAAAAEEAAAImA=</HashCode>
+      <FileName>Assets\Scripts\Manager\Gamemanager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UIManager" Collapsed="true">
+    <Position X="16.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEBEAABAAEAEBAIACAAAAACAAABACAABAAEIABAAgEA=</HashCode>
+      <FileName>Assets\Scripts\Manager\UIManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WaveManager" Collapsed="true">
+    <Position X="18.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQEAAIBAiABAEIoSCIAAEAAAIBACFABAYAAAkCAIUA=</HashCode>
+      <FileName>Assets\Scripts\Manager\WaveManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoundPool" Collapsed="true">
+    <Position X="15" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAACAAAABAAAAAAAICAEBQAAAAAAgAAABAAEA=</HashCode>
+      <FileName>Assets\Scripts\SoundPool.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Town" Collapsed="true">
+    <Position X="2.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CCQAAAACACAAAAAAAAAAEAAAAEEAAAAAAAAYAAABQEA=</HashCode>
+      <FileName>Assets\Scripts\Town\Town.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TownData" Collapsed="true">
+    <Position X="2.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAIAAAAgAAAAIAAAIAAAAQAAAAAABAAAAhAAA=</HashCode>
+      <FileName>Assets\Scripts\Town\TownData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FriendlyBuild" Collapsed="true">
+    <Position X="7.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAACAAAAAAAAAAIAACAAAQAAAAAAAQCAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\UI\FriendlyBuild.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TerrainScript" Collapsed="true">
+    <Position X="11.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAIAAAAAAAAAAAgACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\TerrainScript.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TownBuild" Collapsed="true">
+    <Position X="2.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAgAAAAIAIAACAAAQAAAAAAAQAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\UI\TownBuild.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="IDamaged" Collapsed="true">
+    <Position X="5.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Interface\IDamaged.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="맑은 고딕" Size="9" />
+</ClassDiagram>

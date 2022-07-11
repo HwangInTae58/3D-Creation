@@ -3,33 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour, IDamaged
+public class Enemy : Character, IDamaged
 {
     public EnemyData data;
-    NavMeshAgent agent;
-
-    public AudioClip[] audioClip;
-
-    Animator anime;
-    Collider enemyCollider;
-    Transform enermyTargetPos;
-
-    public GameObject effect;
-    public Transform effectPos;
-
-    public GameObject damageEffect;
-    public Transform bloodPos;
-
-    int HP;
-
-    float ranged;
-    float attackranged;
-
-    float   attackDelay;
-    bool    attacked;
-    bool    isDie;
-    private float moveDelay;
-    private bool move;
 
     private void Awake()
     {
@@ -45,7 +21,7 @@ public class Enemy : MonoBehaviour, IDamaged
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        enemyCollider = GetComponent<Collider>();
+        charCollider = GetComponent<Collider>();
         anime = GetComponent<Animator>();
         agent.speed = data.speed;
     }
@@ -57,10 +33,7 @@ public class Enemy : MonoBehaviour, IDamaged
     {
         Collider[] findTarget = Physics.OverlapSphere(transform.position, ranged, LayerMask.GetMask("Friendly", "Town"));
         Collider[] attackedTarget = Physics.OverlapSphere(transform.position, attackranged, LayerMask.GetMask("Friendly", "Town"));
-
-
         anime.SetFloat("IsSpeed", agent.speed);
-
         if (isDie)
             return;
         if (Time.timeScale <= 0)
@@ -130,6 +103,16 @@ public class Enemy : MonoBehaviour, IDamaged
         attacked = true;
         damaged?.Damaged(data.damage);
     }
+    public void Damaged(int attck)
+    {
+        HP -= attck;
+        Invoke("DamageEffect", 0.3f);
+        if (HP <= 0)
+        {
+            anime.SetTrigger("IsDie");
+            Die(1.3f, 1, 0.8f);
+        }
+    }
     private void HitEffact()
     {
         GameObject saveEffact;
@@ -153,20 +136,7 @@ public class Enemy : MonoBehaviour, IDamaged
        GameObject saveEffact = Instantiate(damageEffect, bloodPos.position, Quaternion.identity);
        Destroy(saveEffact, 0.8f);
     }
-    public void Damaged(int attck)
-    {
-        HP -= attck;
-        Invoke("DamageEffect", 0.3f);
-        if (HP <= 0)
-        {
-            agent.speed = 0;
-            ranged = 0;
-            attackranged = 0;
-            isDie = true;
-            enemyCollider.enabled = false;
-            Die();
-        }
-    }
+
     private void FireDelay()
     {
         if (attacked)
@@ -179,12 +149,4 @@ public class Enemy : MonoBehaviour, IDamaged
             }
         }
     }
-    private void Die()
-    {
-        SoundPool.instance.SetSound(audioClip[1], gameObject.transform, 0.8f);
-        WaveManager.instance.monsterCount += -1;
-        anime.SetTrigger("IsDie");
-        Destroy(gameObject, 1.3f);
-    }
-
 }

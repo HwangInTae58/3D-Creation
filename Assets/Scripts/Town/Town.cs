@@ -2,35 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Town : MonoBehaviour, IDamaged
+public class Town : Character, IDamaged
 {
     public TownData data;
-    Animator anim;
-    Collider coll;
-    public AudioClip audioClip;
-    int MaxHP;
-    int HP;
-    bool    isLowHP;
-    bool    isBroken;
-
+    int     MaxHP;
     float   costDelay;
+    bool    isLowHP;
     bool    costCount;
-
-    bool Life;
+    bool    Life;
     private void Awake()
     {
         Life = false;
         MaxHP = data.hp;
         HP = data.hp;
         isLowHP = false;
-        isBroken = false;
         costDelay = 0f;
         costCount = true;
     }
     private void Start()
     {
-        anim = GetComponent<Animator>();
-        coll = GetComponent<Collider>();
+        anime = GetComponent<Animator>();
+        charCollider = GetComponent<Collider>();
         GetMaxCost();
     }
     private void Update()
@@ -73,22 +65,12 @@ public class Town : MonoBehaviour, IDamaged
         if(HP < (MaxHP / 3))
         {
             isLowHP = true;
-            anim.SetBool("IsLowHP", isLowHP);
+            anime.SetBool("IsLowHP", isLowHP);
         }
-        if (0 >= HP)
-        {
-            isBroken = true;
-            coll.enabled = false;
-            Die();
+        if (0 >= HP) {
+            anime.SetBool("IsDie", true);
+            Die(0.6f,0,0.4f);
         }
-    }
-private void Die()
-    {
-        SoundPool.instance.SetSound(audioClip, transform, 0.4f);
-        anim.SetBool("IsBroken", isBroken);
-        Destroy(gameObject , 0.6f);
-        Life = data.Life;
-        BuildManager.instance.MinusMaxCost(data.maxCostUp);
     }
     public IEnumerator OnLose()
     {

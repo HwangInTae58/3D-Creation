@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Boss" BaseTypeListCollapsed="true">
+    <Position X="4.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ERQECAAIQKEAAQDhAQBEUAACRlRAwAjgACAYAAiQAFA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\Boss.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Enemy" BaseTypeListCollapsed="true">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABYACAAIQCAAAQDgAUAAEAQARIBAgABgAAAYAACQAFA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\Enemy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.183" Collapsed="true" />
+  </Class>
+  <Class Name="Flame" Collapsed="true">
+    <Position X="7.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQEAAAIAAIAAAAAAAgAAEIABAAggQAAAgASAAIAAEA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\Flame.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Friendly" BaseTypeListCollapsed="true">
+    <Position X="0.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABYACQAIQCAAAQDgAUAAEAQARIRAgABgAAAYAQCQCFA=</HashCode>
+      <FileName>Assets\Scripts\Friendly\Friendly.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BuildManager" Collapsed="true">
+    <Position X="9.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CQAEEQAQACAAAIAAIACAABAAQABQAAAIAAIEAAAAQEI=</HashCode>
+      <FileName>Assets\Scripts\Manager\BuildManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CameraManager" Collapsed="true">
+    <Position X="12" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAgACAAAAAAEAAAAggAAIIACABAIAAUAABAQEQ=</HashCode>
+      <FileName>Assets\Scripts\Manager\CameraManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gamemanager">
+    <Position X="11.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEABACACAAAAAAAAAAIBAAAABggQAAAAAEEAAAImA=</HashCode>
+      <FileName>Assets\Scripts\Manager\Gamemanager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UIManager" Collapsed="true">
+    <Position X="8" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEBEAABAAEAEBAIACAAAAACAAABACAABAAEIABAAgEA=</HashCode>
+      <FileName>Assets\Scripts\Manager\UIManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WaveManager" Collapsed="true">
+    <Position X="13.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQEAAIBAiABAEIoSCIAAEAAAIBACFABAYAAAkCAIUA=</HashCode>
+      <FileName>Assets\Scripts\Manager\WaveManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoundPool" Collapsed="true">
+    <Position X="9" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAACAAAABAAAAAAAICAEBQAAAAAAgAAABAAEA=</HashCode>
+      <FileName>Assets\Scripts\SoundPool.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Town" BaseTypeListCollapsed="true">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CCQAAAACACAAAAAgAAAAEABAQFEAgAAAAQAYAAABQEA=</HashCode>
+      <FileName>Assets\Scripts\Town\Town.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="FriendlyBuild" Collapsed="true">
+    <Position X="13.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAACAAAAAAAAAAIAACAAAQAAAAAAAQCAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\UI\FriendlyBuild.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TerrainScript" Collapsed="true">
+    <Position X="9.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAIAAAAAAAAAAAgACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\TerrainScript.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TownBuild" Collapsed="true">
+    <Position X="10" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAgAAAAIAIAACAAAQAAAAAAAQAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\UI\TownBuild.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="IDamaged" Collapsed="true">
+    <Position X="8.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Interface\IDamaged.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="맑은 고딕" Size="9" />
+</ClassDiagram>

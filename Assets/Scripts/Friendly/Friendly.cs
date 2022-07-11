@@ -3,38 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Friendly : MonoBehaviour, IDamaged
+public class Friendly : Character , IDamaged
 {
     public FriendlyData data;
-    NavMeshAgent agent;
-
-    public AudioClip[] audioClip;
-
-    Animator anime;
-    Collider fricollider;
     public Transform face;
-
-    Transform enermyTargetPos;
-    public GameObject effect;
-    public Transform effectPos;
-
-    public GameObject damageEffect;
-    public Transform bloodPos;
-
-    int HP;
-    float attackDelay;
-    bool  attacked;
-
-    float ranged;
-    float attackranged;
-
-    private float moveDelay;
-    private bool  move;
     public Vector3 originalPos;
-
-    bool isDie;
-   // bool isCall = true;
-
     private void Awake()
     {
         HP = data.hp;
@@ -51,7 +24,7 @@ public class Friendly : MonoBehaviour, IDamaged
     {
         agent = GetComponent<NavMeshAgent>();
         anime = GetComponent<Animator>();
-        fricollider = GetComponent<Collider>();
+        charCollider = GetComponent<Collider>();
         agent.speed = data.speed;
     }
     private void OnEnable()
@@ -61,7 +34,6 @@ public class Friendly : MonoBehaviour, IDamaged
 
     private void Update()
     {
-       
         FindTarget();
     }
 
@@ -92,12 +64,12 @@ public class Friendly : MonoBehaviour, IDamaged
             //공격 사거리에 적이 있다면 attack을 실행한다.
             if (attackedTarget.Length > 0)
             {
+                agent.speed = 0;
+                Attack(attackedTarget);
+                FireDelay();
                 Vector3 dird = attackedTarget[0].transform.position - transform.position;
                 Quaternion qq = Quaternion.LookRotation(dird.normalized * Time.deltaTime);
                 agent.transform.rotation = qq;
-                FireDelay();
-                Attack(attackedTarget);
-                agent.speed = 0;
                 move = false;
             }
             else
@@ -158,19 +130,11 @@ public class Friendly : MonoBehaviour, IDamaged
     {
         HP -= attck;
         Invoke("DamageEffect", 0.3f);
-        if (HP <= 0) // HP가 0이하이면 사망처리를 한다.
-            Die();
-    }
-    private void Die()//사망처리
-    {
-        fricollider.enabled = false;
-        agent.speed = 0;
-        ranged = 0;
-        attackranged = 0;
-        isDie = true;
-        SoundPool.instance.SetSound(audioClip[1], gameObject.transform, 0.8f);
-        anime.SetTrigger("IsDie");
-        Destroy(gameObject, 1.3f);
+        if (HP <= 0)
+        {
+            anime.SetTrigger("IsDie");
+            Die(1.3f, 1, 0.8f);
+        }
     }
     private void HitEffact()
     {

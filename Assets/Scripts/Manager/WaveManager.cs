@@ -51,13 +51,14 @@ public class WaveManager : MonoBehaviour
         bossStage = 0;
         hard = 0;
         collecter = 1;
-        spawnOke = 1000;
-        spawnBadWizard = 1000;
-        spawnGolem = 1000;
+
+        //랜덤사용을 위한 변수
+        spawnOke        = 1000;
+        spawnBadWizard  = 1000;
+        spawnGolem      = 1000;
     }
     private void Start()
     {
-        
         UIManager.instance.waveWaitTime.text = Mathf.Floor(waveTime).ToString();
     }
     private void FixedUpdate()
@@ -67,13 +68,12 @@ public class WaveManager : MonoBehaviour
     }
     public void SpawnMonster()
     {
-        if (!waveStart)
+        if (!waveStart) // 웨이브 시간이 0초가 되어서 true가 되면
             return;
        if(mons == 0) { 
-        StartCoroutine(OnMonster());
+        StartCoroutine(OnMonster());//몬스터 소환
             mons++;
         }
-        //TODO : 몬스터 소환
         if (monCount == monsterMaxCount) { 
                 monsterSpawn = true;
             monCount = 0;
@@ -95,7 +95,7 @@ public class WaveManager : MonoBehaviour
             Instantiate(enemies[RandomMonster()].data.prefab, monsterPotal[randomPotal].transform.position, Quaternion.identity);
             monsterCount++;
             monCount++;
-            yield return new WaitForSeconds(ranTime);
+            yield return new WaitForSeconds(ranTime); // 몬스터가 겹쳐서 스폰하는 것을 방지하기 위해 랜덤으로 함
         }
         if(spawnDragon)
             switch (stage) {
@@ -145,9 +145,9 @@ public class WaveManager : MonoBehaviour
                     }
                     spawnDragon = false;
                     break;
-        }
+        }//일반 드래곤은 어느정도 강력하게 설정한만큼 Switch를 이용하여 생성되는 것을 직접 컨트롤함 
         yield return new WaitForSeconds(0.4f);
-        if (bossStage == 5)
+        if (bossStage == 5) // 보스 소환
         {
             if (collecter == 4)
                 collecter = 1;
@@ -165,13 +165,13 @@ public class WaveManager : MonoBehaviour
     }
     private int RandomMonster()
     {
+        //int로 랜덤 함수를 받은후
         int random = Random.Range(0, 1000);
-
         int slime = 0;
         int oke = 1;
         int badWizard = 2;
         int golem = 3;
-    
+        //조건에 맞는 몬스터를 소환하는 방식으로 하였습니다.
         if(random > spawnGolem && spawnBadWizard < spawnGolem)
             return golem;
         if (random > spawnBadWizard && spawnOke <spawnBadWizard)
@@ -182,10 +182,11 @@ public class WaveManager : MonoBehaviour
     }
     private void DifficultyUP()
     {
+        //int형 변수를 하나 둬서 웨이브마다의 난이도를 바꾸도록 하였습니다.
         hard++;
         if(hard >= 2)
         {
-            //TODO : 강한몬스터 확률로 더 높은 확률로 나오게 만들기
+            //웨이브에 따른 강한 몬스터 소환될 확률 상승
             if (spawnOke > 0)
                 spawnOke -= 200;
 
@@ -197,7 +198,7 @@ public class WaveManager : MonoBehaviour
 
             if(hard == 5)
             {
-                monsterMaxCount += 35;
+                monsterMaxCount += 35; // 몬스터 수 증가
                 if (spawnOke > 0)
                     spawnOke -= 200;
                 if (spawnBadWizard > 580) 
@@ -211,16 +212,17 @@ public class WaveManager : MonoBehaviour
         if (waveStart)
             return;
         mons = 0;
-       
+       //wave 시간을 줄여주며 플레이어가 초단위로 볼 수 있게 하였습니다.
         waveTime -= Time.deltaTime;
         UIManager.instance.waveWaitTime.text = Mathf.Floor(waveTime).ToString();
+        //웨이브 시간이 0초로 줄어들면 스테이지가 시작되게 하였다.
         if (waveTime <= 0)
         {
             StartCoroutine(WaveStartUI());
             waveTime = 15f;
             stage++;
             bossStage++;
-            DifficultyUP();
+            DifficultyUP(); // 난이도 업
             UIManager.instance.waveWaitTime.text = Mathf.Floor(waveTime).ToString();
             UIManager.instance.stageNumber.text = stage.ToString();
             waveStart = true;

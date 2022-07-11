@@ -32,7 +32,7 @@ public class CameraManager : MonoBehaviour
         gameCamera = GetComponent<Camera>();
         saveOriginalPos.transform.position = transform.position;
     }
-    private void Update()
+    private void LateUpdate()
     {
         KeyOn();
     }

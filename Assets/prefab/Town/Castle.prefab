@@ -213,8 +213,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f125c9e40374744290a9e45950c5679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioClip:
+  - {fileID: 8300000, guid: fc96116dc3c141440aabb5605744fea2, type: 3}
+  originalPos: {x: 0, y: 0, z: 0}
   data: {fileID: 11400000, guid: 4b9e30be552b5e04bb51260eb903982a, type: 2}
-  audioClip: {fileID: 8300000, guid: c1f8c36ebdb20024ea8a59ec457d582c, type: 3}
 --- !u!95 &5043514450920350104
 Animator:
   serializedVersion: 3

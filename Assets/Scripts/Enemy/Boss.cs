@@ -4,49 +4,27 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
-public class Boss : MonoBehaviour, IDamaged
+public class Boss : Character, IDamaged
 {
     public BossData data;
-    NavMeshAgent agent;
-
-    public AudioClip[] audioClip;
-
-    Animator anime;
-    Collider enemyCollider;
-
-    public Transform closeAttackPos;
     public Flame flame;
+    public Transform closeAttackPos;
     public Transform flamePos;
-
-    public GameObject effect;
-    public Transform effectPos;
-    public GameObject damageEffect;
-    public Transform bloodPos;
-
-    int HP;
-    float ranged;
 
     float attackFarRange;
     float attackCloseRange;
-
-    float   attackDelay;
-    bool    meleeAttacked;
-    float   flameDelay;
-    bool    flameAttack;
-    float   flameFire;
-
-    bool isDie;
-
-    private float moveDelay = 0f;
-    private bool move;
-
+    bool meleeAttacked;
+    float flameDelay;
+    bool flameAttack;
+    float flameFire;
+    float distance;
     public bool isStart;
     public bool Victory;
 
     Collider[] findTarget;
     Collider[] attackedCloseTarget;
     public Collider[] attackedFarTarget;
-    float distance;
+    
     private void Awake()
     {
         HP = data.hp;
@@ -66,7 +44,7 @@ public class Boss : MonoBehaviour, IDamaged
     }
     private void Start()
     {
-        enemyCollider = GetComponent<Collider>();
+        charCollider = GetComponent<Collider>();
         anime = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         agent.speed = data.speed;
@@ -156,7 +134,6 @@ public class Boss : MonoBehaviour, IDamaged
     }
     private void FlameAttack()
     {
-        
         flame.OnFlame(flamePos);
     }
     private void MeleeAttack(Collider[] target)
@@ -181,6 +158,16 @@ public class Boss : MonoBehaviour, IDamaged
             meleeAttacked = true;
         }
     }
+    public void Damaged(int attck)
+    {
+        HP -= attck;
+        Invoke("DamageEffect", 0.3f);
+        if (HP <= 0)
+        {
+            anime.SetTrigger("IsDie");
+            Die(3f, 2, 2.8f);
+        }
+    }
     private void HitEffact()
     {
         SoundPool.instance.SetSound(audioClip[1], effectPos, 3f);
@@ -195,21 +182,7 @@ public class Boss : MonoBehaviour, IDamaged
         GameObject saveEffact = Instantiate(damageEffect, bloodPos.position, Quaternion.identity);
         Destroy(saveEffact, 1.5f);
     }
-    public void Damaged(int attck)
-    {
-        HP -= attck;
-        Invoke("DamageEffect", 0.3f);
-        if (HP <= 0)
-        {
-            agent.speed = 0;
-            ranged = 0;
-            attackFarRange = 0;
-            isDie = true;
-            enemyCollider.enabled = false;
-            //TODO : 죽으면서 콜라이더 꺼서 한번만 죽게 만들기
-            Die();
-        }
-    }
+   
     private void meleeDelay()
     {
         if (meleeAttacked)
@@ -240,22 +213,6 @@ public class Boss : MonoBehaviour, IDamaged
                 flameDelay = 0f;
             }
         }
-    }
-    private void Die()
-    {
-        SoundPool.instance.SetSound(audioClip[2], gameObject.transform, 3f);
-        Victory = data.victory;
-        WaveManager.instance.monsterCount += -1;
-        anime.SetTrigger("IsDie");
-        Destroy(gameObject, 3f);
-    }
-    private void OnDrawGizmos()
-    {
-        //TODO : 사정거리를 눈으로 확인하기 위한 작업 제작완료시 삭제
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, data.range);
-        Gizmos.DrawWireSphere(transform.position, data.attackFarRange);
-        Gizmos.DrawWireCube(closeAttackPos.position, new Vector3(5,10 ,data.attackCloseRange));
     }
     public IEnumerator OnVictory()
     {

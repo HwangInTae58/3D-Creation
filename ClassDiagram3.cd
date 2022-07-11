@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ConstantRotation" Collapsed="true">
+    <Position X="11.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Assets\MyAsset\Cool Visual Effects - Part 1\Scripts\ConstantRotation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EffectManager" Collapsed="true">
+    <Position X="15" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAACAEAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Assets\MyAsset\Cool Visual Effects - Part 1\Scripts\EffectManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DecalDestroyer" Collapsed="true">
+    <Position X="13.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\MyAsset\Effect\EffectExamples\Shared\Scripts\DecalDestroyer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ExtinguishableFire" Collapsed="true">
+    <Position X="18.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAACAAJAAAAAAgAAAEAAAAAAAAAAAAAQCAAAA=</HashCode>
+      <FileName>Assets\MyAsset\Effect\EffectExamples\Shared\Scripts\ExtinguishableFire.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GunAim" Collapsed="true">
+    <Position X="18.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAEACCAAAAAAACgAAAAAAAACAAgAAAAAAAACAAA=</HashCode>
+      <FileName>Assets\MyAsset\Effect\EffectExamples\Shared\Scripts\GunAim.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GunShoot" Collapsed="true">
+    <Position X="9.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAEAEAACIBAAGAAAAAAAAAABQAQgAAAxAAAEAABAI=</HashCode>
+      <FileName>Assets\MyAsset\Effect\EffectExamples\Shared\Scripts\GunShoot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ParticleCollision" Collapsed="true">
+    <Position X="11.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAQgAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>Assets\MyAsset\Effect\EffectExamples\Shared\Scripts\ParticleCollision.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ParticleExamples" Collapsed="true">
+    <Position X="13.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAQAAAAAAAIAAAAABAAAQAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>Assets\MyAsset\Effect\EffectExamples\Shared\Scripts\ParticleExamples.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ParticleMenu" Collapsed="true">
+    <Position X="15" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQCAAAACAIACAAAAQAAAiAAAAAAAQAEAAAAA=</HashCode>
+      <FileName>Assets\MyAsset\Effect\EffectExamples\Shared\Scripts\ParticleMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Readme" Collapsed="true">
+    <Position X="16.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAQAAAAAAAAAAAAAAAAAAAQAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Assets\MyAsset\Effect\EffectExamples\TutorialInfo\Scripts\Readme.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CFX_AutoStopLoopedEffect" Collapsed="true">
+    <Position X="18.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAQAAAAAAAAAAAAAAAAAAAAEAAAAAAAACAA=</HashCode>
+      <FileName>Assets\MyAsset\Effect\JMO Assets\Cartoon FX\Demo\Assets\CFX_AutoStopLoopedEffect.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CFX_Demo_New" Collapsed="true">
+    <Position X="9.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQQgAAAACgAiAkAACgAAAwAIEAABEIAAAAIASiAKEA=</HashCode>
+      <FileName>Assets\MyAsset\Effect\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_New.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CFX_Demo_RandomDir" Collapsed="true">
+    <Position X="11.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAACAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\MyAsset\Effect\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_RandomDir.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CFX_Demo_RandomDirectionTranslate" Collapsed="true">
+    <Position X="13.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAgAACAAAAAAAAEAAAAAAQAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\MyAsset\Effect\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_RandomDirectionTranslate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CFX_Demo_RotateCamera" Collapsed="true">
+    <Position X="15" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQgAAAIAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\MyAsset\Effect\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_RotateCamera.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CFX_Demo_Translate" Collapsed="true">
+    <Position X="16.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAgAACAAAAAAAAGAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\MyAsset\Effect\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_Translate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CFX_AutoDestructShuriken" Collapsed="true">
+    <Position X="15" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAAAAACAAAAAAAAACAA=</HashCode>
+      <FileName>Assets\MyAsset\Effect\JMO Assets\Cartoon FX\Scripts\CFX_AutoDestructShuriken.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CFX_AutoRotate" Collapsed="true">
+    <Position X="16.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAgAAAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\MyAsset\Effect\JMO Assets\Cartoon FX\Scripts\CFX_AutoRotate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CFX_LightFlicker" Collapsed="true">
+    <Position X="18.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQACAAEAAAACAAAAAAAAAAAAAAAAAAAAAAAoAAACEg=</HashCode>
+      <FileName>Assets\MyAsset\Effect\JMO Assets\Cartoon FX\Scripts\CFX_LightFlicker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CFX_LightIntensityFade" Collapsed="true">
+    <Position X="9.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAIAACAAAIAQABAAAAgAAAAAAAAAAAAAgAAACAA=</HashCode>
+      <FileName>Assets\MyAsset\Effect\JMO Assets\Cartoon FX\Scripts\CFX_LightIntensityFade.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Boss" Collapsed="true">
+    <Position X="5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ERQAAAAAQKEAAABBAABEUAACBlQAQAiAACAYAAgAAEA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\Boss.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BossData" Collapsed="true">
+    <Position X="9.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAqAAAAgAAAAAAAAAICBAQAAQAAAABIAAgAAAA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\BossData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Enemy" Collapsed="true">
+    <Position X="0.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABYAAAAAQCAAAABAAAAAEAAAAIAAAAAAAAAYAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\Enemy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="EnemyData" Collapsed="true">
+    <Position X="16.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAqAAAAgAAABAAAAAIAAAAAAQAAAABAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\EnemyData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Flame" Collapsed="true">
+    <Position X="9.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQEAAAIAAIAAAAAAAgAAEIABAAggQAAAgASAAIAAEA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\Flame.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FlameData" Collapsed="true">
+    <Position X="11.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAgAAAAAAAAAIAAAAgAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\FlameData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Character" Collapsed="true">
+    <Position X="3.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAIAAAAAQCgAUAAAAQARABCgABgAAAAAACQABA=</HashCode>
+      <FileName>Assets\Scripts\Friendly\Character.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Friendly" Collapsed="true">
+    <Position X="7.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABYAAAAAQCAAAABAAAAAEAAAAIQAAAAAAAAYAQAACEA=</HashCode>
+      <FileName>Assets\Scripts\Friendly\Friendly.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FriendlyData" Collapsed="true">
+    <Position X="15" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAKAAAAgAAABAAAAAIAAAAQAQAAAABACAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Friendly\FriendlyData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuildManager" Collapsed="true">
+    <Position X="11.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CQAEEQAQACAAAIAAIACAABAAQABQAAAIAAIEAAAAQEI=</HashCode>
+      <FileName>Assets\Scripts\Manager\BuildManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CameraManager" Collapsed="true">
+    <Position X="13.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgACAAAAAAEAAAIggAAIIACABAIAAUAABAQEQ=</HashCode>
+      <FileName>Assets\Scripts\Manager\CameraManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gamemanager" Collapsed="true">
+    <Position X="16.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEABACACAAAAAAAAAAIBAAAABggQAAAAAEEAAAImA=</HashCode>
+      <FileName>Assets\Scripts\Manager\Gamemanager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UIManager" Collapsed="true">
+    <Position X="15" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEBEAABAAEAEBAIACAAAAACAAABACAABAAEIABAAgEA=</HashCode>
+      <FileName>Assets\Scripts\Manager\UIManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WaveManager" Collapsed="true">
+    <Position X="16.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQEAAIBAiABAEIoSCIAAEAAAIBACFABAYAAAkCAIUA=</HashCode>
+      <FileName>Assets\Scripts\Manager\WaveManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoundPool" Collapsed="true">
+    <Position X="18.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAACAAAABAAAAAAAICAEBQAAAAAAgAAABAAEA=</HashCode>
+      <FileName>Assets\Scripts\SoundPool.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Town" Collapsed="true">
+    <Position X="2.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CCQAAAACACAAAAAAAAAAEAAAAEEAAAAAAAAYAAABQEA=</HashCode>
+      <FileName>Assets\Scripts\Town\Town.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TownData" Collapsed="true">
+    <Position X="13.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAIAAAAgAAAAIAAAIAAAAQAAAAAABAAAAhAAA=</HashCode>
+      <FileName>Assets\Scripts\Town\TownData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FriendlyBuild" Collapsed="true">
+    <Position X="13.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAACAAAAAAAAAAIAACAAAQAAAAAAAQCAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\UI\FriendlyBuild.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TerrainScript" Collapsed="true">
+    <Position X="9.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAIAAAAAAAAAAAgACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\TerrainScript.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TownBuild" Collapsed="true">
+    <Position X="11.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAgAAAAIAIAACAAAQAAAAAAAQAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\UI\TownBuild.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="IDamaged" Collapsed="true">
+    <Position X="9.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Interface\IDamaged.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="맑은 고딕" Size="9" />
+</ClassDiagram>
