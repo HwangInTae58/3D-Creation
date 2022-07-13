@@ -133,7 +133,7 @@ public class Friendly : Character , IDamaged
         if (HP <= 0)
         {
             anime.SetTrigger("IsDie");
-            Die(1.3f, 1, 0.8f);
+            Die(1.3f, 1, 0.8f, false);
         }
     }
     private void HitEffact()

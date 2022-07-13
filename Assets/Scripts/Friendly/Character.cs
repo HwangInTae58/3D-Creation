@@ -30,7 +30,7 @@ public class Character : MonoBehaviour
     protected bool move;
 
     protected bool isDie;
-    protected void Die(float time , int clip , float soundTime)//사망처리
+    protected void Die(float time , int clip , float soundTime, bool monCount)//사망처리
     {
         if(agent != null)
         agent.speed = 0;
@@ -39,6 +39,8 @@ public class Character : MonoBehaviour
         attackranged = 0;
         isDie = true;
         SoundPool.instance.SetSound(audioClip[clip], gameObject.transform, soundTime);
+        if (monCount)
+            WaveManager.instance.monsterCount -= 1;
         Destroy(gameObject, time);
     }
 }

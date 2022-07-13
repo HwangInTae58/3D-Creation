@@ -110,7 +110,7 @@ public class Enemy : Character, IDamaged
         if (HP <= 0)
         {
             anime.SetTrigger("IsDie");
-            Die(1.3f, 1, 0.8f);
+            Die(1.3f, 1, 0.8f, true);
         }
     }
     private void HitEffact()

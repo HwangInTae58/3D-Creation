@@ -69,7 +69,7 @@ public class Town : Character, IDamaged
         }
         if (0 >= HP) {
             anime.SetBool("IsDie", true);
-            Die(0.6f,0,0.4f);
+            Die(0.6f,0,0.4f, false);
         }
     }
     public IEnumerator OnLose()

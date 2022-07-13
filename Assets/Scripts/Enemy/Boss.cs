@@ -165,7 +165,7 @@ public class Boss : Character, IDamaged
         if (HP <= 0)
         {
             anime.SetTrigger("IsDie");
-            Die(3f, 2, 2.8f);
+            Die(3f, 2, 2.8f, true);
         }
     }
     private void HitEffact()

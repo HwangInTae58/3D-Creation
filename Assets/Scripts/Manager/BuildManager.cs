@@ -100,4 +100,14 @@ public class BuildManager : MonoBehaviour
             changeCost?.Invoke();
         }
     }
+    public void MoneyCheat()
+    {
+        if(Input.GetKeyDown(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.X))
+        {
+            Cost = 999;
+            changeCost?.Invoke();
+            maxCost = 999;
+            max.text = maxCost.ToString();
+        }
+    }
 }

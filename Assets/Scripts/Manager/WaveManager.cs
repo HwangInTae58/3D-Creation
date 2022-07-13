@@ -65,6 +65,7 @@ public class WaveManager : MonoBehaviour
     {
         SpawnMonster();
         WaveWait();
+        ShowMeTheMoney();
     }
     public void SpawnMonster()
     {
@@ -234,5 +235,9 @@ public class WaveManager : MonoBehaviour
         UIManager.instance.waveStart.SetActive(true);
         yield return new WaitForSeconds(2f);
         UIManager.instance.waveStart.SetActive(false);
+    }
+    private void ShowMeTheMoney()
+    {
+        BuildManager.instance.MoneyCheat();
     }
 }
