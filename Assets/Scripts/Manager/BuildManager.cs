@@ -42,8 +42,15 @@ public class BuildManager : MonoBehaviour
     {
         if (Cost < maxCost)
         {
-            Cost += getCost;
-            changeCost?.Invoke();
+            if (Cost + getCost >= maxCost)
+            {
+                Cost = maxCost;
+                changeCost?.Invoke();
+            }
+            else { 
+                Cost += getCost;
+                changeCost?.Invoke();
+            }
         }
         else if (Cost > maxCost)
         {

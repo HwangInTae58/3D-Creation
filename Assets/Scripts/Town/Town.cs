@@ -68,6 +68,7 @@ public class Town : Character, IDamaged
             anime.SetBool("IsLowHP", isLowHP);
         }
         if (0 >= HP) {
+            Life = data.Life;
             anime.SetBool("IsDie", true);
             Die(0.6f,0,0.4f, false);
         }

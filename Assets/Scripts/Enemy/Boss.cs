@@ -164,6 +164,9 @@ public class Boss : Character, IDamaged
         Invoke("DamageEffect", 0.3f);
         if (HP <= 0)
         {
+            Victory = data.victory;
+            if (Victory)
+                StartCoroutine(OnVictory());
             anime.SetTrigger("IsDie");
             Die(3f, 2, 2.8f, true);
         }
