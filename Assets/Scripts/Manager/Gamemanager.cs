@@ -20,7 +20,6 @@ public class Gamemanager : MonoBehaviour
             _instance = this;
         window = Instantiate(option, Canvas.FindObjectOfType<Canvas>().transform);
         window.GetComponent<Option>().OptionWindowCreat();
-        DontDestroyOnLoad(window);
         speed = 1;
     }
     private void Start()
