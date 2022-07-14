@@ -119,7 +119,7 @@ public class Enemy : Character, IDamaged
 
         //audiosource.clip = audioClip[0];
         //audiosource.Play();
-        SoundPool.instance.SetSound(audioClip[0], gameObject.transform, 0.5f, false);
+        SoundPool.instance.SetSound(audioClip[0], gameObject.transform, 0.5f, false, true);
         if (effectPos == null) {
             if (enermyTargetPos == null)
                 return;

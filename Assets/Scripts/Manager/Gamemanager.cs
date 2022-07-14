@@ -28,7 +28,7 @@ public class Gamemanager : MonoBehaviour
         if (null != speedText)
             speedText.text = speed.ToString();
         if (audioClip != null) {
-            SoundPool.instance.SetSound(audioClip, SoundPool.instance.transform, 50f, true);
+            SoundPool.instance.SetSound(audioClip, Camera.main.transform, 50f, true, false);
         }
     }
     

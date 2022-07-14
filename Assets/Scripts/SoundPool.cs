@@ -39,7 +39,7 @@ public class SoundPool : MonoBehaviour
         return obj;
     }
     //싱글톤으로 클래스를 만들었기에 어디서든 자신이 원하는 클립과 위치를 정해주고 플레이 타임을 정해주는 식으로 만듬
-    public void SetSound(AudioClip _clip, Transform _position, float _time , bool loop)
+    public void SetSound(AudioClip _clip, Transform _position, float _time , bool loop, bool sound3d)
     {
         //for문을 돌려 사용중이면 넘어가고 아니라면 사용해준다.
        for(int i = 0; i <pool.Count; i++) {
@@ -51,6 +51,10 @@ public class SoundPool : MonoBehaviour
                 pool[i].clip = _clip;
                 pool[i].transform.position = _position.position;
                 pool[i].loop = loop;
+                if (sound3d)
+                    pool[i].spatialBlend = 1;
+                else
+                    pool[i].spatialBlend = 0;
                 pool[i].Play();
                 //코루틴을 돌려 사용이 끝나면 다시 돌려준다.
                 if (!loop)
@@ -60,7 +64,7 @@ public class SoundPool : MonoBehaviour
         }
        //전부 사용중이라면 새로 만들어주고 다시 재귀해준다.
         pool.Add(CreatObject());
-        SetSound(_clip, _position, _time, loop);
+        SetSound(_clip, _position, _time, loop, sound3d);
     }
     public IEnumerator ReturnSoundPool(AudioSource source, float _time)
     {
