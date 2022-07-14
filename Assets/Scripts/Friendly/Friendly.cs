@@ -138,7 +138,7 @@ public class Friendly : Character , IDamaged
     }
     private void HitEffact()
     {
-        SoundPool.instance.SetSound(audioClip[0], gameObject.transform, 0.5f);
+        SoundPool.instance.SetSound(audioClip[0], gameObject.transform, 0.5f,false);
         GameObject saveEffact;
         if (effectPos == null)
             saveEffact = Instantiate(effect, enermyTargetPos.position, Quaternion.identity);

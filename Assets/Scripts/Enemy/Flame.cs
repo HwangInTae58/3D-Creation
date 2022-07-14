@@ -84,7 +84,7 @@ public class Flame : MonoBehaviour
             {
                 //audiosource.clip = audioClip[0];
                 //audiosource.Play();
-                SoundPool.instance.SetSound(audioClip[0], gameObject.transform, 0.8f);
+                SoundPool.instance.SetSound(audioClip[0], gameObject.transform, 0.8f, false);
             }
             hitFlame = true;
             speed = 0;

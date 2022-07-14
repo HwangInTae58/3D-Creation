@@ -38,7 +38,7 @@ public class Character : MonoBehaviour
         ranged = 0;
         attackranged = 0;
         isDie = true;
-        SoundPool.instance.SetSound(audioClip[clip], gameObject.transform, soundTime);
+        SoundPool.instance.SetSound(audioClip[clip], gameObject.transform, soundTime, false);
         if (monCount)
             WaveManager.instance.monsterCount -= 1;
         Destroy(gameObject, time);

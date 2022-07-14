@@ -93,7 +93,7 @@ public class Boss : Character, IDamaged
                 }
                 agent.speed = 0;
                 //TODO : 원거리 공격 오브젝트 날리기
-                SoundPool.instance.SetSound(audioClip[3], flamePos, 0.5f);
+                SoundPool.instance.SetSound(audioClip[3], flamePos, 0.5f, false);
                 anime.SetTrigger("IsFlame");
                 flameAttack = true;
             }
@@ -128,7 +128,7 @@ public class Boss : Character, IDamaged
         if(!isStart)
         {
             isStart = true;
-            SoundPool.instance.SetSound(audioClip[0], gameObject.transform, 3f);
+            SoundPool.instance.SetSound(audioClip[0], gameObject.transform, 3f, false);
             anime.SetTrigger("IsStart");
         }
     }
@@ -173,7 +173,7 @@ public class Boss : Character, IDamaged
     }
     private void HitEffact()
     {
-        SoundPool.instance.SetSound(audioClip[1], effectPos, 3f);
+        SoundPool.instance.SetSound(audioClip[1], effectPos, 3f, false);
         GameObject saveEffact;
             saveEffact = Instantiate(effect, effectPos.position, Quaternion.identity);
         Destroy(saveEffact, 1f);

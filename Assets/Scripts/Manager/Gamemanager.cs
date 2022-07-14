@@ -2,16 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class Gamemanager : MonoBehaviour
 {
     static Gamemanager _instance;
     public static Gamemanager instance { get { return _instance; } }
-
-    public GameObject optionWindow;
-    public Slider slider;
-    public AudioSource sources; // 0 병사, 1 건물 , 2 일반 적 병사 , 3 보스 , 4 플레임
+    public GameObject option;
+    GameObject window;
     public AudioClip audioClip;
     public Text speedText;
     int speed;
@@ -19,19 +18,21 @@ public class Gamemanager : MonoBehaviour
     {
         if (_instance == null)
             _instance = this;
+        window = Instantiate(option, Canvas.FindObjectOfType<Canvas>().transform);
+        window.GetComponent<Option>().OptionWindowCreat();
+        DontDestroyOnLoad(window);
         speed = 1;
     }
     private void Start()
     {
-        if(null != speedText)
+        
+        if (null != speedText)
             speedText.text = speed.ToString();
-        sources = Instantiate(sources);
-        if (audioClip != null) { 
-            sources.clip = audioClip;
-            sources.loop = true;
-            sources.Play();
+        if (audioClip != null) {
+            SoundPool.instance.SetSound(audioClip, SoundPool.instance.transform, 50f, true);
         }
     }
+    
     public void ChangeScene(string sceneName)
     {
         if (Time.timeScale <= 0)
@@ -49,20 +50,7 @@ public class Gamemanager : MonoBehaviour
             UIManager.instance.pausd = false;
         }
     }
-    public void ActiveOptionWindow()
-    {
-        if (!optionWindow.activeSelf)
-            optionWindow.SetActive(true);
-        else
-            optionWindow.SetActive(false);
-    }
-    public void SoundOption()
-    {
-        if (sources != null)
-            return;
-        sources.volume = slider.value;
-        slider.value = sources.volume;
-    }
+    
     public void GameSpeed()
     {
         if (Time.timeScale < 1)
@@ -86,5 +74,9 @@ public class Gamemanager : MonoBehaviour
     public void GameExit()
     {
         Application.Quit();
+    }
+    public void OptionButton()
+    {
+        Option.instance.ActiveOptionWindow();
     }
 }
