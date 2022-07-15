@@ -9,7 +9,7 @@ public class Option : MonoBehaviour
     public static Option instance { get { return _instance; } }
     public AudioMixer audioMixer;
     public Slider slider;
-    float volume;
+    public float volume;
     private void Awake()
     {
         if (_instance == null)
@@ -38,7 +38,6 @@ public class Option : MonoBehaviour
     public void SetVolume()
     {
         volume = slider.value;
-        Debug.Log(volume);
         if (volume == -40f)
             audioMixer.SetFloat("Master", -80);
         else

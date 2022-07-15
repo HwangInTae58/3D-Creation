@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class FriendlyBuild : MonoBehaviour
 {
     public FriendlyData data;
-
     public Text friendName;
     public Text friendManual;
     public Text cost;

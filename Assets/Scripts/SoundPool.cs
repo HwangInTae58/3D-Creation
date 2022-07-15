@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 public class SoundPool : MonoBehaviour
 {
     static SoundPool _instance;
