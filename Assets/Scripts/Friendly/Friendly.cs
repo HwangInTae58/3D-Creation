@@ -97,6 +97,11 @@ public class Friendly : Character , IDamaged
             return;
         }
     }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, attackranged);
+    }
     private void MoveDelay()
     {
         if (!move)
